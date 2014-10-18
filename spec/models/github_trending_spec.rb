@@ -26,6 +26,7 @@ describe GithubTrending do
       expect(project.name).to eq 'lewsnetter'
       expect(project.username).to eq 'bborn'
       expect(project.github_path).to eq '/bborn/lewsnetter'
+      expect(project.clone_url).to eq 'git@github.com:bborn/lewsnetter.git'
       expect(project.description).to eq """
       E-mail marketing application (create and send e-mail newsletter via SES). Includes subscription management, delivery, bounce and complaint notification, templates, and some stats.
       """.strip

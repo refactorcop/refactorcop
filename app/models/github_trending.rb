@@ -34,5 +34,9 @@ class GithubTrending
     def github_path
       "/#{username}/#{name}"
     end
+
+    def clone_url
+      "git@github.com:#{username}/#{name}.git"
+    end
   end
 end
