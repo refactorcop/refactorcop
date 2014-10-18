@@ -374,6 +374,7 @@ DEPENDENCIES
   binding_of_caller
   brakeman (>= 2.6.0)
   capybara
+  coderay
   coffee-rails (~> 4.0.0)
   counter_culture
   database_cleaner
