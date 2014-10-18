@@ -44,9 +44,10 @@ class Project::Download
     Zip::File.open_buffer(file) do |zip_file|
       # Handle entries one by one
       @source_files = zip_file.glob('**/*.rb').compact.map do |entry|
+        next if test_file?(entry.name)
         logger.info { "Extracting #{entry.name.inspect}" }
         begin
-        to_source_file(entry)
+          to_source_file(entry)
         rescue StandardError => e
           puts "FAILED ON FILE: #{entry.name}"
           p e.inspect
@@ -54,6 +55,10 @@ class Project::Download
         end
       end
     end
+  end
+
+  def test_file?(filename)
+    filename =~ /(spec|test)\//
   end
 
   def to_source_file(entry)
