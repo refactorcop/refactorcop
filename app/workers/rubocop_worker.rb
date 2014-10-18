@@ -13,14 +13,23 @@ class RubocopWorker
       return
     end
 
+    if project.rubocop_run_started_at > project.rubocop_run_dispatched_at
+      logger.info "Project ##{project_id} #{project.full_name} a worker is still running? *abort*"
+      return
+    end
+
+    project.rubocop_run_started_at = Time.now
+    project.save
+
     logger.info "Project ##{project_id} #{project.full_name} fetching project zipfile"
     project.update_source_files!
     logger.info "Project ##{project_id} #{project.full_name} fetching project zipfile: DONE!"
 
-    #run rubocop
+    project.rubocop_run_dispatched_at = Time.now
+    project.save
 
-    #capture json output
+    logger.info "Project ##{project_id} #{project.full_name} done in #{project.rubocop_run_started_at - project.rubocop_run_dispatched_at}s"
 
-    #process json output
+
   end
 end

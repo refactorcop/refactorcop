@@ -28,7 +28,8 @@ class Project < ActiveRecord::Base
     "#{username}/#{name}"
   end
 
-  def download_zip_url(branch: 'master')
+  def download_zip_url
+    branch = default_branch || "master"
     "https://github.com/#{username}/#{name}/archive/#{branch}.zip"
   end
 
@@ -42,8 +43,13 @@ class Project < ActiveRecord::Base
     save! #unless repository_data.nil?
   end
 
+  def repository_data
+    super || self.repository_data = fetch_github_repository_data
+  end
+
   def default_branch
     return nil if repository_data.blank?
+
     repository_data["default_branch"]
   end
 
