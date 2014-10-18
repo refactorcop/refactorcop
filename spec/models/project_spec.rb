@@ -14,6 +14,8 @@
 require 'rails_helper'
 
 RSpec.describe Project, :type => :model do
+  let(:project) { build(:project) }
+
   describe '#clone_url' do
     subject { build(:project, username: 'tarantino', name: 'pulp-fiction').clone_url }
     it { is_expected.to eq 'git@github.com:tarantino/pulp-fiction.git' }
@@ -56,6 +58,20 @@ RSpec.describe Project, :type => :model do
     subject { project.default_branch }
     let(:project) { create(:project, repository_data: {default_branch: "stable"}) }
     it { is_expected.to eq "stable" }
+  end
+
+  describe '#update_source_files!' do
+    let(:source_file) { double() }
+    let(:source_files) { [source_file] }
+
+    before :each do
+      allow_any_instance_of(Project::Download).to receive(:call).and_return(source_files)
+    end
+
+    it 'downloads and saves each file' do
+      expect(source_file).to receive(:save!)
+      project.update_source_files!
+    end
   end
 
   describe 'validations' do
