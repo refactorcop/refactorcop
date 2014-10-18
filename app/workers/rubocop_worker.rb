@@ -5,7 +5,7 @@ class RubocopWorker
 
   sidekiq_options retry: true
 
-  def perform(project_id, force_run: false)
+  def perform(project_id, force_run = false)
     project = Project.find_by_id!(project_id)
 
     if !project.new_commits? && !force_run

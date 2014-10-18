@@ -14,9 +14,8 @@
 FactoryGirl.define do
   factory :source_file do
     project nil
-content "MyText"
-path "MyString"
-rubocop_offenses ""
+    content "def hello"
+    path "source_file.rb"
   end
 
 end
