@@ -24,8 +24,7 @@ class Project < ActiveRecord::Base
   end
 
   def fetch_github_repository_data
-    github = Github.new
-    response = github.repos.get(username, name).to_hash.to_json
+    github_api.repos.get(username, name).to_h.with_indifferent_access
   end
 
   def update_repository_data
@@ -43,6 +42,12 @@ class Project < ActiveRecord::Base
   def project_updated?
     github = fetch_github_repository_data
 
-    repository_data[:pushed_at] <> github[:pushed_at]
+    repository_data[:pushed_at] != github[:pushed_at]
+  end
+
+  private
+
+  def github_api
+    @github_api ||= Github.new
   end
 end

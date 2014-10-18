@@ -19,6 +19,21 @@ RSpec.describe Project, :type => :model do
     it { is_expected.to eq 'git@github.com:tarantino/pulp-fiction.git' }
   end
 
+  describe '#fetch_github_repository_data' do
+    around(:each) do |example|
+      VCR.use_cassette('github_repository') do
+        example.run
+      end
+    end
+    subject { project.fetch_github_repository_data }
+    let(:project) { build(:project, username: 'mperham', name: 'sidekiq') }
+
+    it 'returns the repository data' do
+      expect(DateTime.parse(subject[:pushed_at])).to eq(DateTime.parse("2014-10-16T21:07:30Z"))
+      expect(subject[:ssh_url]).to eq("git@github.com:mperham/sidekiq.git")
+    end
+  end
+
   describe 'validations' do
     it { is_expected.to validate_presence_of(:username) }
     it { is_expected.to validate_presence_of(:name) }
