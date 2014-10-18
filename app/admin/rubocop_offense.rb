@@ -15,4 +15,19 @@ ActiveAdmin.register RubocopOffense do
   # end
 
 
+  index do
+    column :id
+    column :source_file, sortable: "source_files.path"
+    column :severity
+    column :cop_name
+    column :message
+    column :updated_at
+    actions
+  end
+
+  controller do
+    def scoped_collection
+      end_of_association_chain.includes(:source_file)
+    end
+  end
 end
