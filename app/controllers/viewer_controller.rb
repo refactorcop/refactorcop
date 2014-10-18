@@ -26,5 +26,6 @@ class ViewerController < ApplicationController
       else 99
     end").includes(:source_file, :project)
 
+    @offenses = @offenses.page(params[:page]).per(10)
   end
 end

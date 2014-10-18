@@ -6,7 +6,9 @@
     <%= link_to @name, "https://github.com/#{@project.username}/#{@project.name}", target: '_blank' %>
   </h2>
 
-  <p><%= @project.description %></p>
+	<p><%= @project.description %> <%= page_entries_info @offenses %></p>
+
+	<p><%= paginate @offenses %></p>
 
   <ul>
     <% @offenses.each do |offense| %>
