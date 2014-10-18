@@ -22,9 +22,11 @@ ActiveAdmin.register Project do
 
   index do
     column :id
-    column "Repo" do |project|
+
+    column "Repo", :sortable => :name do |project|
       link_to project.full_name, admin_project_path(project)
     end
+
     column :description
     column 'Files', :source_files_count
     column :created_at
