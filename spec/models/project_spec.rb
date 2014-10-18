@@ -34,6 +34,24 @@ RSpec.describe Project, :type => :model do
     end
   end
 
+  describe '#pushed_at' do
+    subject { project.pushed_at }
+
+    context 'when no repository data' do
+      let(:project) { build(:project, repository_data: nil) }
+      it { is_expected.to be < 99.years.ago }
+    end
+
+    context 'when repository data' do
+      let(:project) { create(:project, repository_data: {pushed_at: pushed_at}) }
+      let(:pushed_at) { DateTime.now.utc }
+
+      it do
+        expect(subject.httpdate).to eq pushed_at.httpdate
+      end
+    end
+  end
+
   describe 'validations' do
     it { is_expected.to validate_presence_of(:username) }
     it { is_expected.to validate_presence_of(:name) }

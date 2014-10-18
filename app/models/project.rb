@@ -33,16 +33,20 @@ class Project < ActiveRecord::Base
   end
 
   def default_branch
-    #json = curl "https://api.github.com/repos/#{username}/#{name}"
-    fetch_github_repository_data if repository_data.blank?
+    return nil if repository_data.blank?
+    repository_data[:default_branch]
+  end
 
-    repository_data['default_branch']
+  def pushed_at
+    if repository_data.blank? || repository_data["pushed_at"].blank?
+      return 100.years.ago
+    end
+    DateTime.parse(repository_data["pushed_at"])
   end
 
   def project_updated?
     github = fetch_github_repository_data
-
-    repository_data[:pushed_at] != github[:pushed_at]
+    pushed_at != github[:pushed_at]
   end
 
   private
