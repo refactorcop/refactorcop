@@ -18,6 +18,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'annotate', '~> 2.6.2' # Auto comments with fields of models
 gem 'faraday'
 gem 'github_api'
+gem 'httpclient'
 gem 'nokogiri'
 gem 'procto'
 gem 'rubocop'

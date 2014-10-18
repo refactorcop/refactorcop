@@ -19,6 +19,10 @@ class Project < ActiveRecord::Base
     "git@github.com:#{username}/#{name}.git"
   end
 
+  def full_name
+    "#{username}/#{name}"
+  end
+
   def download_zip_url(branch: 'master')
     "https://github.com/#{username}/#{name}/archive/#{branch}.zip"
   end
@@ -44,7 +48,7 @@ class Project < ActiveRecord::Base
     DateTime.parse(repository_data["pushed_at"])
   end
 
-  def project_updated?
+  def new_commits?
     github = fetch_github_repository_data
     pushed_at != github[:pushed_at]
   end
@@ -54,4 +58,5 @@ class Project < ActiveRecord::Base
   def github_api
     @github_api ||= Github.new
   end
+
 end
