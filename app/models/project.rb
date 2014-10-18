@@ -18,6 +18,7 @@ class Project < ActiveRecord::Base
   validates_uniqueness_of :name, scope: :username
 
   has_many :source_files
+  has_many :rubocop_offenses, through: :source_files
 
   def clone_url
     "git@github.com:#{username}/#{name}.git"
