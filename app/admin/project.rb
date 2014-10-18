@@ -83,7 +83,7 @@ ActiveAdmin.register Project do
 
 
     div do
-      raw CodeRay.scan(ap(project.repository_data.to_json), :json).div
+      raw CodeRay.scan(project.repository_data.to_json, :json).div
     end
 
   end
