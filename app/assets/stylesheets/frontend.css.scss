@@ -6,24 +6,24 @@
 
 @font-face {
   font-family: 'input_mono_compressedmedium';
-  src: url('fonts/inputmonocompressed-medium-webfont.eot');
-  src: url('fonts/inputmonocompressed-medium-webfont.eot?#iefix') format('embedded-opentype'),
-  url('fonts/inputmonocompressed-medium-webfont.woff2') format('woff2'),
-  url('fonts/inputmonocompressed-medium-webfont.woff') format('woff'),
-  url('fonts/inputmonocompressed-medium-webfont.ttf') format('truetype'),
-  url('fonts/inputmonocompressed-medium-webfont.svg#input_mono_compressedmedium') format('svg');
+  src: asset-url('fonts/inputmonocompressed-medium-webfont.eot');
+  src: asset-url('fonts/inputmonocompressed-medium-webfont.eot?#iefix') format('embedded-opentype'),
+  asset-url('fonts/inputmonocompressed-medium-webfont.woff2') format('woff2'),
+  asset-url('fonts/inputmonocompressed-medium-webfont.woff') format('woff'),
+  asset-url('fonts/inputmonocompressed-medium-webfont.ttf') format('truetype'),
+  asset-url('fonts/inputmonocompressed-medium-webfont.svg#input_mono_compressedmedium') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'input_mono_compressedlight';
-  src: url('fonts/inputmonocompressed-light-webfont.eot');
-  src: url('fonts/inputmonocompressed-light-webfont.eot?#iefix') format('embedded-opentype'),
-  url('fonts/inputmonocompressed-light-webfont.woff2') format('woff2'),
-  url('fonts/inputmonocompressed-light-webfont.woff') format('woff'),
-  url('fonts/inputmonocompressed-light-webfont.ttf') format('truetype'),
-  url('fonts/inputmonocompressed-light-webfont.svg#input_mono_compressedlight') format('svg');
+  src: asset-url('fonts/inputmonocompressed-light-webfont.eot');
+  src: asset-url('fonts/inputmonocompressed-light-webfont.eot?#iefix') format('embedded-opentype'),
+  asset-url('fonts/inputmonocompressed-light-webfont.woff2') format('woff2'),
+  asset-url('fonts/inputmonocompressed-light-webfont.woff') format('woff'),
+  asset-url('fonts/inputmonocompressed-light-webfont.ttf') format('truetype'),
+  asset-url('fonts/inputmonocompressed-light-webfont.svg#input_mono_compressedlight') format('svg');
   font-weight: normal;
   font-style: normal;
 }
