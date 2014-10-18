@@ -47,6 +47,5 @@ ActiveAdmin.register SourceFile do
       raw CodeRay.scan(source_file.content, :ruby).div
     end
 
-
   end
 end

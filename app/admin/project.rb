@@ -69,7 +69,9 @@ ActiveAdmin.register Project do
         row :updated_at
         row :source_files_count
         row :rubocop_offenses_count
-        row :repository_data
+        row :pushed_at
+        row :default_branch
+        #row :repository_data
       end
     end
 
@@ -77,6 +79,11 @@ ActiveAdmin.register Project do
       table_for(project.source_files) do
         column("File", :path) { |sf| link_to( sf.path, admin_source_file_path(sf)) }
       end
+    end
+
+
+    div do
+      raw CodeRay.scan(ap(project.repository_data.to_json), :json).div
     end
 
   end
