@@ -282,6 +282,7 @@ GEM
       sexp_processor (~> 4.0)
     ruby_parser (3.5.0)
       sexp_processor (~> 4.1)
+    rubyzip (1.1.6)
     safe_yaml (1.0.4)
     sass (3.2.19)
     sass-rails (4.0.3)
@@ -384,6 +385,7 @@ DEPENDENCIES
   rails_best_practices
   rspec-rails
   rubocop
+  rubyzip (>= 1.0.0)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   shoulda-matchers
