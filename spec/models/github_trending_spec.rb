@@ -1,7 +1,6 @@
-require 'faraday'
-require 'nokogiri'
-require 'vcr'
-require_relative '../../app/models/github_trending'
+#require 'rubygems'
+#require_relative '../../app/models/github_trending'
+require 'rails_helper'
 
 VCR.configure do |c|
   c.cassette_library_dir = 'vcr_cassettes'

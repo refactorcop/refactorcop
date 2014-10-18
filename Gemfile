@@ -34,6 +34,7 @@ gem 'procto'
 gem 'unicorn'
 gem 'rubocop'
 gem 'sidekiq'
+gem 'virtus'
 
 group :production do
   # Needed for heroku
