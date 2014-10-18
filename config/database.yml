@@ -14,5 +14,5 @@ production:
   adapter: postgresql
   encoding: unicode
   database: rcop_production
-  pool: 5
+  pool: 1
 
