@@ -2,12 +2,13 @@
 #
 # Table name: projects
 #
-#  id          :integer          not null, primary key
-#  name        :string(255)
-#  username    :string(255)
-#  description :text
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id              :integer          not null, primary key
+#  name            :string(255)
+#  username        :string(255)
+#  description     :text
+#  created_at      :datetime
+#  updated_at      :datetime
+#  repository_data :json
 #
 
 require 'rails_helper'

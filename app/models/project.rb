@@ -2,12 +2,13 @@
 #
 # Table name: projects
 #
-#  id          :integer          not null, primary key
-#  name        :string(255)
-#  username    :string(255)
-#  description :text
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id              :integer          not null, primary key
+#  name            :string(255)
+#  username        :string(255)
+#  description     :text
+#  created_at      :datetime
+#  updated_at      :datetime
+#  repository_data :json
 #
 
 class Project < ActiveRecord::Base
@@ -17,7 +18,6 @@ class Project < ActiveRecord::Base
   def clone_url
     "git@github.com:#{username}/#{name}.git"
   end
-end
 
   def download_zip_url(branch: 'master')
     "https://github.com/#{username}/#{name}/archive/#{branch}.zip"
@@ -41,3 +41,4 @@ end
     fetch_github_repository_data
     last_ != repository_data[:pushed_at]
   end
+end
