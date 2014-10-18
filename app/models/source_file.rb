@@ -13,6 +13,7 @@
 
 class SourceFile < ActiveRecord::Base
   belongs_to :project
+  has_many :rubocop_offenses
   counter_culture :project
 
   def full_name

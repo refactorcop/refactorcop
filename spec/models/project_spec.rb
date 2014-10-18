@@ -63,17 +63,14 @@ RSpec.describe Project, :type => :model do
   end
 
   describe '#update_source_files!' do
-    let(:source_file) { double() }
-    let(:source_files) { [source_file] }
-
-    before :each do
-      allow_any_instance_of(Project::Download).to receive(:call).and_return(source_files)
-    end
-
     it 'downloads and saves each file' do
-      expect(source_file).to receive(:save!)
+      expect_any_instance_of(Project::Download).to receive(:call)
       project.update_source_files!
     end
+  end
+
+  describe 'associations' do
+    it { is_expected.to have_many(:source_files) }
   end
 
   describe 'validations' do

@@ -6,9 +6,9 @@ class Project::Download
 
   attr_reader :project, :logger
 
-  def initialize(project, logger: Rails.logger)
+  def initialize(project)
     @project  = project
-    @logger   = logger
+    @logger   = Rails.logger
   end
 
   def call

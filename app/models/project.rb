@@ -61,9 +61,9 @@ class Project < ActiveRecord::Base
   # @return [undefined]
   def update_source_files!
     github_repository_data = fetch_github_repository_data
-    source_files = Project::Download.call(self)
+    Project::Download.call(self)
 
-    repository_data = github_repository_data
+    self.repository_data = github_repository_data
     save! unless github_repository_data.nil?
   end
 

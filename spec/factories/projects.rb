@@ -15,9 +15,8 @@
 
 FactoryGirl.define do
   factory :project do
-    name "MyString"
-username "MyString"
-description "MyText"
+    name "sidekiq"
+    username "mperham"
+    description "MyText"
   end
-
 end
