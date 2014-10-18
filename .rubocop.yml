@@ -1,0 +1,16 @@
+AllCops:
+  Exclude:
+    - bin/**/*
+    - db/**/*
+    - config/**/*
+    - script/**/*
+    - spec/**/*
+    - untracked/**/*
+    - vendor/**/*
+
+# Configuration parameters: AllowURI, URISchemes.
+Metrics/LineLength:
+  Max: 120
+
+Style/Documentation:
+  Enabled: false

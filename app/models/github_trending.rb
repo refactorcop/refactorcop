@@ -25,7 +25,7 @@ class GithubTrending
     attr_reader :username, :name, :description
 
     def initialize(list_item)
-      name_parts = list_item.css('.repo-list-name').first.content.strip.split(" ")
+      name_parts = list_item.css('.repo-list-name').first.content.strip.split(' ')
       @name = name_parts.last.strip
       @username = name_parts.first.strip
       @description = list_item.css('.repo-list-description').first.content.strip
