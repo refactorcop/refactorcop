@@ -59,4 +59,87 @@ ActiveAdmin.register Project do
     end
     f.actions
   end
+
+
+  show :title => :title do
+    div do
+      attributes_table_for project, :campaign, :user, :poster, :url_homepage, :url_facebook, :url_offer, :rating_average
+      multi_field :title
+    end
+
+    div :class => "tabs" do
+      ul do
+        li link_to "Files", "#tabs-files"
+        li link_to "Offenses", "#tabs-offenses"
+        li link_to "Admin Comments", "#tabs-admin-comments"
+      end
+      div :id => "tabs-files" do
+        table_for(project.source_files) do
+          column("Video", :asset) {|video| video_tag(video.asset, :controls => true, :size => "460x292") }
+         end
+      end
+
+      div :id => "tabs-questions", :class => "tabs" do
+        locale_tabs
+
+        I18n.available_locales.each do |locale|
+          div :id => "tabs-#{locale}" do
+            clip.questions.each_with_index do |q,i|
+              ql = q.translations.find_by_locale locale.to_s
+              span ql.title
+              ul do
+                q.answers.each do |a|
+                  al = a.translations.find_by_locale locale.to_s
+                  li al.title, :class => q.answer_id == a.id ? "correct" : "false"
+                end
+              end
+            end
+          end
+        end
+      end
+
+      div :id => "tabs-images" do
+        image_tag(clip.thumbnail)
+      end
+      div :id => "tabs-user-comments" do
+        table do
+          resource.comments.order("created_at DESC").each do |comment|
+            tr(:class => cycle("odd", "even")) do
+              td { comment.created_at.strftime("%d/%m/%y") }
+              td { auto_link comment.owner }
+              td { simple_format comment.body }
+            end
+            comment.comments.each do |reply|
+              tr(:class => current_cycle) do
+                td { reply.created_at.strftime("%d/%m/%y") }
+                td { auto_link reply.owner }
+                td { simple_format "|->#{reply.body}" }
+              end
+            end
+          end
+        end
+      end
+
+      div :id => "tabs-admin-comments" do
+        active_admin_comments
+      end
+    end
+
+    div :id => "stats",:class => "tabs" do
+      ul do
+        li link_to "Stats", "#tabs-stats"
+        li link_to "Demographics", "#tabs-demographics"
+      end
+      panel nil, :id => "tabs-stats" do
+        render('/admin/stats/views_answers', :renderer => "clip", :user => current_user)
+      end
+      panel nil, :id => "tabs-demographics" do
+          render('/admin/stats/demographics', :renderer => "clip", :user => current_user)
+      end
+    end
+  end
+
+
+
+
 end
