@@ -1,0 +1,256 @@
+/*
+ * red: #e4796b
+ * green: #3a988c
+ * yellow links: #bea54d
+ * */
+
+@font-face {
+  font-family: 'input_mono_compressedmedium';
+  src: url('fonts/inputmonocompressed-medium-webfont.eot');
+  src: url('fonts/inputmonocompressed-medium-webfont.eot?#iefix') format('embedded-opentype'),
+  url('fonts/inputmonocompressed-medium-webfont.woff2') format('woff2'),
+  url('fonts/inputmonocompressed-medium-webfont.woff') format('woff'),
+  url('fonts/inputmonocompressed-medium-webfont.ttf') format('truetype'),
+  url('fonts/inputmonocompressed-medium-webfont.svg#input_mono_compressedmedium') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'input_mono_compressedlight';
+  src: url('fonts/inputmonocompressed-light-webfont.eot');
+  src: url('fonts/inputmonocompressed-light-webfont.eot?#iefix') format('embedded-opentype'),
+  url('fonts/inputmonocompressed-light-webfont.woff2') format('woff2'),
+  url('fonts/inputmonocompressed-light-webfont.woff') format('woff'),
+  url('fonts/inputmonocompressed-light-webfont.ttf') format('truetype'),
+  url('fonts/inputmonocompressed-light-webfont.svg#input_mono_compressedlight') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+/* Nano reset */
+
+*{
+  margin: 0;
+  padding: 0;
+}
+ul{
+  list-style: none;
+}
+body{
+  font: 16px "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  color: #536360;
+  min-width: 980px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.wrapper{
+  width: 980px;
+  margin: 0 auto;
+}
+.home header {
+  background: #f8f6e0 image-url("robocop.png") no-repeat 50% 0;
+  padding: 70px 0;
+}
+.home .logo a {
+  background: image-url("refactorcop.svg") no-repeat 0 0;
+  height: 55px;
+  text-indent: -9999px; /*note to self: look for something more elegant*/
+  display: block;
+}
+.home header p{
+  color: #5d9693;
+  font: 24px/38px "input_mono_compressedlight", sans-serif;
+  width: 620px;
+  padding: 35px 0 25px 0;
+}
+.search{
+  margin: 0 0 25px 0;
+  position: relative;
+  width: 456px;
+  height: 70px;
+}
+.search_repo{
+  background: #312938 image-url("search.svg") no-repeat 410px 50%;
+  border: 3px solid #a0d1b8;
+  width: 386px;
+  height: 64px;
+  color: #d2bc8c;
+  outline: none;
+  font: 16px "input_mono_compressedlight", sans-serif;
+  padding: 0 54px 0 10px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.search_button{
+  background: transparent;
+  color: transparent;
+  -webkit-appearance: none;
+  border: none;
+  outline: none;
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  display: block;
+  width: 54px;
+  height: 64px;
+  cursor: pointer;
+}
+.search_repo::-webkit-input-placeholder{
+  color: #d2bc8c;
+  font: 16px/24px "input_mono_compressedlight", sans-serif;
+}
+.search_repo:-moz-placeholder{
+  color: #d2bc8c;
+  font: 16px/24px "input_mono_compressedlight", sans-serif;
+}
+.search_repo::-moz-placeholder{
+  color: #d2bc8c;
+  font: 16px/24px "input_mono_compressedlight", sans-serif;
+}
+.search_repo:-ms-input-placeholder{
+  color: #d2bc8c;
+  font: 16px/24px "input_mono_compressedlight", sans-serif;
+}
+.home header h2{
+  font: 24px "input_mono_compressedmedium", sans-serif;
+  color: #e4796b;
+  margin: 0 0 10px 0;
+}
+.im_feeling_lucky{
+  background: #e4796b;
+  height: 58px;
+  display: inline-block;
+  font: 18px/58px "input_mono_compressedmedium", sans-serif;
+  text-decoration: none;
+  color: #fff;
+  padding: 0 16px;
+}
+.project_lists{
+  padding: 40px 0 0 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
+.project_lists h2{
+  font: 30px "input_mono_compressedmedium", sans-serif;
+  color: #312938;
+  border-bottom: 3px solid #dbdbdb;
+  padding: 0 0 5px 0;
+}
+.trending, .recommended{
+  width: 470px;
+}
+.project{
+  padding: 14px 0 20px 0;
+  border-bottom: 1px solid #dbdbdb;
+}
+.project_header{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
+.trending .project_title{
+  color: #3a988c;
+  font: 18px/32px "input_mono_compressedmedium", sans-serif;
+}
+.severities{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+}
+.severities li{
+  border-radius: 16px;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  color: #fff;
+  font: 12px/32px "input_mono_compressedmedium", sans-serif;
+  margin: 0 0 0 5px;
+}
+.severity_fatal{
+  background: #ea9d93;
+}
+.severity_error{
+  background: #f4c3ab;
+}
+.severity_warning{
+  background: #ea9d93;
+}
+.severity_convention{
+  background: #d5cbc4;
+}
+.severity_refactor{
+  background: #ea9d93;
+}
+.project_description{
+  margin: 8px 0 0 0;
+  font-size: 12px;
+  width: 450px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.recommended .project_title{
+  color: #bea54d;
+  font: 18px/32px "input_mono_compressedmedium", sans-serif;
+}
+.view_all{
+  display: inline-block;
+  margin: 14px 0 0 0;
+}
+.view_all, .project_lists span{
+  font: 18px/32px "input_mono_compressedmedium", sans-serif;
+  color: #e4796b;
+}
+.why_open_source{
+  background: #f1f9f7;
+  margin: 40px 0 0 0;
+  padding: 40px 0 60px 0;
+}
+.why_open_source h2{
+  font: 30px "input_mono_compressedmedium", sans-serif;
+  color: #312938;
+}
+.why_open_source h3{
+  font: 24px "input_mono_compressedlight", sans-serif;
+  color: #3a988c;
+  padding: 15px 0;
+}
+.why_open_source ul{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
+.why_open_source li{
+  width: 300px;
+}
+.why_open_source p{
+  line-height: 26px;
+}
+.footer{
+  background: #312938;
+  color: #d2bc8c;
+  padding: 40px 0;
+}

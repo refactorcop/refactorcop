@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>RefactorCop</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-	
-	<h1><a href="/">RefactorCop</a></h1>
-	
-	<% flash.each do |name, msg| -%>
-		<%= content_tag :div, msg, class: name %>
-	<% end -%>
+  <head>
+    <title>RefactorCop</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body class="home">
+    <header>
+      <div class="wrapper">
+        <h1 class="logo"><a href="#">RefactorCop</a></h1>
+        <p>Using a set of tools, RefactorCop analyses open source Ruby projects allowing you to discover code that might benefit from improvements.</p>
 
-	<%= yield %>
+        <%= form_tag "/about/welcome", method: "get", class: "search" do %>
+          <div class="search">
+            <%= text_field_tag(:query, nil, placeholder: "Looking for a specific repo?", class: "search_repo") %>
+            <input type="submit" class="search_button">
+          </div>
+        <% end %>
+        <% if @random_project %>
+          <h2>Not sure what project to work on?</h2>
+          <a href="/<%=@random_project.username%>/<%=@random_project.name%>" class="im_feeling_lucky">I'm feeling lucky!</a>
+        <% end %>
+      </div>
+    </header>
 
-</body>
+    <h1><a href="/">RefactorCop</a></h1>
+
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+    <% end -%>
+
+    <%= yield %>
+
+  </body>
 </html>
