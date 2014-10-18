@@ -1,28 +1,31 @@
-<h2>
-	<%= link_to @project.username, "https://github.com/#{@project.username}" %>
-	/
-	<%= link_to @name, "https://github.com/#{@project.username}/#{@project.name}" %>
-</h2>
+<section class="wrapper">
+<br>
+  <h2>
+    <%= link_to @project.username, "https://github.com/#{@project.username}" , target: '_blank'%>
+    /
+    <%= link_to @name, "https://github.com/#{@project.username}/#{@project.name}", target: '_blank' %>
+  </h2>
 
-<p><%= @project.description %></p>
+  <p><%= @project.description %></p>
 
-<ul>
-	<% @offenses.each do |offense| %>
-		<li>
-			<div class="offense">
-				<div class="offence_type">
-					<%= offense.message %>
-				</div>
-				<div class="offense_type_<%= offense.severity %>">
-					<%= offense.severity %>
-				</div>
-				<div class="filename">
-					<%= link_to offense.source_file.path, offense.github_link, target: "_blank" %>
-				</div>
-				<div class="snippet">
-					<%= raw offense.to_html %>
-				</div>
-			</div>
-		</li>
-	<% end %>
-</ul>
+  <ul>
+    <% @offenses.each do |offense| %>
+      <li>
+        <div class="offense">
+          <div class="offence_type">
+            <%= offense.message %>
+          </div>
+          <div class="offense_type_<%= offense.severity %>">
+            <%= offense.severity %>
+          </div>
+          <div class="filename">
+            <%= link_to offense.source_file.path, offense.github_link, target: "_blank" %>
+          </div>
+          <div class="snippet">
+            <%= raw offense.to_html %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</section>
