@@ -13,6 +13,9 @@ class ViewerController < ApplicationController
     @project = Project.where( { username: @username, name: @name } ).first
 
   end
+  
+  def showdashboards
+  end
 
   def showproject
 
