@@ -23,4 +23,13 @@ ActiveAdmin.register Project do
     column :updated_at
     actions
   end
+
+  form do |f|
+    f.inputs do
+      f.input :username
+      f.input :name
+      f.input :description
+    end
+    f.actions
+  end
 end
