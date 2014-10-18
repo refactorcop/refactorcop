@@ -17,4 +17,10 @@ RSpec.describe Project, :type => :model do
     subject { build(:project, username: 'tarantino', name: 'pulp-fiction').clone_url }
     it { is_expected.to eq 'git@github.com:tarantino/pulp-fiction.git' }
   end
+
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:username) }
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_uniqueness_of(:name).scoped_to(:username) }
+  end
 end
