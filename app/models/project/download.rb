@@ -53,11 +53,15 @@ class Project::Download
   end
 
   def to_source_file(entry)
-    SourceFile.new({
-      project: project,
-      content: entry.get_input_stream.read,
-      path: sanitize_file_path(entry)
-    })
+    sf = SourceFile.new(project: project, path: sanitize_file_path(entry))
+    sf.content = entry.get_input_stream.read
+    Tempfile.open(['lol', '.rb']) do |f|
+      f.write(sf.content)
+      json_data = `rubocop -f j "#{f.path}"`
+      sf.rubocop_offenses = json_data
+    end
+    sf.save!
+    sf
   end
 
   def sanitize_file_path(entry)
