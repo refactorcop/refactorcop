@@ -27,6 +27,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # gem 'debugger', group: [:development, :test]
 
 gem 'annotate', '~> 2.6.2' # Auto comments with fields of models
+gem 'faraday'
 gem 'nokogiri'
 gem 'procto'
 gem 'unicorn'
