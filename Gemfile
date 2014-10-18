@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 gem 'rails', '4.1.6'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.3'
@@ -28,6 +27,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # gem 'debugger', group: [:development, :test]
 
 gem 'annotate', '~> 2.6.2' # Auto comments with fields of models
+gem 'nokogiri'
 gem 'procto'
 gem 'unicorn'
 
