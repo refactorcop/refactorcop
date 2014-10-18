@@ -34,7 +34,7 @@ class Project < ActiveRecord::Base
 
   def default_branch
     return nil if repository_data.blank?
-    repository_data[:default_branch]
+    repository_data["default_branch"]
   end
 
   def pushed_at

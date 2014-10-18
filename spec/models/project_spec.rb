@@ -52,6 +52,12 @@ RSpec.describe Project, :type => :model do
     end
   end
 
+  describe '#default_branch' do
+    subject { project.default_branch }
+    let(:project) { create(:project, repository_data: {default_branch: "stable"}) }
+    it { is_expected.to eq "stable" }
+  end
+
   describe 'validations' do
     it { is_expected.to validate_presence_of(:username) }
     it { is_expected.to validate_presence_of(:name) }
