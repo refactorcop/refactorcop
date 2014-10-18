@@ -9,3 +9,10 @@ test:
   encoding: unicode
   database: rcop_test
   pool: 2
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: rcop_production
+  pool: 5
+
