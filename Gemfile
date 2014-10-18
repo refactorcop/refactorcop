@@ -15,6 +15,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
+gem 'activeadmin', github: 'activeadmin'
 gem 'annotate', '~> 2.6.2' # Auto comments with fields of models
 gem 'faraday'
 gem 'github_api'

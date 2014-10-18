@@ -1,6 +1,7 @@
 require 'sidekiq/web'       #for background scheduler
 
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   get 'about/welcome'
   root :to => 'about#welcome'
 
