@@ -25,9 +25,12 @@ class Project < ActiveRecord::Base
 
   def fetch_github_repository_data
     github = Github.new
-    response = github.repos.get username, name
-    self.repository_data = response.to_hash.to_json
-    save!
+    response = github.repos.get(username, name).to_hash.to_json
+  end
+
+  def update_repository_data
+    repository_data = fetch_github_repository_data
+    save! unless repository_data.nil?
   end
 
   def default_branch
@@ -38,7 +41,8 @@ class Project < ActiveRecord::Base
   end
 
   def project_updated?
-    fetch_github_repository_data
-    last_ != repository_data[:pushed_at]
+    github = fetch_github_repository_data
+
+    repository_data[:pushed_at] <> github[:pushed_at]
   end
 end
