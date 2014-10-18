@@ -8,6 +8,6 @@ Note: You may need to manually add this URL to your app's settings in your
 Heroku Dashboard.
 
 ```
-Heroku App Dashboard:   thawing-island-6299`
+Heroku App Dashboard:   thawing-island-6299
 Heroku App Git URL:     git@heroku.com:thawing-island-6299.git
 ```
