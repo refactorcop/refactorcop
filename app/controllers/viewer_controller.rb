@@ -9,6 +9,9 @@ class ViewerController < ApplicationController
     if !Project.exists?( { username: @username, name: @name } )
       redirect_to '/about/welcome', :flash => { :error => "We have not indexed this repository yet, sorry!" }
     end
+    
+    @project = Project.where( { username: @username, name: @name } ).first
+    
   end
   
   def showproject

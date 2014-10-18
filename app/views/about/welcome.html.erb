@@ -10,6 +10,9 @@
 
 <ul>
 	<% Project.all.each do |project| %>
-		<li><%= link_to "#{project.username} / #{project.name}", "/#{project.username}/#{project.name}" %></li>
+		<li>
+			<h3><%= link_to "#{project.username} / #{project.name}", "/#{project.username}/#{project.name}" %></h3>
+			<p><%= project.description %></p>
+		</li>
 	<% end %>
 </ul>

@@ -1,6 +1,7 @@
 <h2>
-	<%= link_to @username, "https://github.com/#{@username}" %>
+	<%= link_to @project.username, "https://github.com/#{@project.username}" %>
 	/
-	<%= link_to @name, "https://github.com/#{@username}/#{@name}" %>
+	<%= link_to @name, "https://github.com/#{@project.username}/#{@project.name}" %>
 </h2>
-<p></p>
+
+<p><%= @project.description %></p>
