@@ -9,7 +9,7 @@
   <body class="home">
     <header>
       <div class="wrapper">
-        <h1 class="logo"><a href="#">RefactorCop</a></h1>
+        <h1 class="logo"><%= link_to "RefactorCop", root_path %></h1>
         <p>Using a set of tools, RefactorCop analyses open source Ruby projects allowing you to discover code that might benefit from improvements.</p>
 
         <%= form_tag "/about/welcome", method: "get", class: "search" do %>
