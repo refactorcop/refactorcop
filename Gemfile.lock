@@ -66,6 +66,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    celluloid (0.15.2)
+      timers (~> 1.1.0)
     cliver (0.3.2)
     code_analyzer (0.4.5)
       sexp_processor
@@ -78,6 +80,7 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     colored (1.2)
+    connection_pool (2.0.0)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     daemons (1.1.9)
@@ -172,6 +175,9 @@ GEM
     rake (10.3.2)
     rdoc (4.1.2)
       json (~> 1.4)
+    redis (3.1.0)
+    redis-namespace (1.5.1)
+      redis (~> 3.0, >= 3.0.4)
     require_all (1.3.2)
     rspec-core (3.1.7)
       rspec-support (~> 3.1.0)
@@ -214,6 +220,12 @@ GEM
     sexp_processor (4.4.4)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
+    sidekiq (3.2.5)
+      celluloid (= 0.15.2)
+      connection_pool (>= 2.0.0)
+      json
+      redis (>= 3.0.6)
+      redis-namespace (>= 1.3.1)
     slim (2.1.0)
       temple (~> 0.6.9)
       tilt (>= 1.3.3, < 2.1)
@@ -238,6 +250,7 @@ GEM
     thread_safe (0.3.4)
     tilt (1.4.1)
     timecop (0.7.1)
+    timers (1.1.0)
     turbolinks (2.4.0)
       coffee-rails
     tzinfo (1.2.2)
@@ -287,6 +300,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   shoulda-matchers
+  sidekiq
   spring
   thin
   timecop

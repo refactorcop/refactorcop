@@ -32,6 +32,8 @@ gem 'faraday'
 gem 'nokogiri'
 gem 'procto'
 gem 'unicorn'
+gem 'rubocop'
+gem 'sidekiq'
 
 group :production do
   # Needed for heroku
@@ -54,7 +56,6 @@ group :test, :development do
   gem 'brakeman', '>= 2.6.0'
   gem 'flog'
   gem 'rails_best_practices'
-  gem 'rubocop'
 end
 
 group :test do
