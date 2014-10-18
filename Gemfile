@@ -26,6 +26,7 @@ gem 'procto'
 gem 'rubocop'
 gem 'rubyzip', '>= 1.0.0'
 gem 'sidekiq'
+gem 'sidetiq'
 gem 'sinatra', '>= 1.3.3', require: nil # Required for sidekiq-webinterface
 gem 'unicorn'
 gem 'virtus'
