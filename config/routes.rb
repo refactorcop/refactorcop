@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   root :to => 'about#welcome'
 
   mount Sidekiq::Web => '/scheduler'
+  
+  get ':github_user/:github_repo', controller: "viewer", action: "showproject"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
