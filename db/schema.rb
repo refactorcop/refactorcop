@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018130712) do
+ActiveRecord::Schema.define(version: 20141018135043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,5 +40,16 @@ ActiveRecord::Schema.define(version: 20141018130712) do
     t.datetime "updated_at"
     t.json     "repository_data"
   end
+
+  create_table "source_files", force: true do |t|
+    t.integer  "project_id"
+    t.text     "content"
+    t.string   "path"
+    t.json     "rubocop_offenses"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "source_files", ["project_id"], name: "index_source_files_on_project_id", using: :btree
 
 end

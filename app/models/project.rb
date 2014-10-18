@@ -15,6 +15,8 @@ class Project < ActiveRecord::Base
   validates :name, :username, presence: true, allow_blank: false
   validates_uniqueness_of :name, scope: :username
 
+  has_many :source_files
+
   def clone_url
     "git@github.com:#{username}/#{name}.git"
   end
