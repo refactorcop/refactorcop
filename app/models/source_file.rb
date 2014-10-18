@@ -21,10 +21,10 @@ class SourceFile < ActiveRecord::Base
 
   def update_offenses
     Tempfile.open(['offenses', '.rb']) do |f|
-      f.write(sf.content.encode('utf-8'))
+      f.write(content.encode('utf-8'))
       json_data = `bundle exec rubocop --config ".rubocop.yml" -f json "#{f.path}"`
-      sf.rubocop_offenses = json_data
+      self.rubocop_offenses = json_data
     end
-    sf.save!
+    save!
   end
 end
