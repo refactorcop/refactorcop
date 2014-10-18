@@ -8,7 +8,6 @@ AllCops:
     - untracked/**/*
     - vendor/**/*
     - tmp/**/*
-  Enabled: false
 
 # Configuration parameters: AllowURI, URISchemes.
 
@@ -196,10 +195,6 @@ Style/EachWithObject:
   Description: 'Prefer `each_with_object` over `inject` or `reduce`.'
   Enabled: false
 
-Style/ElseAlignment:
-  Description: 'Align elses and elsifs correctly.'
-  Enabled: false
-
 Style/EmptyLineBetweenDefs:
   Description: 'Use empty lines between defs.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#empty-lines-between-methods'
@@ -365,12 +360,6 @@ Style/MultilineBlockLayout:
 Style/MultilineIfThen:
   Description: 'Never use then for multi-line if/unless.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-then'
-  Enabled: false
-
-Style/MultilineOperationIndentation:
-  Description: >-
-                 Checks indentation of binary operations that span more than
-                 one line.
   Enabled: false
 
 Style/MultilineTernaryOperator:
@@ -644,12 +633,6 @@ Style/StringLiterals:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#consistent-string-literals'
   Enabled: false
 
-Style/StringLiteralsInInterpolation:
-  Description: >-
-                 Checks if uses of quotes inside expressions in interpolated
-                 strings match the configured preference.
-  Enabled: false
-
 Style/SymbolProc:
   Description: 'Use symbols as procs instead of blocks when possible.'
   Enabled: false
@@ -735,12 +718,6 @@ Style/WordArray:
   Enabled: false
 
 #################### Metrics ################################
-
-Metrics/AbcSize:
-  Description: >-
-                 A calculated magnitude based on number of assignments,
-                 branches, and conditions.
-  Enabled: true
 
 Metrics/BlockNesting:
   Description: 'Avoid excessive block nesting'

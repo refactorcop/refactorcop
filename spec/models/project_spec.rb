@@ -2,13 +2,15 @@
 #
 # Table name: projects
 #
-#  id              :integer          not null, primary key
-#  name            :string(255)
-#  username        :string(255)
-#  description     :text
-#  created_at      :datetime
-#  updated_at      :datetime
-#  repository_data :json
+#  id                     :integer          not null, primary key
+#  name                   :string(255)
+#  username               :string(255)
+#  description            :text
+#  created_at             :datetime
+#  updated_at             :datetime
+#  repository_data        :json
+#  source_files_count     :integer          default(0), not null
+#  rubocop_offenses_count :integer          default(0), not null
 #
 
 require 'rails_helper'
@@ -61,17 +63,14 @@ RSpec.describe Project, :type => :model do
   end
 
   describe '#update_source_files!' do
-    let(:source_file) { double() }
-    let(:source_files) { [source_file] }
-
-    before :each do
-      allow_any_instance_of(Project::Download).to receive(:call).and_return(source_files)
-    end
-
     it 'downloads and saves each file' do
-      expect(source_file).to receive(:save!)
+      expect_any_instance_of(Project::Download).to receive(:call)
       project.update_source_files!
     end
+  end
+
+  describe 'associations' do
+    it { is_expected.to have_many(:source_files) }
   end
 
   describe 'validations' do

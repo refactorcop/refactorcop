@@ -6,18 +6,16 @@ class Project::Download
 
   attr_reader :project, :logger
 
-  def initialize(project, logger: Rails.logger)
+  def initialize(project)
     @project  = project
-    @logger   = logger
+    @logger   = Rails.logger
   end
 
   def call
-    ActiveRecord::Base.transaction do
-      project.source_files.destroy_all
-      Tempfile.create([filename, ".zip"], :encoding => 'ascii-8bit') do |file|
-        HTTPClient.get_content(project.download_zip_url) { |chunk| file.write(chunk) }
-        rescue_reopen_error { unzip_to_source_files(file) }
-      end
+    project.source_files.destroy_all
+    Tempfile.create([filename, ".zip"], :encoding => 'ascii-8bit') do |file|
+      HTTPClient.get_content(project.download_zip_url) { |chunk| file.write(chunk) }
+      rescue_reopen_error { unzip_to_source_files(file) }
     end
     @source_files
   end
@@ -46,21 +44,28 @@ class Project::Download
     Zip::File.open_buffer(file) do |zip_file|
       # Handle entries one by one
       @source_files = zip_file.glob('**/*.rb').compact.map do |entry|
+        next if test_file?(entry.name)
         logger.info { "Extracting #{entry.name.inspect}" }
-        to_source_file(entry)
+        begin
+          to_source_file(entry)
+        rescue StandardError => e
+          puts "FAILED ON FILE: #{entry.name}"
+          p e.inspect
+          raise e
+        end
       end
     end
+  end
+
+  def test_file?(filename)
+    filename =~ /(spec|test)\//
   end
 
   def to_source_file(entry)
     sf = SourceFile.new(project: project, path: sanitize_file_path(entry))
     sf.content = entry.get_input_stream.read
-    Tempfile.open(['lol', '.rb']) do |f|
-      f.write(sf.content)
-      json_data = `rubocop -f j "#{f.path}"`
-      sf.rubocop_offenses = json_data
-    end
     sf.save!
+    RubocopFileWorker.perform_async(sf.id)
     sf
   end
 

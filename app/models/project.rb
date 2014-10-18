@@ -2,13 +2,15 @@
 #
 # Table name: projects
 #
-#  id              :integer          not null, primary key
-#  name            :string(255)
-#  username        :string(255)
-#  description     :text
-#  created_at      :datetime
-#  updated_at      :datetime
-#  repository_data :json
+#  id                     :integer          not null, primary key
+#  name                   :string(255)
+#  username               :string(255)
+#  description            :text
+#  created_at             :datetime
+#  updated_at             :datetime
+#  repository_data        :json
+#  source_files_count     :integer          default(0), not null
+#  rubocop_offenses_count :integer          default(0), not null
 #
 
 class Project < ActiveRecord::Base
@@ -58,8 +60,11 @@ class Project < ActiveRecord::Base
   # Imports the projects code from GitHub. Stores code in {SourceFile#content}.
   # @return [undefined]
   def update_source_files!
-    source_files = Project::Download.call(self)
-    source_files.each(&:save!)
+    github_repository_data = fetch_github_repository_data
+    Project::Download.call(self)
+
+    self.repository_data = github_repository_data
+    save! unless github_repository_data.nil?
   end
 
   private
