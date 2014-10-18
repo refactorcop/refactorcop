@@ -6,33 +6,23 @@
 
 <p><%= @project.description %></p>
 
-<div class="offense">
-	<div class="offense_type">
-		BlahError
-	</div>
-	<div class="offense_type_warning">
-		Warning
-	</div>
-	<div class="filename">
-		app/controllers/blah_controller.rb:14-18
-	</div>
-	<div class="snippet">
-		<%= raw CodeRay.scan("  def update_repository_data
-    repository_data = fetch_github_repository_data
-    save! unless repository_data.nil?
-  end
-
-  def default_branch
-    return nil if repository_data.blank?
-    repository_data[\"default_branch\"]
-  end
-
-  def pushed_at
-    if repository_data.blank? || repository_data[\"pushed_at\"].blank?
-      return 100.years.ago
-    end
-    DateTime.parse(repository_data[\"pushed_at\"])
-  end
-", :ruby).div(:line_numbers => :inline, :line_number_start => 10, :highlight_lines => 14..18, :line_number_anchors => false ) %>
-	</div>
-</div>
+<ul>
+	<% @project.rubocop_offenses.each do |offense| %>
+		<li>
+			<div class="offense">
+				<div class="offence_type">
+					<%= offense.message %>
+				</div>
+				<div class="offense_type_<%= offense.severity %>">
+					<%= offense.severity %>
+				</div>
+				<div class="filename">
+					<%= link_to offense.source_file.path, offense.github_link, target: "_blank" %>
+				</div>
+				<div class="snippet">
+					<%= raw offense.to_html %>
+				</div>
+			</div>
+		</li>
+	<% end %>
+</ul>
