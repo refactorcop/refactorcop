@@ -5,11 +5,19 @@ class GithubTrending
     @language = language.freeze
   end
 
-  def repositories
+  # Projects on the github trending page
+  # @return [Array<Project>]
+  def projects
     doc = Nokogiri::HTML(trending_page_html)
     doc.css('.repo-list-item').map do |list_item|
-      Project.new(list_item)
+      project_form_node(list_item)
     end
+  end
+
+  # Updates or creates {Project}s in database
+  # @return [undefined]
+  def persist_projects
+    projects.each(&:save!)
   end
 
   private
@@ -21,18 +29,13 @@ class GithubTrending
     @trending_page_html = response.body
   end
 
-  class Project
-    attr_reader :username, :name, :description
-
-    def initialize(list_item)
-      name_parts = list_item.css('.repo-list-name').first.content.strip.split(' ')
-      @name = name_parts.last.strip
-      @username = name_parts.first.strip
-      @description = list_item.css('.repo-list-description').first.content.strip
-    end
-
-    def github_path
-      "/#{username}/#{name}"
-    end
+  def project_form_node(node)
+    name_parts = node.css('.repo-list-name').first.content.strip.split(' ')
+    Project.where({
+      name: name_parts.last.strip,
+      username: name_parts.first.strip,
+    }).first_or_initialize({
+      description: node.css('.repo-list-description').first.content.strip,
+    })
   end
 end

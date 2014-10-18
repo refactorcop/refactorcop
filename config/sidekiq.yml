@@ -1,0 +1,10 @@
+# heroku redis url is set via : heroku config:set REDIS_PROVIDER=REDISGREEN_URL
+#
+# Options here can still be overridden by cmd line args.
+#   sidekiq -C config/sidekiq.yml
+---
+:verbose:      true
+:concurrency:  3
+:queues:
+  - [critical]
+  - [default]
