@@ -46,6 +46,7 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'timecop'
+  gem 'vcr'
 
   # Metrics
   gem 'brakeman', '>= 2.6.0'
