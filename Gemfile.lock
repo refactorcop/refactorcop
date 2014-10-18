@@ -51,6 +51,8 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.6)
+    after_commit_action (0.1.3)
+      activerecord (>= 3.0.0)
     annotate (2.6.5)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
@@ -109,6 +111,8 @@ GEM
     coffee-script-source (1.8.0)
     colored (1.2)
     connection_pool (2.0.0)
+    counter_culture (0.1.25)
+      after_commit_action (~> 0.1.3)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     daemons (1.1.9)
@@ -366,6 +370,7 @@ DEPENDENCIES
   brakeman (>= 2.6.0)
   capybara
   coffee-rails (~> 4.0.0)
+  counter_culture
   database_cleaner
   factory_girl_rails (>= 4.1)
   faraday

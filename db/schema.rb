@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018135043) do
+ActiveRecord::Schema.define(version: 20141018144325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20141018135043) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.json     "repository_data"
+    t.integer  "source_files_count",     default: 0, null: false
+    t.integer  "rubocop_offenses_count", default: 0, null: false
   end
 
   create_table "source_files", force: true do |t|

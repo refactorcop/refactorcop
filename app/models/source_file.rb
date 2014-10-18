@@ -13,4 +13,10 @@
 
 class SourceFile < ActiveRecord::Base
   belongs_to :project
+  counter_culture :project
+
+  def full_name
+    path
+  end
+
 end

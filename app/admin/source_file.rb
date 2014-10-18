@@ -14,5 +14,14 @@ ActiveAdmin.register SourceFile do
   #   permitted
   # end
 
+  index do
+    column :id
+    column :project
+    column :path
+    column :created_at
+    #column :updated_at
+    actions
+  end
+
 
 end
