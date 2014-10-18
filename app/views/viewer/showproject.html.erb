@@ -17,6 +17,22 @@
 		app/controllers/blah_controller.rb:14-18
 	</div>
 	<div class="snippet">
-		...
+		<%= raw CodeRay.scan("  def update_repository_data
+    repository_data = fetch_github_repository_data
+    save! unless repository_data.nil?
+  end
+
+  def default_branch
+    return nil if repository_data.blank?
+    repository_data[\"default_branch\"]
+  end
+
+  def pushed_at
+    if repository_data.blank? || repository_data[\"pushed_at\"].blank?
+      return 100.years.ago
+    end
+    DateTime.parse(repository_data[\"pushed_at\"])
+  end
+", :ruby).div(:line_numbers => :inline, :line_number_start => 10, :highlight_lines => 14..18 ) %>
 	</div>
 </div>
