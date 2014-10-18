@@ -4,7 +4,7 @@
 #   sidekiq -C config/sidekiq.yml
 ---
 :verbose:      true
-:concurrency:  3
+:concurrency:  4
 :queues:
   - [critical]
   - [default]

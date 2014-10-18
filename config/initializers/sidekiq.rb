@@ -7,7 +7,7 @@ Sidekiq::Web.use Rack::Auth::Basic, "Recovering Vegetarian Area" do |username, p
 end
 
 Sidekiq.configure_server do |config|
-  config.redis = { url: ENV["REDISGREEN_URL"], size: 3 }
+  config.redis = { url: ENV["REDISGREEN_URL"], size: 4 }
 end
 
 Sidekiq.configure_client do |config|
