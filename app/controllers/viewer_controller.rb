@@ -15,5 +15,16 @@ class ViewerController < ApplicationController
   end
   
   def showproject
+    
+    @offenses = @project.rubocop_offenses.order(
+    "case rubocop_offenses.severity
+      when 'convention' then 5
+      when 'warning' then 4
+      when 'refactor' then 3
+      when 'error' then 2
+      when 'fatal' then 1
+      else 99
+    end")
+    
   end
 end
