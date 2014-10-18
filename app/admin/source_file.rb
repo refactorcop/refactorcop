@@ -21,17 +21,32 @@ ActiveAdmin.register SourceFile do
     actions
   end
 
-  show do
-    attributes_table do
-      row :id
-      row :project
-      row :path
-      row :created_at
-      row :updated_at
-      row :content do |model|
-        raw CodeRay.scan(model.content, :ruby).div
+  show :title => :path do
+    div do
+      attributes_table do
+        row :id
+        row :project
+        row :path
+        row :created_at
+        row :updated_at
       end
-      row :rubocop_offenses
     end
+
+    div do
+      table_for(source_file.rubocop_offenses) do
+        column(:cop_name)
+        column(:message)
+        column(:severity)
+        column('Line', :location_line)
+        column('Column', :location_column)
+        column('Length', :location_length)
+      end
+    end
+
+    div do
+      raw CodeRay.scan(source_file.content, :ruby).div
+    end
+
+
   end
 end
