@@ -35,9 +35,10 @@ class Project < ActiveRecord::Base
     github_api.repos.get(username, name).to_h.with_indifferent_access
   end
 
-  def update_repository_data
-    repository_data = fetch_github_repository_data
-    save! unless repository_data.nil?
+  def update_repository_data(fetched_repository_data = nil )
+    self.repository_data = fetched_repository_data || fetch_github_repository_data
+    Rails.logger.info "updating repository_data"
+    save! #unless repository_data.nil?
   end
 
   def default_branch
@@ -63,8 +64,7 @@ class Project < ActiveRecord::Base
     github_repository_data = fetch_github_repository_data
     Project::Download.call(self)
 
-    self.repository_data = github_repository_data
-    save! unless github_repository_data.nil?
+    update_repository_data github_repository_data
   end
 
   private
