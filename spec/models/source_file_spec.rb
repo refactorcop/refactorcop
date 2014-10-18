@@ -14,8 +14,10 @@
 require 'rails_helper'
 
 RSpec.describe SourceFile, :type => :model do
-  it { is_expected.to belong_to(:project) }
-  it { is_expected.to have_many(:rubocop_offenses) }
+  describe 'associations' do
+    it { is_expected.to belong_to(:project) }
+    it { is_expected.to have_many(:rubocop_offenses).dependent(:destroy) }
+  end
 
   describe '#update_offenses' do
     let :source_file do

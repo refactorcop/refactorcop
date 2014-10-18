@@ -12,7 +12,7 @@
 
 class SourceFile < ActiveRecord::Base
   belongs_to :project
-  has_many :rubocop_offenses
+  has_many :rubocop_offenses, dependent: :destroy
   counter_culture :project
 
   def full_name
