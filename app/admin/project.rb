@@ -16,8 +16,12 @@ ActiveAdmin.register Project do
 
 
   member_action :send_the_cops_now, :method => :get do
-      RubocopWorker.perform_async(params[:id])
+      RubocopWorker.perform_async(params[:id], true)
       redirect_to action: :show, notice: "Copping it!"
+  end
+
+  action_item :only => :show do
+    link_to('Send in the cops!', send_the_cops_now_admin_project_path(params[:id]))
   end
 
   index do
