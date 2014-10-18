@@ -34,6 +34,7 @@ gem 'procto'
 gem 'unicorn'
 gem 'rubocop'
 gem 'sidekiq'
+gem 'sinatra', '>= 1.3.3', require: nil # Required for sidekiq-webinterface
 gem 'virtus'
 
 group :production do
