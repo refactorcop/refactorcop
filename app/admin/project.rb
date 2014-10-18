@@ -57,4 +57,28 @@ ActiveAdmin.register Project do
     end
     f.actions
   end
+
+  show :title => :full_name do
+    div do
+      attributes_table do
+        row :id
+        row :name
+        row :username
+        row :description
+        row :created_at
+        row :updated_at
+        row :source_files_count
+        row :rubocop_offenses_count
+        row :repository_data
+      end
+    end
+
+    div do
+      table_for(project.source_files) do
+        column("File", :path) { |sf| link_to( sf.path, admin_source_file_path(sf)) }
+      end
+    end
+
+  end
+
 end
