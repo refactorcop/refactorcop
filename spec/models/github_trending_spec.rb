@@ -1,13 +1,6 @@
-#require 'rubygems'
-#require_relative '../../app/models/github_trending'
 require 'rails_helper'
 
-VCR.configure do |c|
-  c.cassette_library_dir = 'vcr_cassettes'
-  c.hook_into :webmock
-end
-
-describe GithubTrending do
+RSpec.describe GithubTrending do
   let(:gh) { described_class.new('ruby') }
 
   around(:each) do |example|
