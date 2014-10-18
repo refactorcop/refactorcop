@@ -1,22 +1,29 @@
+<!--
 <p>RefactorCop helps Ruby developers discover interesting GitHub projects that need help, based on the RuboCop static code analyzer.</p>
+-->
 
-<%= form_tag "/about/welcome", method: "get" do -%>
-	<%= text_field_tag( :query, nil, placeholder: "Looking for a specific repo?" ) %>
-<%- end -%>
+<div class="trending">
+  <% if @query.nil? %>
+    <h2>Trending repositories</h2>
+  <% else %>
+    <h2>Repositories containing '<%= @query %>'</h2>
+  <% end %>
 
-<a href="/<%=@random_project.username%>/<%=@random_project.name%>"><button>I'm feeling lucky!</button></a>
-
-<% if @query.nil? %>
-	<h2>Trending repositories</h2>
-<% else %>
-	<h2>Repositories containing '<%= @query %>'</h2>
-<% end %>
-
-<ul>
-	<% @projects.each do |project| %>
-		<li>
-			<h3><%= link_to "#{project.username} / #{project.name}", "/#{project.username}/#{project.name}" %></h3>
-			<p><%= project.description %></p>
-		</li>
-	<% end %>
-</ul>
+  <ul>
+    <% @projects.each do |project| %>
+      <li class="project">
+        <div class="project_header">
+          <%= link_to "#{project.username} / #{project.name}", "/#{project.username}/#{project.name}", class: "project_title" %>
+          <ul class="severities">
+            <li class="severity_fatal">6</li>
+            <li class="severity_error">6</li>
+            <li class="severity_warning">6</li>
+            <li class="severity_convention">6</li>
+            <li class="severity_refactor">6</li>
+          </ul>
+        </div>
+        <p class="project_description"><%= project.description %></p>
+      </li>
+    <% end %>
+  </ul>
+</div>
