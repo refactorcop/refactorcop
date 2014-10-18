@@ -7,7 +7,7 @@
 <p><%= @project.description %></p>
 
 <ul>
-	<% @offenses.each do |offense| %>
+	<% @offenses.includes(:source_file, :project).each do |offense| %>
 		<li>
 			<div class="offense">
 				<div class="offence_type">
