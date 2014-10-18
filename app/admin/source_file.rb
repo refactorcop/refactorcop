@@ -1,4 +1,4 @@
-ActiveAdmin.register Project do
+ActiveAdmin.register SourceFile do
 
 
   # See permitted parameters documentation:
@@ -15,21 +15,4 @@ ActiveAdmin.register Project do
   # end
 
 
-  index do
-    column :id
-    column :full_name
-    column :description
-    column :created_at
-    column :updated_at
-    actions
-  end
-
-  form do |f|
-    f.inputs do
-      f.input :username
-      f.input :name
-      f.input :description
-    end
-    f.actions
-  end
 end

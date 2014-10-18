@@ -24,29 +24,35 @@ class RubocopWorker
 
     Rails.logger.info "Project ##{project_id} #{project.full_name} fetching project zipfile"
 
-    #grab the repo
-    #wget project.clone_url + ".zip"
-    Tempfile.create(["#{project.username}-#{project.name}",".zip"], :encoding => 'ascii-8bit') do |file|
 
-      dl_req = HTTPClient.get_content(project.download_zip_url) do |chunk|
-        file.write(chunk)
-      end
+    ActiveRecord::Base.transaction do
+      project.source_files.destroy_all
 
-      #unzip the file
-      Zip::File.open_buffer(file) do |zip_file|
-        # Handle entries one by one
-        zip_file.each do |entry|
-          # Extract to file/directory/symlink
-          puts "Extracting #{entry.name}"
-          #entry.extract(dest_file)
+      Tempfile.create(["#{project.username}-#{project.name}",".zip"], :encoding => 'ascii-8bit') do |file|
+        #grab the repo zipfile
+        HTTPClient.get_content(project.download_zip_url) { |chunk| file.write(chunk) }
 
-          # Read into memory
-          #content = entry.get_input_stream.read
+        #unzip the file
+        begin
+          Zip::File.open_buffer(file,) do |zip_file|
+            # Handle entries one by one
+            zip_file.glob('**/*.rb').each do |entry|
+              next if entry.nil?
+              puts "Extracting #{entry.name}"
+              SourceFile.create(project: project,
+                                content: entry.get_input_stream.read,
+                                path: entry.name)
+
+            end
+          end
+        rescue ArgumentError => e
+          unless e.message =~ /wrong number of arguments/
+            raise e
+          end
+        ensure
+          Rails.logger.info "Project ##{project_id} #{project.full_name} zipfile processed"
         end
 
-        # Find specific entry
-        #entry = zip_file.glob('*.csv').first
-        #puts entry.get_input_stream.read
       end
 
     end
