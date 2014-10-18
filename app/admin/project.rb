@@ -15,4 +15,12 @@ ActiveAdmin.register Project do
   # end
 
 
+  index do
+    column :id
+    column :full_name
+    column :description
+    column :created_at
+    column :updated_at
+    actions
+  end
 end
