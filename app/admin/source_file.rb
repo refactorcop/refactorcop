@@ -1,6 +1,4 @@
 ActiveAdmin.register SourceFile do
-
-
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -23,5 +21,17 @@ ActiveAdmin.register SourceFile do
     actions
   end
 
-
+  show do
+    attributes_table do
+      row :id
+      row :project
+      row :path
+      row :created_at
+      row :updated_at
+      row :content do |model|
+        raw CodeRay.scan(model.content, :ruby).div
+      end
+      row :rubocop_offenses
+    end
+  end
 end
