@@ -1,1 +1,15 @@
-<h1>Welcome to RefactorCop!</h1>
+<p>RefactorCop helps Ruby developers discover interesting GitHub projects that need help, based on the RuboCop static code analyzer.</p>
+
+<%= form_tag do -%>
+	<%= text_field_tag( :query ) %>
+<%- end -%>
+
+<a href="/<%=@random_project.username%>/<%=@random_project.name%>"><button>I'm feeling lucky!</button></a>
+
+<h2>Trending repositories</h2>
+
+<ul>
+	<% Project.all.each do |project| %>
+		<li><%= link_to "#{project.username} / #{project.name}", "/#{project.username}/#{project.name}" %></li>
+	<% end %>
+</ul>
