@@ -1,15 +1,19 @@
 <p>RefactorCop helps Ruby developers discover interesting GitHub projects that need help, based on the RuboCop static code analyzer.</p>
 
-<%= form_tag do -%>
-	<%= text_field_tag( :query ) %>
+<%= form_tag "/about/welcome", method: "get" do -%>
+	<%= text_field_tag( :query, nil, placeholder: "Looking for a specific repo?" ) %>
 <%- end -%>
 
 <a href="/<%=@random_project.username%>/<%=@random_project.name%>"><button>I'm feeling lucky!</button></a>
 
-<h2>Trending repositories</h2>
+<% if @query.nil? %>
+	<h2>Trending repositories</h2>
+<% else %>
+	<h2>Repositories containing '<%= @query %>'</h2>
+<% end %>
 
 <ul>
-	<% Project.all.each do |project| %>
+	<% @projects.each do |project| %>
 		<li>
 			<h3><%= link_to "#{project.username} / #{project.name}", "/#{project.username}/#{project.name}" %></h3>
 			<p><%= project.description %></p>
