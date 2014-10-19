@@ -28,7 +28,7 @@ class RubocopOffense < ActiveRecord::Base
     CodeRay.scan(lines.join, :ruby).div({
       line_numbers: :inline,
       line_number_start: self.location_line - 1,
-      highlight_lines: self.location_line,
+      highlight_lines: [self.location_line],
       line_number_anchors: false
     })
   end
