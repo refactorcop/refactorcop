@@ -26,8 +26,7 @@ class GithubProject
 
   def page_html
     return @page_html if @page_html
-    conn = Faraday.new('https://github.com')
-    response = conn.get("#{username}/#{name}")
+    response = request_project_page
     if response.status == 404
       @page_html = ''
     else
@@ -35,13 +34,8 @@ class GithubProject
     end
   end
 
-  def project_form_node(node)
-    name_parts = node.css('.repo-list-name').first.content.strip.split(' ')
-    Project.where({
-      name: name_parts.last.strip,
-      username: name_parts.first.strip,
-    }).first_or_initialize({
-      description: node.css('.repo-list-description').first.content.strip,
-    })
+  def request_project_page
+    conn = Faraday.new('https://github.com')
+    conn.get("#{username}/#{name}")
   end
 end
