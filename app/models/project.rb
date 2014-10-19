@@ -65,6 +65,14 @@ class Project < ActiveRecord::Base
     pushed_at != github[:pushed_at]
   end
 
+  def severity_counts
+    RubocopOffense.includes(:source_file)
+      .where(source_files: { project_id: id })
+      .group(:severity)
+      .count
+      .with_indifferent_access
+  end
+
   private
 
   def github_api
