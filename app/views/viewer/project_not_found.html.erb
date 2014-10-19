@@ -1,7 +1,10 @@
-<section class="wrapper">
-  <h2>Project Not Found!</h2>
-  <br>
-  <p>We could not find that project. Try adding it below.</p>
-
-  <%= render 'viewer/import_from_github_form' %>
+<section class="project_lists wrapper">
+  <div class="search_results">
+    <h2>We couldn't find your project</h2>
+    <p class="friendly">
+      We're sorry, we couldn't find your project.
+      You can try a <a href="/random"><strong>random project</strong></a> or submit your own project below!
+    </p>
+    <%= render 'viewer/import_from_github_form' %>
+  </div>
 </section>

@@ -725,9 +725,71 @@ body{
   background-color:#f1f9f7;
   padding: 20px;
   margin-top:20px;
+  margin-bottom:40px;
   line-height: 32px;
 }
 
 .friendly a {
   color: #3a988c;
+}
+
+/* github form */
+
+.js-github-form {
+  padding: 40px 0;
+}
+
+.js-github-form p {
+  font: 24px "input_mono_compressedlight", sans-serif;
+}
+
+.form_intro {
+  padding-top:20px;
+}
+
+.github-form-field {
+  background: #f8f6e0;
+  border: none;
+  border-bottom: 1px dotted #a0d1b8;
+  width: 200px;
+  height: 48px;
+  color: #536360;
+  outline: none;
+  font: 24px/48px "input_mono_compressedlight", sans-serif;
+  padding: 0 54px 0 10px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; 
+}
+
+.github-form-field::-webkit-input-placeholder{
+  color: #536360;
+  font: 24px/48px "input_mono_compressedlight", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.github-form-field:-moz-placeholder{
+  color: #536360;
+  font: 24px/48px "input_mono_compressedlight", sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+}
+.github-form-field::-moz-placeholder{
+  color: #536360;
+  font: 24px/48px "input_mono_compressedlight", sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+}
+.github-form-field:-ms-input-placeholder{
+  color: #536360;
+  font: 24px/48px "input_mono_compressedlight", sans-serif;
+}
+
+.submit_button{
+  background: #3a988c;
+  height: 48px;
+  display: inline-block;
+  font: 24px/48px "input_mono_compressedmedium", sans-serif;
+  text-decoration: none;
+  color: #fff;
+  padding: 0 16px;
+  border: none;
+  border-bottom: 1px solid #3a988c;
 }
