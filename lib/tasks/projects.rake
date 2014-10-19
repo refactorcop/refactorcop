@@ -15,4 +15,25 @@ namespace :projects do
       puts "* #{sf.path}"
     end
   end
+
+  desc "Force a run for all projects"
+  task :queue_all => :environment do
+    Project.all.each do |project|
+      puts "Queuing project: #{project.id} - #{project.full_name}"
+      RubocopWorker.perform_async(project.id, true)
+    end
+  end
+
+  desc "Force a run for a given project ID"
+  task :queue, [:project_id] => [:environment] do |p, args|
+    project_id = args[:project_id]
+    if project_id.blank?
+      puts "Please give a project_id"
+      return
+    end
+    project = Project.find(project_id)
+    puts "Queuing project: #{project.id} - #{project.full_name}"
+    RubocopWorker.perform_async(project.id, true)
+  end
+
 end
