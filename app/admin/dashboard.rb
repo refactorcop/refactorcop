@@ -26,6 +26,34 @@ ActiveAdmin.register_page "Dashboard" do
           end
         end
       end
+
+      column do
+        panel "" do
+          #text_node %{<iframe src="https://rpm.newrelic.com/public/charts/ex6IoWyVB6d" width="550" height="300" scrolling="no" frameborder="no"></iframe>}.html_safe
+          text_node %{<iframe src="https://rpm.newrelic.com/public/charts/fm3gwRLo8rp" width="400" height="200" scrolling="no" frameborder="no"></iframe>}.html_safe
+        end
+      end
+
     end
+
+    columns do
+      column do
+        div do
+          br
+          #text_node %{<iframe src="https://rpm.newrelic.com/public/charts/ex6IoWyVB6d" width="550" height="300" scrolling="no" frameborder="no"></iframe>}.html_safe
+          text_node %{<iframe src="https://rpm.newrelic.com/public/charts/exvinz78lL1" width="550" height="300" scrolling="no" frameborder="no"></iframe>}.html_safe
+        end
+      end
+
+
+      column do
+        div do
+          br
+          #text_node %{<iframe src="https://rpm.newrelic.com/public/charts/dVeoWDAGSvH" width="500" height="300" scrolling="no" frameborder="no"></iframe>}.html_safe
+          text_node %{<iframe src="https://rpm.newrelic.com/public/charts/6AxHUxITYCA" width="500" height="300" scrolling="no" frameborder="no"></iframe>}.html_safe
+        end
+      end
+    end
+
   end # content
 end
