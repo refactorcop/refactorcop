@@ -408,6 +408,12 @@ body{
   color: #3a988c;
   font: 14px/20px "input_mono_compressedmedium", sans-serif;
 }
+.filename {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .snippet{
   margin: 20px 0 0 0;
   position: relative;
