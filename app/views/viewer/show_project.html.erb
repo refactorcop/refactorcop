@@ -46,28 +46,35 @@
           <div class="friendly">We have dispatched the cops on this project, hang on, results will be here soon!</div>
         <% end %>
 
-        <ul>
-          <% @project_details.offenses.each do |offense| %>
-            <li>
-              <div class="offense_bullet severity_<%= offense.severity %>">&nbsp;</div>
-              <div class="offense">
-                <div class="offense_type offense_type_<%= offense.severity %>">
-                  <%= offense.severity %>
+        <% if @project_details.project.linted? && @project_details.project.rubocop_offenses_count == 0%>
+          <div class="friendly">RuboCop has not detected any offenses in the Ruby sources of this project, awesome!<br/>If you want to contribute to open source projects, try another <a href="/random">random project</a>.</div>
+        <% else %>
+
+          <ul>
+            <% @project_details.offenses.each do |offense| %>
+              <li>
+                <div class="offense_bullet severity_<%= offense.severity %>">&nbsp;</div>
+                <div class="offense">
+                  <div class="offense_type offense_type_<%= offense.severity %>">
+                    <%= offense.severity %>
+                  </div>
+                  <div class="offense_message">
+                    <%= offense.message %>
+                  </div>
+                  <div class="filename">
+                    <%= link_to offense.source_file.path + ":" + offense.location_line.to_s, offense.github_link, target: "_blank" %>
+                  </div>
+                  <div class="snippet">
+                    <%= raw offense.to_html %>
+                  </div>
                 </div>
-                <div class="offense_message">
-                  <%= offense.message %>
-                </div>
-                <div class="filename">
-                  <%= link_to offense.source_file.path + ":" + offense.location_line.to_s, offense.github_link, target: "_blank" %>
-                </div>
-                <div class="snippet">
-                  <%= raw offense.to_html %>
-                </div>
-              </div>
-            </li>
-          <% end %>
-        </ul>
-        <%= paginate @project_details.offenses, :window => 2 %>
+              </li>
+            <% end %>
+          </ul>
+          <%= paginate @project_details.offenses, :window => 2 %>
+
+        <% end %>
+
       </section>
       <aside class="sidebar">
         <a href="/random" class="im_feeling_lucky">I’m feeling lucky</a>
@@ -80,6 +87,7 @@
             </li>
           <% end %>
         </ul>
+
         <% if @project_details.project.last_index_run_time %>
           <div class="friendly">
             Our cops processed this project's <strong><%= @project_details.source_files_count %> Ruby files</strong> in
@@ -87,17 +95,19 @@
             <%= time_ago_in_words(@project_details.project.rubocop_last_run_at) %> ago.
           </div>
         <% end %>
-        <h3>Disappointed cops</h3>
-        <ul class="disappointed_cops">
-          <% @project_details.offense_count_per_cop_name.each do |name, count| %>
-            <li>
-              <div class="severity_count"> <%= number_to_human count, precision: 0 %> </div>
-              <div class="severity_type"> <%= name %> </div>
-            </li>
-          <% end %>
-        </ul>
 
-				
+        <% if @project_details.project.linted? && @project_details.project.rubocop_offenses_count > 0%>
+          <h3>Disappointed cops</h3>
+          <ul class="disappointed_cops">
+            <% @project_details.offense_count_per_cop_name.each do |name, count| %>
+              <li>
+                <div class="severity_count"> <%= number_to_human count, precision: 0 %> </div>
+                <div class="severity_type"> <%= name %> </div>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+
       </aside>
     </main>
 
