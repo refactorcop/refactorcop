@@ -41,11 +41,11 @@ class ProjectDetails
   end
 
   def offense_count_per_severity
-    @per_severity_count ||= all_offenses.group(:severity).count.sort_by{|k,v| v}.reverse
+    @per_severity_count ||= all_offenses.group(:severity).count.sort_by{|_k,v| v}.reverse
   end
 
   def offense_count_per_cop_name
-    @per_copname_count ||= all_offenses.group(:cop_name).count.sort_by{|k,v| v}.reverse
+    @per_copname_count ||= all_offenses.group(:cop_name).count.sort_by{|_k,v| v}.reverse
   end
 
   private

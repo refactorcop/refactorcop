@@ -25,7 +25,7 @@ namespace :projects do
   end
 
   desc "Force a run for a given project ID"
-  task :queue, [:project_id] => [:environment] do |p, args|
+  task :queue, [:project_id] => [:environment] do |_p, args|
     project_id = args[:project_id]
     if project_id.blank?
       puts "Please give a project_id"
