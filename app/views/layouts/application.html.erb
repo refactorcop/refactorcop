@@ -47,9 +47,18 @@
 
     <footer class="footer">
       <div class="wrapper">
-        <div class="quote">
+				<div class="credits" style="font-size: 90%;">
+					RefactorCop is a concept and realization by <%= [ "Anthony Liekens", "Dale Hofkens", "Maarten Claes", "Stelian Firez"].shuffle.to_sentence %>
+				</div>
+				<div class="credits_rubcop" style="font-size: 90%;">
+					RefactorCop was made possible because of <a href="https://github.com/bbatsov/rubocop" style="color:#fff;">RuboCop</a>, an awesome static code analyzer for your Ruby projects!
+				</div>
+				<br/>
+        <div class="quote" style="float:right; padding: 40 40 40 40;color:#fff;">
           <%= random_quote %> --Robocop
         </div>
+				<br/>
+				<br/>
       </div>
     </footer>
 
