@@ -643,3 +643,59 @@ body{
   text-overflow: ellipsis;
   overflow: hidden;
 }
+
+/* Footer */
+
+.footer .wrapper {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between; 
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.credits {
+  width: 470px;
+}
+
+.credits p {
+  color: #8F8598;
+  font: 14px/20px "input_mono_compressedlight", sans-serif;
+  padding-bottom: 20px;
+}
+
+.credits strong {
+  color: #fff;
+}
+
+.credits img {
+  padding-top: 20px;
+}
+
+.credits p a {
+  color: #a0d1b8;
+}
+
+.credits p a:hover {
+  text-decoration: none;
+}
+
+.quote {
+  width: 470px;
+}
+
+.quote_text {
+  font: 24px/30px "input_mono_compressedlight", sans-serif;
+  color:white;
+  padding-bottom:20px;
+}
+
+.quote_author {
+  font: 24px/30px "input_mono_compressedmedium", sans-serif;
+  color:#e4796b;
+}
