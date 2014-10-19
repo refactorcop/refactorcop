@@ -20,7 +20,11 @@ class RubocopOffense < ActiveRecord::Base
   has_one :project, through: :source_file
 
   def line_range
-    (location_line-3)..(location_line+3)
+    max_lines = source_file.content.lines.size - 1
+    context_lines = 3
+    a = [0, location_line - context_lines].max
+    b = [max_lines, location_line + context_lines].min
+    a..b
   end
 
   def to_html
