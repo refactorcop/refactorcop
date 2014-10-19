@@ -168,7 +168,7 @@ body{
   -moz-justify-content: space-between;
   -webkit-justify-content: space-between;
 }
-.trending .project_title{
+.trending .project_title, .search_results .project_title{
   color: #3a988c;
   font: 18px/32px "input_mono_compressedmedium", sans-serif;
 }
@@ -709,4 +709,25 @@ body{
 .quote_author {
   font: 24px/30px "input_mono_compressedmedium", sans-serif;
   color:#e4796b;
+}
+
+
+/* Search results */
+
+.search_results{
+  width: 100%;
+}
+
+
+/* Friendly message */
+
+.friendly {
+  background-color:#f1f9f7;
+  padding: 20px;
+  margin-top:20px;
+  line-height: 32px;
+}
+
+.friendly a {
+  color: #3a988c;
 }
