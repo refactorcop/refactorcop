@@ -25,6 +25,22 @@ RSpec.describe GithubProject do
     end
   end
 
+  describe '#contains_ruby?' do
+    subject { gh_project.contains_ruby? }
+
+    context "when it contains ruby code" do
+      let(:username) { 'rails' }
+      let(:name) { 'rails' }
+      it { is_expected.to eq true }
+    end
+
+    context "when it does not contain ruby code" do
+      let(:username) { 'torvalds' }
+      let(:name) { 'linux' }
+      it { is_expected.to eq false }
+    end
+  end
+
   describe '#to_project' do
     subject(:project) { gh_project.to_project }
 

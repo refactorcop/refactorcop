@@ -10,6 +10,12 @@ class GithubProject
     !page_html.blank?
   end
 
+  def contains_ruby?
+    doc = Nokogiri::HTML(page_html)
+    langs = doc.css('.repository-lang-stats-graph').first
+    langs.content.downcase.include?("ruby")
+  end
+
   # Convert to {Project} model
   # @return [Project,nil]
   def to_project
