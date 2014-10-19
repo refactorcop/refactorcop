@@ -66,7 +66,7 @@
         <ul class="offenses">
           <% @project_details.offense_count_per_severity.each do |name, count| %>
             <li>
-              <div class="severity_count severity_<%= name %>"> <%= count %> </div>
+              <div class="severity_count severity_<%= name %>"> <%= number_to_human count, precision: 0 %> </div>
               <div class="severity_type offense_type_<%= name %>"> <%= name %> </div>
             </li>
           <% end %>
@@ -75,7 +75,7 @@
         <ul class="disappointed_cops">
           <% @project_details.offense_count_per_cop_name.each do |name, count| %>
             <li>
-              <div class="severity_count"> <%= count %> </div>
+              <div class="severity_count"> <%= number_to_human count, precision: 0 %> </div>
               <div class="severity_type"> <%= name %> </div>
             </li>
           <% end %>
@@ -86,8 +86,7 @@
           <li>
             <div class="severity_count">
               <%= number_to_human(@project_details.send(stat.to_sym),
-                                  units: {unit: "", thousand: "K"},
-                                  precision: 0, format: "%n%u") %> </div>
+                                  precision: 0) %> </div>
             <div class="severity_type"><%= stat.humanize%> </div>
           </li>
           <% end %>
