@@ -6,11 +6,13 @@ class ProjectDashboard
   end
 
   def trending
-    @trending ||= linted_projects.limit(5)
+    @trending ||= linted_projects.limit(5).order('rubocop_offenses_count DESC')
   end
 
   def recommended
-    @recommended ||= linted_projects.limit(5).order('random()')
+    @recommended ||= linted_projects
+      .where('rubocop_offenses_count > 0')
+      .limit(5).order('random()')
   end
 
   def search_results
