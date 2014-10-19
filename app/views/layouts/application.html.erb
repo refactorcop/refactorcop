@@ -7,6 +7,8 @@
     <%= csrf_meta_tags %>
   </head>
   <body class="home">
+    <%= render 'layouts/google_analytics' if Rails.env.production? %>
+
     <div class="wrapper">
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, class: "flash_msg flash_#{name}", style: "line-height: 2" %>
