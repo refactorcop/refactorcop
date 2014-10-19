@@ -44,7 +44,7 @@ class Project::Download
   def unzip_to_source_files(file)
     Zip::File.open_buffer(file) do |zip_file|
       @source_files = zip_file.glob('**/*.rb').compact.map do |entry|
-        next if test_file?(entry.name)
+        next if ignored_file?(entry.name)
 
         sf = to_source_file(entry)
         to_tmp_dir(entry, sf.id)
@@ -52,8 +52,8 @@ class Project::Download
     end
   end
 
-  def test_file?(filename)
-    filename =~ /(spec|test)\//
+  def ignore_file?(filename)
+    SourceFile::IgnoreCheck.call(filename)
   end
 
   def to_source_file(entry)
