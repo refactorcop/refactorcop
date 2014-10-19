@@ -1,5 +1,5 @@
 class ViewerController < ApplicationController
-  def showproject
+  def show_project
     @project_details = ProjectDetails.new(params)
     unless @project_details.exists?
       attempt_project_import_and_redirect
@@ -8,7 +8,10 @@ class ViewerController < ApplicationController
 
   def random
     project = Project.order("RANDOM()").first
-    redirect_to(action: "showproject", username: project.username, name: project.name)
+    redirect_to(action: "show_project", username: project.username, name: project.name)
+  end
+
+  def project_not_found
   end
 
   private
@@ -17,11 +20,13 @@ class ViewerController < ApplicationController
     gh = GithubProject.new(name: @project_details.name, username: @project_details.username)
     if gh.exists?
       gh.to_project.save!
-      redirect_to '/about/welcome', :flash => {
-        :error => "We have not indexed this repository yet, sorry!"
-      }
+      redirect_to({action: :show_project}, {
+        username: @project_details.username,
+        name: @project_details.name,
+        flash: { error: "We have not indexed this repository yet, sorry!" },
+      })
     else
-      redirect_to '/about/welcome', :flash => {
+      redirect_to action: "project_not_found", :flash => {
         :error => "Could not find that project '#{@project_details.full_name}'"
       }
     end

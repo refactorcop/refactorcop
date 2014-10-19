@@ -19,3 +19,16 @@
 //= require nprogress-turbolinks
 //
 //= require_tree .
+
+$(function() {
+  $('.js-github-form').on('submit', function(e) {
+    e.preventDefault();
+    var $form = $(this);
+    var username = $form.find('input[name="username"]').val();
+    var name = $form.find('input[name="name"]').val();
+    console.log(username, name)
+    if (name.length > 0 && username.length > 0) {
+      window.location = '/' + username + '/' + name;
+    }
+  });
+});

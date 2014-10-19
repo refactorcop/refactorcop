@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/scheduler'
 
   get 'random' => "viewer#random"
-  get ':username/:name', controller: "viewer", action: "showproject"
+  get 'project_not_found' => "viewer#project_not_found"
+  get ':username/:name', controller: "viewer", action: "show_project"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
