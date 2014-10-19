@@ -1,5 +1,18 @@
 ActiveAdmin.setup do |config|
 
+
+  config.namespace :admin do |admin|
+    admin.build_menu do |menu|
+      menu.add :label => "Public", :url => "/", :priority => 0
+      menu.add :label => "Sidekiq", :url => "/scheduler", :priority => 11
+
+      menu.add :label => "Agile as Fuck", :priority => 12 do |sites|
+        sites.add :label => "Trello", :url => "https://trello.com/b/d42gmJqS/refactorcop", :html_options => { :target => "trello" }
+        sites.add :label => "Rollbar", :url => "https://rollbar.com/thawing-island-6299/thawing-island-6299/", :html_options => { :target => "rollbar" }
+      end
+    end
+  end
+
   # == Site Title
   #
   # Set the title that is displayed on the main layout
