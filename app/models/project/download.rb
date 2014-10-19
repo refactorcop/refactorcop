@@ -64,7 +64,7 @@ class Project::Download
     sf
   rescue ActiveRecord::StatementInvalid => e
     logger.warn { "While inserting SourceFile content, ignoring exception: #{e.inspect}" }
-    sf.update_attribute(content: nil)
+    sf.update_attribute(:content, nil)
   rescue StandardError => e
     logger.warn "FAILED ON FILE: #{entry.name} #{e.inspect}"
   ensure
