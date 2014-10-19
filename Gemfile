@@ -18,7 +18,6 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'activeadmin', github: 'activeadmin'
 gem 'annotate', '~> 2.6.2' # Auto comments with fields of models
 gem 'coderay'
-gem 'counter_culture'
 gem 'faraday'
 gem 'github_api'
 gem 'httpclient'

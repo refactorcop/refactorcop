@@ -2,7 +2,7 @@ ActiveAdmin.register Project do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
-  # permit_params :list, :of, :attributes, :on, :model
+  permit_params :list, :of, :attributes, :on, :model
   #
   # or
   #
@@ -54,6 +54,8 @@ ActiveAdmin.register Project do
       f.input :username
       f.input :name
       f.input :description
+      f.input :rubocop_run_started_at, :as => :datepicker
+      f.input :rubocop_last_run_at, :as => :datepicker
     end
     f.actions
   end
@@ -71,6 +73,9 @@ ActiveAdmin.register Project do
         row :rubocop_offenses_count
         row :pushed_at
         row :default_branch
+        row :rubocop_run_started_at
+        row :rubocop_last_run_at
+
         #row :repository_data
       end
     end

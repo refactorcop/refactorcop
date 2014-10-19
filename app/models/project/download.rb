@@ -6,9 +6,9 @@ class Project::Download
 
   attr_reader :project, :logger
 
-  def initialize(project, tmp_dir)
+  def initialize(project, tmp_dir, sidekiq_logger = nil)
     @project  = project
-    @logger   = Rails.logger
+    @logger   = sidekiq_logger || Rails.logger
     @tmp_dir = tmp_dir
   end
 
@@ -42,21 +42,12 @@ class Project::Download
 
   # @param file [String]
   def unzip_to_source_files(file)
-
     Zip::File.open_buffer(file) do |zip_file|
-      # Handle entries one by one
       @source_files = zip_file.glob('**/*.rb').compact.map do |entry|
         next if test_file?(entry.name)
-        #logger.info { "Extracting #{entry.name.inspect}" }
-        begin
-          to_source_file(entry)
-          to_tmp_dir(entry)
 
-        rescue StandardError => e
-          puts "FAILED ON FILE: #{entry.name}"
-          p e.inspect
-          raise e
-        end
+        sf = to_source_file(entry)
+        to_tmp_dir(entry, sf.id)
       end
     end
   end
@@ -70,19 +61,21 @@ class Project::Download
     input_stream = entry.get_input_stream
     sf.content = input_stream.read if input_stream.respond_to?(:read)
     sf.save!
-  rescue Exception => e
+    sf
+  rescue ActiveRecord::StatementInvalid => e
     logger.warn { "While inserting SourceFile content, ignoring exception: #{e.inspect}" }
-    sf.content = nil
-    sf.save!
+    sf.update_attribute(content: nil)
+  rescue StandardError => e
+    logger.warn "FAILED ON FILE: #{entry.name} #{e.inspect}"
   ensure
     sf
   end
 
-  def to_tmp_dir(entry)
-    relative_filename = sanitize_file_path(entry)
-    f_path = File.join(@tmp_dir, relative_filename)
-    FileUtils.mkdir_p(File.dirname(f_path))
+  def to_tmp_dir(entry, sf_id)
+    f_path = File.join(@tmp_dir, "#{sf_id}.rb")
     entry.extract(f_path) unless File.exist?(f_path)
+  rescue StandardError => e
+    logger.warn "FAILED ON FILE: #{entry.name} #{e.inspect}"
   end
 
   def sanitize_file_path(entry)

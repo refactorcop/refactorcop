@@ -11,6 +11,8 @@
 #  repository_data        :json
 #  source_files_count     :integer          default(0), not null
 #  rubocop_offenses_count :integer          default(0), not null
+#  rubocop_run_started_at :datetime
+#  rubocop_last_run_at    :datetime
 #
 
 FactoryGirl.define do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141019001002) do
+ActiveRecord::Schema.define(version: 20141019111359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,10 +39,10 @@ ActiveRecord::Schema.define(version: 20141019001002) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.json     "repository_data"
-    t.integer  "source_files_count",        default: 0, null: false
-    t.integer  "rubocop_offenses_count",    default: 0, null: false
-    t.integer  "rubocop_run_started_at",    default: 0, null: false
-    t.integer  "rubocop_run_dispatched_at", default: 0, null: false
+    t.integer  "source_files_count",     default: 0, null: false
+    t.integer  "rubocop_offenses_count", default: 0, null: false
+    t.datetime "rubocop_run_started_at"
+    t.datetime "rubocop_last_run_at"
   end
 
   create_table "rubocop_offenses", force: true do |t|
