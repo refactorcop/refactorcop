@@ -22,6 +22,12 @@ class Project < ActiveRecord::Base
   has_many :source_files
   has_many :rubocop_offenses, through: :source_files
 
+  scope :linted, lambda {
+    #where("rubocop_last_run_at IS NOT NUL AND rubocop_last_run_at > rubocop_run_started_at")
+    t = self.arel_table
+    where(t[:rubocop_last_run_at].not_eq(nil).and(t[:rubocop_last_run_at].gt(t[:rubocop_run_started_at])))
+  }
+
   def clone_url
     "git@github.com:#{username}/#{name}.git"
   end
