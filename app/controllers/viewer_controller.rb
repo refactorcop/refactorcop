@@ -20,16 +20,22 @@ class ViewerController < ApplicationController
 
   def attempt_project_import_and_redirect
     gh = GithubProject.new(name: @project_details.name, username: @project_details.username)
-    if gh.exists?
-      gh.to_project.save!
-      redirect_to({action: :show_project}, {
-        username: @project_details.username,
-        name: @project_details.name,
-      })
-    else
-      redirect_to action: "project_not_found", :flash => {
-        :error => "Could not find that project '#{@project_details.full_name}'"
-      }
+    if !gh.exists?
+      redirect_to action: "project_not_found", flash: { error: "Could not find that project '#{@project_details.full_name}'" }
+      return
     end
+    if !gh.contains_ruby?
+      redirect_to root_path, flash: { error: "This project does not seem to contain a significant amount of ruby code." }
+      return
+    end
+    save_and_redirect_to_project gh.to_project
+  end
+
+  def save_and_redirect_to_project(project)
+    project.save!
+    redirect_to({action: :show_project}, {
+      username: project.username,
+      name: project.name,
+    })
   end
 end
