@@ -35,9 +35,9 @@ class Project < ActiveRecord::Base
 
   # Checks whether we are currently running rubocop on this project
   def rubocop_running?
-    rubocop_run_started_at.present?  &&
-      rubocop_last_run_at.present? &&
-      rubocop_run_started_at > rubocop_last_run_at
+    (rubocop_last_run_at.nil? && rubocop_run_started_at.present?) ||
+    (rubocop_run_started_at.present? && rubocop_last_run_at.present? &&
+      rubocop_run_started_at > rubocop_last_run_at)
   end
 
   def clone_url

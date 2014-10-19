@@ -29,11 +29,11 @@
         <h2><%= link_to @project_details.username, "https://github.com/#{@project_details.username}" , target: '_blank'%> / <%= link_to @project_details.name, "https://github.com/#{@project_details.username}/#{@project_details.name}", target: '_blank' %></h2>
         <p><%= @project_details.project.description %></p>
         <% unless @project_details.project.linted? %>
-          <p>This project is freshly added, we don't have any results yet</p>
+          <div class="friendly">This project is freshly added, we don't have any results yet.</div>
         <% end %>
 
         <% if @project_details.project.rubocop_running? %>
-          <p>We have dispatched the cops on this project, hang on, results will be here soon!</p>
+          <div class="friendly">We have dispatched the cops on this project, hang on, results will be here soon!</div>
         <% end %>
 
         <ul>
