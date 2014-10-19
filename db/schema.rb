@@ -15,8 +15,6 @@ ActiveRecord::Schema.define(version: 20141019001002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "hstore"
-  enable_extension "tablefunc"
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"

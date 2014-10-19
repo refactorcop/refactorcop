@@ -15,7 +15,7 @@ class RubocopWorker
 
     if project.rubocop_run_started_at > project.rubocop_run_dispatched_at
       logger.info "Project ##{project_id} #{project.full_name} a worker is still running? *abort*"
-      return
+      #return
     end
 
     project.rubocop_run_started_at = Time.now
