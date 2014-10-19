@@ -1,0 +1,14 @@
+  <br> <br>
+  <h2>Import from github:</h2>
+  <br>
+
+  <%= form_tag(root_path, method: "GET", class: 'js-github-form') do %>
+    <p>
+    github.com/
+    <input name="username" placeholder="username" />
+    /
+    <input name="name" placeholder="awesome-project" />
+    </p>
+    <br>
+    <%= submit_tag "Import" %>
+  <% end %>

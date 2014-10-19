@@ -38,4 +38,12 @@
     </div>
     <%= paginate @dashboard.search_results %>
   </section>
+
+  <% if @dashboard.search_results.empty? %>
+    <section class="wrapper">
+      <br>
+      <p>No repositories found!</p>
+      <%= render 'viewer/import_from_github_form' %>
+    </section>
+  <% end %>
 <% end %>
