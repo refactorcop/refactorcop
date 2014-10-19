@@ -14,13 +14,15 @@ class ViewerController < ApplicationController
 
   end
   
-  def showdashboards
+  def showproject
+
+    # dashboards
+
     @total_count = RubocopOffense.includes( :source_file ).where( source_files: { project_id: @project } ).count
     @severity_count = RubocopOffense.includes( :source_file ).where( source_files: { project_id: @project } ).group( :severity ).count.sort_by{|k,v| v}.reverse
     @copname_count = RubocopOffense.includes( :source_file ).where( source_files: { project_id: @project } ).group( :cop_name ).count.sort_by{|k,v| v}.reverse
-  end
-
-  def showproject
+    
+    # paginated view
 
     @offenses = @project.rubocop_offenses.order(
     "case rubocop_offenses.severity
@@ -33,5 +35,6 @@ class ViewerController < ApplicationController
     end").includes(:source_file, :project)
 
     @offenses = @offenses.page(params[:page]).per(10)
+    
   end
 end
