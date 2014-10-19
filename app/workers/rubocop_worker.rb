@@ -30,7 +30,7 @@ class RubocopWorker
   # Checks whether the project needs to be reanalyzed.
   # @return [boolean]
   def project_needs_analyzing?
-    if !project.new_commits? && !force_run
+    if project.linted? && !project.new_commits? && !force_run
       logger.info "Project ##{project.id} #{project.full_name} hasn't been updated, *noop*"
       return false
     elsif project.rubocop_running?
