@@ -70,7 +70,8 @@ ActiveAdmin.setup do |config|
   # within the application controller.
   #
   # config.authentication_method = :authenticate_admin_user!
-  config.authentication_method = false
+  # config.authentication_method = false
+  config.authentication_method = :authenticate_admin
 
   # == User Authorization
   #
