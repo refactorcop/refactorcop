@@ -863,3 +863,25 @@ body{
   margin: 0 10px 0 0;
   background-color: #f1f9f7;
 }
+
+
+
+
+.offense_filter {
+  padding: 5px 10px;
+  display: inline-block;
+  margin-top: 20px;
+  font: 12px/24px "input_mono_compressedmedium", sans-serif;
+
+  a {
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.30);
+    // padding: 3px;
+    text-align: center;
+    line-height: 20px;
+    width: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    color: #333;
+  }
+}

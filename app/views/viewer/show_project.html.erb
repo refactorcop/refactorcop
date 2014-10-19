@@ -50,6 +50,13 @@
           <div class="friendly">RuboCop has not detected any offenses in the Ruby sources of this project, awesome!<br/>If you want to contribute to open source projects, try another <a href="/random">random project</a>.</div>
         <% else %>
 
+          <% if %w(error fatal convention refactor warning).include?(params[:severity]) %>
+            <div class="offense_filter severity_<%= params[:severity] %>">
+              Filtered by <%= params[:severity].humanize %>.
+              <%= link_to "×", params.merge(severity: '') %>
+            </div>
+          <% end %>
+
           <ul>
             <% @project_details.offenses.each do |offense| %>
               <li>
