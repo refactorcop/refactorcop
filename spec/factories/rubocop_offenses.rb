@@ -4,7 +4,7 @@
 #
 #  id              :integer          not null, primary key
 #  severity        :string(255)      not null
-#  message         :string(255)
+#  message         :text
 #  cop_name        :string(255)
 #  location_line   :integer
 #  location_column :integer
