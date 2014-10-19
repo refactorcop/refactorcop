@@ -23,7 +23,6 @@ class ViewerController < ApplicationController
       redirect_to({action: :show_project}, {
         username: @project_details.username,
         name: @project_details.name,
-        flash: { error: "We have not indexed this repository yet, sorry!" },
       })
     else
       redirect_to action: "project_not_found", :flash => {
