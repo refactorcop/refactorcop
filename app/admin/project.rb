@@ -2,7 +2,7 @@ ActiveAdmin.register Project do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
-  permit_params :list, :of, :attributes, :on, :model
+  permit_params :username, :name, :description, :rubocop_run_started_at, :rubocop_last_run_at
   #
   # or
   #
@@ -23,22 +23,19 @@ ActiveAdmin.register Project do
   end
 
   index do
-    column :id
-
     column "Repo", :sortable => :name do |project|
       link_to project.full_name, admin_project_path(project)
     end
 
     column :description
     column 'Files', :source_files_count
+    column 'Offenses', :rubocop_offenses_count
+    column :rubocop_last_run_at
     column :created_at
     column :updated_at
 
     column "Actions" do |resource|
       links = ''.html_safe
-      if controller.action_methods.include?('show')
-        links += link_to I18n.t('active_admin.view'), resource_path(resource), :class => "member_link view_link"
-      end
       if controller.action_methods.include?('edit')
         links += link_to I18n.t('active_admin.edit'), edit_resource_path(resource), :class => "member_link edit_link"
       end
@@ -48,6 +45,14 @@ ActiveAdmin.register Project do
       links
     end
   end
+
+  filter :name
+  filter :username
+  filter :description
+  filter :created_at
+  filter :updated_at
+  filter :rubocop_run_started_at
+  filter :rubocop_last_run_at
 
   form do |f|
     f.inputs do
