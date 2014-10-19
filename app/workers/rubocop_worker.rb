@@ -14,9 +14,15 @@ class RubocopWorker
 
     @tmp_dir = Dir.mktmpdir
 
-    project.update_attribute(:rubocop_run_started_at, Time.now)
-    analyze_project
-    project.update_attribute(:rubocop_last_run_at, Time.now)
+    begin
+      project.update_attribute(:rubocop_run_started_at, Time.now)
+      analyze_project
+      project.update_attribute(:rubocop_last_run_at, Time.now)
+    rescue StandardError => e
+      project.update_attribute(:rubocop_run_started_at, nil)
+    ensure
+      FileUtils.remove_entry tmp_dir
+    end
 
     logger.info "Project ##{project.id} #{project.full_name} done in #{project.rubocop_last_run_at - project.rubocop_run_started_at}s"
   end
@@ -41,8 +47,6 @@ class RubocopWorker
     run_rubocop
     logger.info "Project ##{project.id} #{project.full_name} updating project stats"
     update_project_stats
-  ensure
-    FileUtils.remove_entry tmp_dir
   end
 
   # Imports the projects code from GitHub. Stores code in {SourceFile#content}.
