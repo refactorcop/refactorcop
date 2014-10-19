@@ -7,27 +7,13 @@
     <%= csrf_meta_tags %>
   </head>
   <body class="home">
-    <header>
-      <div class="wrapper">
-        <h1 class="logo"><%= link_to "RefactorCop", root_path %></h1>
-        <p>Using <a href="https://github.com/bbatsov/rubocop">RuboCop</a>, RefactorCop scans open source Ruby projects allowing you to discover code that might benefit from improvements.</p>
+    <div class="wrapper">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: "flash_msg flash_#{name}", style: "line-height: 2" %>
+      <% end %>
+    </div>
 
-        <%= form_tag "/about/welcome", method: "get", class: "search" do %>
-          <div class="search">
-            <%= text_field_tag(:query, nil, placeholder: "Looking for a specific repo?", class: "search_repo") %>
-            <input type="submit" class="search_button">
-          </div>
-        <% end %>
-
-        <h2>Not sure what project to work on?</h2>
-        <a href="/random" class="im_feeling_lucky">I'm feeling lucky!</a>
-      </div>
-    </header>
-
-    <% flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, class: name %>
-    <% end -%>
-
+    <%= render 'layouts/robo_header' %>
     <%= yield %>
 
     <section class="why_open_source">
@@ -36,15 +22,23 @@
         <ul>
           <li>
             <h3>Experience</h3>
-            <p>Practice makes perfect, as they say, and there’s no doubt about it. Developing open source projects gives you tons of opportunities to focus on what you find most interesting, or give you a break from your everyday job tasks.</p>
+            <p>Practice makes perfect, as they say, and there’s no doubt about
+            it. Developing open source projects gives you tons of opportunities
+            to focus on what you find most interesting, or give you a break
+            from your everyday job tasks.</p>
           </li>
           <li>
             <h3>Make your life easier</h3>
-            <p>Of course, you’ll probably focus on a project that you’re also are in need of. Mixing work with pleasure, as they say, is not a bad idea.</p>
+            <p>Of course, you’ll probably focus on a project that you’re also
+            are in need of. Mixing work with pleasure, as they say, is not a
+            bad idea.</p>
           </li>
           <li>
             <h3>Spread the joy</h3>
-            <p>Your input could be used by thousands of people. Doesn’t that make you feel good? Either way, at least you learned something along the way and you’ll probably end up with some good contributor karma!</p>
+            <p>Your input could be used by thousands of people. Doesn’t that
+            make you feel good? Either way, at least you learned something
+            along the way and you’ll probably end up with some good contributor
+            karma!</p>
           </li>
         </ul>
       </div>
@@ -52,11 +46,10 @@
 
     <footer class="footer">
       <div class="wrapper">
-				<div class="quote">
-					<%= random_quote %> --Robocop
-				</div>
+        <div class="quote">
+          <%= random_quote %> --Robocop
+        </div>
       </div>
     </footer>
-
   </body>
 </html>
