@@ -1,27 +1,23 @@
 class ViewerController < ApplicationController
-
-  before_action :project_exists?
+  before_action :project_exists?, only: [:showproject]
 
   def project_exists?
-    @username = params[ "username" ]
-    @name = params[ "name" ]
+    @username = params["username"]
+    @name = params["name"]
 
-    if !Project.exists?( { username: @username, name: @name } )
+    @project = Project.where(username: @username, name: @name).first
+    unless @project
       redirect_to '/about/welcome', :flash => { :error => "We have not indexed this repository yet, sorry!" }
     end
-
-    @project = Project.where( { username: @username, name: @name } ).first
-
   end
-  
+
   def showproject
-
     # dashboards
+    all_offenses = RubocopOffense.includes(:source_file).where(source_files: { project_id: @project })
+    @total_count    = all_offenses.count
+    @severity_count = all_offenses.group(:severity).count.sort_by{|k,v| v}.reverse
+    @copname_count  = all_offenses.group(:cop_name).count.sort_by{|k,v| v}.reverse
 
-    @total_count = RubocopOffense.includes( :source_file ).where( source_files: { project_id: @project } ).count
-    @severity_count = RubocopOffense.includes( :source_file ).where( source_files: { project_id: @project } ).group( :severity ).count.sort_by{|k,v| v}.reverse
-    @copname_count = RubocopOffense.includes( :source_file ).where( source_files: { project_id: @project } ).group( :cop_name ).count.sort_by{|k,v| v}.reverse
-    
     # paginated view
 
     @offenses = @project.rubocop_offenses.order(
@@ -35,6 +31,10 @@ class ViewerController < ApplicationController
     end").includes(:source_file, :project)
 
     @offenses = @offenses.page(params[:page]).per(10)
-    
+  end
+
+  def random
+    project = Project.order("RANDOM()").first
+    redirect_to(action: "showproject", username: project.username, name: project.name)
   end
 end

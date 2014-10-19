@@ -18,10 +18,9 @@
             <input type="submit" class="search_button">
           </div>
         <% end %>
-        <% if @random_project %>
-          <h2>Not sure what project to work on?</h2>
-          <a href="/<%=@random_project.username%>/<%=@random_project.name%>" class="im_feeling_lucky">I'm feeling lucky!</a>
-        <% end %>
+
+        <h2>Not sure what project to work on?</h2>
+        <a href="/random" class="im_feeling_lucky">I'm feeling lucky!</a>
       </div>
     </header>
 
