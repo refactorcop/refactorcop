@@ -11,6 +11,7 @@ module ApplicationHelper
       "They'll fix you. They fix everything.",
       "Thank you for your cooperation. Good night.",
       "Madame, you have suffered an emotional shock. I will notify a rape crisis center.",
+      "Madame, you have suffered an emotional shock. I will notify a rape crisis center.",
       "Looking for me?",
       "Excuse me, I have to go. Somewhere there is a crime happening.",
       "I'm not arresting you anymore."
