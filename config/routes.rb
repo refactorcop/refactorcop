@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'random' => "viewer#random"
   get 'project_not_found' => "viewer#project_not_found"
   get ':username/:name', controller: "viewer", action: "show_project"
+  get "*a", :to => "viewer#project_not_found"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
