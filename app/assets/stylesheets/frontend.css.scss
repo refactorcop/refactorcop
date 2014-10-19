@@ -367,7 +367,6 @@ body{
 }
 .project_details p{
   padding: 8px 0 20px 0;
-  border-bottom: 3px solid #dbdbdb;
 }
 .project_details li{
   padding: 36px 0 24px 0;
@@ -792,4 +791,37 @@ body{
   padding: 0 16px;
   border: none;
   border-bottom: 1px solid #3a988c;
+}
+
+
+/* github stats */
+
+.github_stats {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+  border-bottom: 3px solid #dbdbdb;
+  padding: 8px 0 20px 0;
+}
+
+.stat_type {
+  font: 16px/32px "input_mono_compressedlight", sans-serif;
+  color: #3a988c;
+  margin: 0 20px 0 0;
+}
+
+.stat_count {
+  border-radius: 16px;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  color: #312938;
+  font: 12px/32px "input_mono_compressedmedium", sans-serif;
+  margin: 0 10px 0 0;
+  background-color: #f1f9f7;  
 }

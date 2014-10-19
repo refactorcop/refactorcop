@@ -27,7 +27,18 @@
     <main class="wrapper">
       <section class="project_details">
         <h2><%= link_to @project_details.username, "https://github.com/#{@project_details.username}" , target: '_blank'%> / <%= link_to @project_details.name, "https://github.com/#{@project_details.username}/#{@project_details.name}", target: '_blank' %></h2>
-        <p><%= @project_details.project.description %></p>
+        <p>
+					<%= @project_details.project.description %>
+				</p>
+				<div class="github_stats">
+	        <% %w(stars forks open_issues subscribers).each do |stat| %>
+		          <div class="stat_count">
+		            <%= number_to_human(@project_details.send(stat.to_sym), precision: 0) %>
+							</div>
+		          <div class="stat_type"><%= stat.humanize%> </div>
+					<% end %>
+				</div>
+				
         <% unless @project_details.project.linted? %>
           <div class="friendly">This project is freshly added, we don't have any results yet.</div>
         <% end %>
@@ -37,7 +48,6 @@
         <% end %>
 
         <ul>
-          <li>
           <% @project_details.offenses.each do |offense| %>
             <li>
               <div class="offense_bullet severity_<%= offense.severity %>">&nbsp;</div>
@@ -79,18 +89,6 @@
               <div class="severity_type"> <%= name %> </div>
             </li>
           <% end %>
-        </ul>
-        <h3>Github stats</h3>
-        <ul class="disappointed_cops project_stats">
-          <% %w(stars forks open_issues subscribers).each do |stat| %>
-          <li>
-            <div class="severity_count">
-              <%= number_to_human(@project_details.send(stat.to_sym),
-                                  precision: 0) %> </div>
-            <div class="severity_type"><%= stat.humanize%> </div>
-          </li>
-          <% end %>
-
         </ul>
       </aside>
     </main>
