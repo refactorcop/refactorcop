@@ -21,6 +21,11 @@ class ProjectDetails
     @name ||= params[:name].freeze
   end
 
+  def full_name
+    # Don't delegate to project, because it might be nil
+    "#{username}/#{name}"
+  end
+
   def offenses
     @offenses ||= project.rubocop_offenses
       .includes(:source_file, :project)
