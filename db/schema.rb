@@ -11,11 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018231244) do
+ActiveRecord::Schema.define(version: 20141019001002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
+  enable_extension "tablefunc"
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -47,7 +48,7 @@ ActiveRecord::Schema.define(version: 20141018231244) do
 
   create_table "rubocop_offenses", force: true do |t|
     t.string   "severity",        null: false
-    t.string   "message"
+    t.text     "message"
     t.string   "cop_name"
     t.integer  "location_line"
     t.integer  "location_column"
