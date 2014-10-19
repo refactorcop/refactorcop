@@ -53,6 +53,22 @@ class ProjectDetails
     @per_copname_count ||= all_offenses.group(:cop_name).count.sort_by{|_k,v| v}.reverse
   end
 
+  def stars
+    project.repository_data["stargazers_count"]
+  end
+
+  def forks
+    project.repository_data["forks_count"]
+  end
+
+  def open_issues
+    project.repository_data["open_issues_count"]
+  end
+
+  def subscribers
+    project.repository_data["subscribers_count"]
+  end
+
   private
 
   def all_offenses
