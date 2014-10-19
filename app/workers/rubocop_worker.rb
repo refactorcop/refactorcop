@@ -7,11 +7,9 @@ class RubocopWorker
 
   attr_reader :project, :tmp_dir, :force_run
 
-
   def perform(project_id, force_run = false)
     @project = Project.find_by_id!(project_id)
     @force_run = force_run
-
     return unless project_needs_analyzing?
 
     @tmp_dir = Dir.mktmpdir
@@ -37,16 +35,14 @@ class RubocopWorker
   end
 
   def analyze_project
-    begin
-      logger.info "Project ##{project.id} #{project.full_name} fetching project zipfile"
-      update_source_files
-      logger.info "Project ##{project.id} #{project.full_name} running rubocop"
-      run_rubocop
-      logger.info "Project ##{project.id} #{project.full_name} updating project stats"
-      update_project_stats
-    ensure
-      FileUtils.remove_entry tmp_dir
-    end
+    logger.info "Project ##{project.id} #{project.full_name} fetching project zipfile"
+    update_source_files
+    logger.info "Project ##{project.id} #{project.full_name} running rubocop"
+    run_rubocop
+    logger.info "Project ##{project.id} #{project.full_name} updating project stats"
+    update_project_stats
+  ensure
+    FileUtils.remove_entry tmp_dir
   end
 
   # Imports the projects code from GitHub. Stores code in {SourceFile#content}.
@@ -68,11 +64,10 @@ class RubocopWorker
   end
 
   def process_source_file(files_json)
-      source_file_id = files_json[:path].tr('\.rb','').to_i
-
-      files_json[:offenses].each do |offense_json|
-        create_offense(source_file_id, offense_json)
-      end
+    source_file_id = files_json[:path].tr('\.rb','').to_i
+    files_json[:offenses].each do |offense_json|
+      create_offense(source_file_id, offense_json)
+    end
   end
 
   def create_offense(source_file_id, offense_json)
@@ -93,7 +88,5 @@ class RubocopWorker
       count
 
     project.source_files_count = project.source_files.count
-
   end
-
 end
