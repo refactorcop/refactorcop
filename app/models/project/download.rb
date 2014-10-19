@@ -107,9 +107,9 @@ class Project::Download
 
   def to_source_file(entry)
     sf = SourceFile.new(project: project, path: sanitize_file_path(entry))
-    sf.content = entry.get_input_stream.read
+    input_stream = entry.get_input_stream
+    sf.content = input_stream.read if input_stream.respond_to?(:read)
     sf.save!
-    #RubocopFileWorker.perform_async(sf.id)
     sf
   end
 
