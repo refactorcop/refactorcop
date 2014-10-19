@@ -631,3 +631,10 @@ body{
   -moz-transform: translateY(-8px);
   transform: translateY(-8px); 
 }
+
+.trending .project_title, .recommended .project_title{
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
