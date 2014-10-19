@@ -280,7 +280,7 @@ body{
   width: 180px;
 }
 .secondary h1 a{
-  background: url(images/refactorcop.svg) no-repeat -2px 0;
+  background: image-url("images/refactorcop.svg") no-repeat -2px 0;
   background-size: 180px 27px;
   height: 27px;
   text-indent: -9999px; /*note to self: look for something more elegant*/
@@ -293,7 +293,7 @@ body{
   /*height: 64px;*/
 }
 .secondary .search_repo{
-  background: #312938 url(images/search.svg) no-repeat 194px 50%;
+  background: #312938 image-url("images/search.svg") no-repeat 194px 50%;
   background-size: 23px 22px;
   border: 3px solid #a0d1b8;
   width: 176px;
