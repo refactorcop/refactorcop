@@ -6,17 +6,17 @@ class ProjectDashboard
   end
 
   def trending
-    Project.all.limit(5)
+    @trending ||= Project.all.limit(5)
   end
 
   def recommended
-    Project.all.limit(5).order('random()')
+    @recommended ||= Project.all.limit(5).order('random()')
   end
 
   def search_results
-    Project
+    @search_results ||= Project
       .where("name ILIKE ? or description ILIKE ?", "%#{query}%",  "%#{query}%")
-      .limit(25)
+      .page(params[:page]).per(20)
   end
 
   def search?
@@ -24,6 +24,6 @@ class ProjectDashboard
   end
 
   def query
-    params[:query].freeze
+    @query ||= params[:query].freeze
   end
 end
