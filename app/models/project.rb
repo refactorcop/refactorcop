@@ -96,7 +96,7 @@ class Project < ActiveRecord::Base
   private
 
   def github_api
-    @github_api ||= Github.new
+    @github_api ||= Github.new(basic_auth: "dale+refactorcop@valid.be:cyav7ut5uf8ig6oo")
   end
 
 end
