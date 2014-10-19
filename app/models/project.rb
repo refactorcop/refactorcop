@@ -64,6 +64,10 @@ class Project < ActiveRecord::Base
     github = fetch_github_repository_data
     pushed_at != github[:pushed_at]
   end
+  
+  def severity_counts
+    RubocopOffense.includes(:source_file).where(source_files: { project_id: self.id }).group(:severity).count
+  end
 
   private
 
