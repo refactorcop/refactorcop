@@ -1,10 +1,11 @@
 class ViewerController < ApplicationController
   def show_project
     @project_details = ProjectDetails.new(params)
-    unless @project_details.exists?
+    if @project_details.exists?
+      render layout: nil
+    else
       attempt_project_import_and_redirect
     end
-    render layout: nil
   end
 
   def random
