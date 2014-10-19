@@ -27,11 +27,21 @@ class RubocopOffense < ActiveRecord::Base
     lines = self.source_file.content.lines[self.line_range]
     CodeRay.scan(lines.join, :ruby).div({
       line_numbers: :inline,
-      line_number_start: self.location_line - 3,
+      line_number_start: line_number_start,
       highlight_lines: [self.location_line],
       line_number_anchors: false
     })
   end
+
+  def line_number_start
+    num = location_line - 3
+    if num <= 0
+      1
+    else
+      num
+    end
+  end
+  private :line_number_start
 
   def github_link
     project = source_file.project
