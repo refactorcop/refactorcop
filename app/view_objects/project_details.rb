@@ -69,6 +69,10 @@ class ProjectDetails
     project.repository_data["subscribers_count"]
   end
 
+  def source_files_count
+    project.source_files_count
+  end
+
   private
 
   def all_offenses
