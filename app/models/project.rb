@@ -93,6 +93,12 @@ class Project < ActiveRecord::Base
       .with_indifferent_access
   end
 
+  def last_index_run_time
+    return nil if rubocop_run_started_at.blank? || rubocop_last_run_at.blank?
+    return nil if rubocop_running?
+    (rubocop_last_run_at - rubocop_run_started_at).to_i
+  end
+
   private
 
   def github_api

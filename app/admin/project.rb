@@ -12,6 +12,17 @@ ActiveAdmin.register Project do
   #   permitted
   # end
 
+  scope :all, :default => true do |projects|
+      projects
+  end
+
+  scope :new do |projects|
+      projects.where("projects.rubocop_last_run_at IS NULL AND projects.rubocop_run_started_at IS NULL")
+  end
+
+  scope :indexing do |projects|
+      projects.where("(projects.rubocop_last_run_at IS NULL AND projects.rubocop_run_started_at IS NOT NULL) OR (projects.rubocop_last_run_at < projects.rubocop_run_started_at)")
+  end
 
   member_action :send_the_cops_now, :method => :get do
       RubocopWorker.perform_async(params[:id], true)
@@ -31,6 +42,8 @@ ActiveAdmin.register Project do
     column 'Files', :source_files_count
     column 'Offenses', :rubocop_offenses_count
     column :rubocop_last_run_at
+    column 'Run Time', :last_index_run_time,
+            :sortable => "extract(epoch from (projects.rubocop_last_run_at - projects.rubocop_run_started_at))"
     column :created_at
     column :updated_at
 
