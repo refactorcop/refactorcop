@@ -77,18 +77,16 @@
         </ul>
         <h3>Github stats</h3>
         <ul class="disappointed_cops project_stats">
+          <% %w(stars forks open_issues subscribers).each do |stat| %>
           <li>
-            <div class="severity_count"> <%= @project_details.stars %> </div><div class="severity_type"> Stars </div>
+            <div class="severity_count">
+              <%= number_to_human(@project_details.send(stat.to_sym),
+                                  units: {unit: "", thousand: "K"},
+                                  precision: 0, format: "%n%u") %> </div>
+            <div class="severity_type"><%= stat.humanize%> </div>
           </li>
-          <li>
-            <div class="severity_count"> <%= @project_details.forks %> </div><div class="severity_type"> Forks </div>
-          </li>
-          <li>
-            <div class="severity_count"> <%= @project_details.open_issues %> </div><div class="severity_type"> Open Issues </div>
-          </li>
-          <li>
-            <div class="severity_count"> <%= @project_details.subscribers %> </div><div class="severity_type"> Subscribers </div>
-          </li>
+          <% end %>
+
         </ul>
       </aside>
     </main>
