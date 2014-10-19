@@ -29,6 +29,7 @@ class ProjectDetails
   def offenses
     @offenses ||= project.rubocop_offenses
       .includes(:source_file, :project)
+      .where(severity_conditions)
       .order("""
     case rubocop_offenses.severity
       when 'convention' then 5
@@ -42,7 +43,7 @@ class ProjectDetails
   end
 
   def total_offense_count
-    @total_count    ||= all_offenses.count
+    @total_count ||= all_offenses.count
   end
 
   def offense_count_per_severity
@@ -76,6 +77,14 @@ class ProjectDetails
   private
 
   def all_offenses
-    @all_offenses ||= RubocopOffense.includes(:source_file).where(source_files: { project_id: project.id })
+    @all_offenses ||= RubocopOffense
+      .includes(:source_file)
+      .where(source_files: { project_id: project.id })
+  end
+
+  def severity_conditions
+    unless params[:severity].blank?
+      { severity: params[:severity] }
+    end
   end
 end
