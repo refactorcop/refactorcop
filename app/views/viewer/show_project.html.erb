@@ -6,6 +6,10 @@
     <%= link_to @project_details.name, "https://github.com/#{@project_details.username}/#{@project_details.name}", target: '_blank' %>
   </h2>
 
+  <% unless @project_details.project.linted? %>
+    <p>This project has not been indexed yet! </p>
+  <% end %>
+
   <p><%= @project_details.project.description %> <%= page_entries_info @project_details.offenses %></p>
   <p><%= paginate @project_details.offenses %></p>
 
