@@ -45,9 +45,13 @@ class Project::Download
 
     json = MultiJson.load(json_data, symbolize_keys: true)
 
-    #rewrite this to extract seperate files, and lookup the file in SourceFile Record
     json[:files].each do |files_json|
       sf = SourceFile.where(project: project, path: files_json[:path]).first
+
+      if sf.nil?
+        logger.warn { "SourceFile record could not be found" }
+        next #file in json
+      end
 
       files_json[:offenses].each do |offense_json|
         sf.rubocop_offenses.create({
@@ -110,6 +114,11 @@ class Project::Download
     input_stream = entry.get_input_stream
     sf.content = input_stream.read if input_stream.respond_to?(:read)
     sf.save!
+  rescue Exception => e
+    logger.warn { "While inserting SourceFile content, ignoring exception: #{e.inspect}" }
+    sf.content = nil
+    sf.save!
+  ensure
     sf
   end
 
