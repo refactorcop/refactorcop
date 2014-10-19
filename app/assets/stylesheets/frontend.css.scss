@@ -72,16 +72,16 @@ body{
   margin: 0 0 25px 0;
   position: relative;
   width: 456px;
-  height: 70px;
+  height: 64px;
 }
 .search_repo{
   background: #312938 image-url("search.svg") no-repeat 410px 50%;
   border: 3px solid #a0d1b8;
   width: 386px;
-  height: 64px;
+  height: 58px;
   color: #d2bc8c;
   outline: none;
-  font: 16px "input_mono_compressedlight", sans-serif;
+  font: 16px/58px "input_mono_compressedlight", sans-serif;
   padding: 0 54px 0 10px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -97,24 +97,28 @@ body{
   top: 3px;
   display: block;
   width: 54px;
-  height: 64px;
+  height: 58px;
   cursor: pointer;
 }
 .search_repo::-webkit-input-placeholder{
   color: #d2bc8c;
-  font: 16px/24px "input_mono_compressedlight", sans-serif;
+  font: 16px/58px "input_mono_compressedlight", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 .search_repo:-moz-placeholder{
   color: #d2bc8c;
-  font: 16px/24px "input_mono_compressedlight", sans-serif;
+  font: 16px/58px "input_mono_compressedlight", sans-serif;
+  -moz-osx-font-smoothing: grayscale;
 }
 .search_repo::-moz-placeholder{
   color: #d2bc8c;
-  font: 16px/24px "input_mono_compressedlight", sans-serif;
+  font: 16px/58px "input_mono_compressedlight", sans-serif;
+  -moz-osx-font-smoothing: grayscale;
 }
 .search_repo:-ms-input-placeholder{
   color: #d2bc8c;
-  font: 16px/24px "input_mono_compressedlight", sans-serif;
+  font: 16px/58px "input_mono_compressedlight", sans-serif;
 }
 .home header h2{
   font: 24px "input_mono_compressedmedium", sans-serif;
@@ -305,7 +309,7 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.search_button{
+.secondary .search_button{
   background: transparent;
   color: transparent;
   -webkit-appearance: none;
@@ -319,26 +323,27 @@ body{
   height: 38px;
   cursor: pointer;
 }
-.search_repo::-webkit-input-placeholder{
+.secondary .search_repo::-webkit-input-placeholder{
   color: #d2bc8c;
   font: 16px/38px "input_mono_compressedlight", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.search_repo:-moz-placeholder{
+.secondary .search_repo:-moz-placeholder{
   color: #d2bc8c;
   font: 16px/38px "input_mono_compressedlight", sans-serif;
   -moz-osx-font-smoothing: grayscale;
 }
-.search_repo::-moz-placeholder{
+.secondary .search_repo::-moz-placeholder{
   color: #d2bc8c;
   font: 16px/38px "input_mono_compressedlight", sans-serif;
   -moz-osx-font-smoothing: grayscale;
 }
-.search_repo:-ms-input-placeholder{
+.secondary .search_repo:-ms-input-placeholder{
   color: #d2bc8c;
   font: 16px/38px "input_mono_compressedlight", sans-serif;
 }
+
 
 
 /* Project details */
