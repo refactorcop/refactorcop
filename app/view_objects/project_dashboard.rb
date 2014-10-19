@@ -6,11 +6,11 @@ class ProjectDashboard
   end
 
   def trending
-    @trending ||= Project.all.limit(5)
+    @trending ||= linted_projects.limit(5)
   end
 
   def recommended
-    @recommended ||= Project.all.limit(5).order('random()')
+    @recommended ||= linted_projects.limit(5).order('random()')
   end
 
   def search_results
@@ -25,5 +25,11 @@ class ProjectDashboard
 
   def query
     @query ||= params[:query].freeze
+  end
+
+  private
+
+  def linted_projects
+    Project.linted
   end
 end
