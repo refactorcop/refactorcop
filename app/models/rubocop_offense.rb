@@ -22,19 +22,21 @@ class RubocopOffense < ActiveRecord::Base
   def line_range
     max_lines = source_file.content.lines.size - 1
     context_lines = 3
-    a = [0, location_line - context_lines].max
+    a = [0, location_line - context_lines - 1].max
     b = [max_lines, location_line + context_lines].min
     a..b
   end
 
   def to_html
     lines = self.source_file.content.lines[self.line_range]
-    CodeRay.scan(lines.join, :ruby).div({
+    codelines = CodeRay.scan(lines.join, :ruby).div({
       line_numbers: :inline,
       line_number_start: line_number_start,
       highlight_lines: [self.location_line],
       line_number_anchors: false
-    })
+    }).lines
+    
+    codelines[ 0 .. 3 ].join + "<span style=\"background-color:rgba(255, 0, 0, 0.15);\">" + codelines[ 4 ] + "</span>" + codelines[ 5 .. -1 ].join
   end
 
   def line_number_start
