@@ -20,7 +20,7 @@ class RubocopOffense < ActiveRecord::Base
   has_one :project, through: :source_file
 
   def line_range
-    (location_line-1)..(location_line + location_length)
+    (location_line-3)..(location_line+3)
   end
 
   def to_html

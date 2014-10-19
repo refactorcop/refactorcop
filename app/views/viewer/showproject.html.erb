@@ -20,7 +20,7 @@
             <%= offense.severity %>
           </div>
           <div class="filename">
-            <%= link_to offense.source_file.path, offense.github_link, target: "_blank" %>
+            <%= link_to offense.source_file.path + ":" + offense.location_line.to_s, offense.github_link, target: "_blank" %>
           </div>
           <div class="snippet">
             <%= raw offense.to_html %>
