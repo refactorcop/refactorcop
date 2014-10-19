@@ -560,6 +560,9 @@ body{
   font: 12px/32px "input_mono_compressedmedium", sans-serif;
   text-transform: capitalize;
   color: #536360;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .secondary .footer{
   margin: 80px 0 0 0;
@@ -726,6 +729,15 @@ body{
   margin-top:20px;
   margin-bottom:40px;
   line-height: 32px;
+}
+
+.sidebar .friendly {
+  background-color:white;
+  padding: 0px;
+  margin-top:20px;
+  margin-bottom:40px;
+  line-height: 20px;
+  font-size: 14px;
 }
 
 .friendly a {

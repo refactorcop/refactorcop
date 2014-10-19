@@ -38,14 +38,6 @@
 		          <div class="stat_type"><%= stat.humanize%> </div>
 					<% end %>
 				</div>
-        <% if @project_details.project.last_index_run_time %>
-          <div class="FIXME">
-            Our cops processed <%= @project_details.source_files_count %> files in
-            <%= @project_details.project.last_index_run_time %> seconds
-            <%= time_ago_in_words(@project_details.project.rubocop_last_run_at) %> ago.
-          </div>
-        <% end %>
-
         <% unless @project_details.project.linted? %>
           <div class="friendly">This project is freshly added, we don't have any results yet.</div>
         <% end %>
@@ -88,6 +80,13 @@
             </li>
           <% end %>
         </ul>
+        <% if @project_details.project.last_index_run_time %>
+          <div class="friendly">
+            Our cops processed this project's <strong><%= @project_details.source_files_count %> Ruby files</strong> in
+            <strong><%= @project_details.project.last_index_run_time %> seconds</strong>
+            <%= time_ago_in_words(@project_details.project.rubocop_last_run_at) %> ago.
+          </div>
+        <% end %>
         <h3>Disappointed cops</h3>
         <ul class="disappointed_cops">
           <% @project_details.offense_count_per_cop_name.each do |name, count| %>
@@ -97,6 +96,8 @@
             </li>
           <% end %>
         </ul>
+
+				
       </aside>
     </main>
 
