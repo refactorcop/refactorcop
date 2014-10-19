@@ -10,8 +10,11 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require nprogress
+ *
  *= require frontend
  *= require coderay
+ *
  *= require_self
  */
 
