@@ -19,6 +19,7 @@ class SourceFile < ActiveRecord::Base
     path
   end
 
+=begin
   def update_offenses
     rubocop_path = Rails.root.join(".rubocop.yml")
     Tempfile.open(['offenses', '.rb']) do |f|
@@ -40,4 +41,6 @@ class SourceFile < ActiveRecord::Base
     end
     save!
   end
+=end
+
 end

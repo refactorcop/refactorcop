@@ -65,15 +65,6 @@ class Project < ActiveRecord::Base
     pushed_at != github[:pushed_at]
   end
 
-  # Imports the projects code from GitHub. Stores code in {SourceFile#content}.
-  # @return [undefined]
-  def update_source_files!
-    github_repository_data = fetch_github_repository_data
-    Project::Download.call(self)
-
-    update_repository_data github_repository_data
-  end
-
   private
 
   def github_api
