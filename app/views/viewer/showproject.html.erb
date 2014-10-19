@@ -1,17 +1,16 @@
 <section class="wrapper">
 <br>
   <h2>
-    <%= link_to @project.username, "https://github.com/#{@project.username}" , target: '_blank'%>
+    <%= link_to @project_details.username, "https://github.com/#{@project_details.username}" , target: '_blank'%>
     /
-    <%= link_to @name, "https://github.com/#{@project.username}/#{@project.name}", target: '_blank' %>
+    <%= link_to @project_details.name, "https://github.com/#{@project_details.username}/#{@project_details.name}", target: '_blank' %>
   </h2>
 
-	<p><%= @project.description %> <%= page_entries_info @offenses %></p>
-
-	<p><%= paginate @offenses %></p>
+  <p><%= @project_details.project.description %> <%= page_entries_info @project_details.offenses %></p>
+  <p><%= paginate @project_details.offenses %></p>
 
   <ul>
-    <% @offenses.each do |offense| %>
+    <% @project_details.offenses.each do |offense| %>
       <li>
         <div class="offense">
           <div class="offense_message">
@@ -30,37 +29,28 @@
       </li>
     <% end %>
   </ul>
-	
-	<div>
-		<h3><%= @total_count %> offenses</h3>
-	
-		<h3>Severity levels</h3>
-		<ul>
-			<% @severity_count.each do |severity, count| %>
-				<li>
-					<div class="severity_type">
-						<%= severity %>
-					</div>
-					<div class="severity_count">
-						<%= count %>
-					</div>
-				</li>
-			<% end %>
-		</ul>
-	
-		<h3>Disappointed cops</h3>
-		<ul>
-			<% @copname_count.each do |copname, count| %>
-				<li>
-					<div class="severity_type">
-						<%= copname %>
-					</div>
-					<div class="severity_count">
-						<%= count %>
-					</div>
-				</li>
-			<% end %>
-		</ul>
-	</div>
-	
+
+  <div>
+    <h3><%= @project_details.total_offense_count %> offenses</h3>
+
+    <h3>Severity levels</h3>
+    <ul>
+      <% @project_details.offense_count_per_severity.each do |name, count| %>
+        <li>
+          <div class="severity_type"> <%= name %> </div>
+          <div class="severity_count"> <%= count %> </div>
+        </li>
+      <% end %>
+    </ul>
+
+    <h3>Disappointed cops</h3>
+    <ul>
+      <% @project_details.offense_count_per_cop_name.each do |name, count| %>
+        <li>
+          <div class="severity_type"> <%= name %> </div>
+          <div class="severity_count"> <%= count %> </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </section>
