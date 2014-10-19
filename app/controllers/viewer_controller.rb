@@ -4,6 +4,7 @@ class ViewerController < ApplicationController
     unless @project_details.exists?
       attempt_project_import_and_redirect
     end
+    render layout: nil
   end
 
   def random

@@ -1,60 +1,84 @@
-<section class="wrapper">
-<br>
-  <h2>
-    <%= link_to @project_details.username, "https://github.com/#{@project_details.username}" , target: '_blank'%>
-    /
-    <%= link_to @project_details.name, "https://github.com/#{@project_details.username}/#{@project_details.name}", target: '_blank' %>
-  </h2>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>RefactorCop</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="description" content="description">
+    <meta name="keywords" content="">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <script type="text/javascript"></script>
+  </head>
+  <body class="secondary">
 
-  <% unless @project_details.project.linted? %>
-    <p>This project has not been indexed yet! </p>
-  <% end %>
-
-  <p><%= @project_details.project.description %> <%= page_entries_info @project_details.offenses %></p>
-  <p><%= paginate @project_details.offenses %></p>
-
-  <ul>
-    <% @project_details.offenses.each do |offense| %>
-      <li>
-        <div class="offense">
-          <div class="offense_message">
-            <%= offense.message %>
-          </div>
-          <div class="offense_type offense_type_<%= offense.severity %>">
-            <%= offense.severity %>
-          </div>
-          <div class="filename">
-            <%= link_to offense.source_file.path + ":" + offense.location_line.to_s, offense.github_link, target: "_blank" %>
-          </div>
-          <div class="snippet">
-            <%= raw offense.to_html %>
-          </div>
+    <header>
+      <div class="wrapper">
+        <h1 class="logo"><a href="#">RefactorCop</a></h1>
+        <div class="search">
+          <%= form_tag "/about/welcome", method: "get" do %>
+            <input type="text" placeholder="Find repo" class="search_repo">
+            <input type="submit" class="search_button">
+          <% end %>
         </div>
-      </li>
-    <% end %>
-  </ul>
+      </div>
+    </header>
 
-  <div>
-    <h3><%= @project_details.total_offense_count %> offenses</h3>
+    <main class="wrapper">
+      <section class="project_details">
+        <h2><%= link_to @project_details.username, "https://github.com/#{@project_details.username}" , target: '_blank'%> / <%= link_to @project_details.name, "https://github.com/#{@project_details.username}/#{@project_details.name}", target: '_blank' %></h2>
+        <p><%= @project_details.project.description %></p>
+        <% unless @project_details.project.linted? %>
+          <p>This project has not been indexed yet! </p>
+        <% end %>
+        <ul>
+          <li>
+          <% @project_details.offenses.each do |offense| %>
+            <li>
+              <div class="offense_bullet severity_<%= offense.severity %>">&nbsp;</div>
+              <div class="offense">
+                <div class="offense_type offense_type_<%= offense.severity %>">
+                  <%= offense.severity %>
+                </div>
+                <div class="offense_message">
+                  <%= offense.message %>
+                </div>
+                <div class="filename">
+                  <%= link_to offense.source_file.path + ":" + offense.location_line.to_s, offense.github_link, target: "_blank" %>
+                </div>
+                <div class="snippet">
+                  <%= raw offense.to_html %>
+                </div>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+        <%= paginate @project_details.offenses %>
+      </section>
+      <aside class="sidebar">
+        <a href="/random" class="im_feeling_lucky">I’m feeling lucky</a>
+        <h3><%= @project_details.total_offense_count %> offenses</h3>
+        <ul class="offenses">
+          <% @project_details.offense_count_per_severity.each do |name, count| %>
+            <li>
+              <div class="severity_count severity_<%= name %>"> <%= count %> </div>
+              <div class="severity_type offense_type_<%= name %>"> <%= name %> </div>
+            </li>
+          <% end %>
+        </ul>
+        <h3>Disappointed cops</h3>
+        <ul class="disappointed_cops">
+          <% @project_details.offense_count_per_cop_name.each do |name, count| %>
+            <li>
+              <div class="severity_count"> <%= count %> </div>
+              <div class="severity_type"> <%= name %> </div>
+            </li>
+          <% end %>
+        </ul>
+      </aside>
+    </main>
 
-    <h3>Severity levels</h3>
-    <ul>
-      <% @project_details.offense_count_per_severity.each do |name, count| %>
-        <li>
-          <div class="severity_type"> <%= name %> </div>
-          <div class="severity_count"> <%= count %> </div>
-        </li>
-      <% end %>
-    </ul>
+    <%= render 'layouts/footer' %>
 
-    <h3>Disappointed cops</h3>
-    <ul>
-      <% @project_details.offense_count_per_cop_name.each do |name, count| %>
-        <li>
-          <div class="severity_type"> <%= name %> </div>
-          <div class="severity_count"> <%= count %> </div>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-</section>
+  </body>
+</html>

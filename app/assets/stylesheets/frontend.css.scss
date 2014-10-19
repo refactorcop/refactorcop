@@ -257,3 +257,295 @@ body{
   color: #d2bc8c;
   padding: 30px 0 60px;
 }
+
+/* Project page */
+
+.secondary header{
+  height: 74px;
+  background: #f8f6e0;
+  border-top: 3px solid #e4796b;
+}
+.secondary .wrapper{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
+.secondary header h1{
+  padding: 24px 0 0 0;
+  width: 180px;
+}
+.secondary h1 a{
+  background: url(images/refactorcop.svg) no-repeat -2px 0;
+  background-size: 180px 27px;
+  height: 27px;
+  text-indent: -9999px; /*note to self: look for something more elegant*/
+  display: block;
+}
+.secondary .search{
+  margin: 16px 0 0 0;
+  position: relative;
+  width: 230px;
+  /*height: 64px;*/
+}
+.secondary .search_repo{
+  background: #312938 url(images/search.svg) no-repeat 194px 50%;
+  background-size: 23px 22px;
+  border: 3px solid #a0d1b8;
+  width: 176px;
+  height: 38px;
+  color: #d2bc8c;
+  outline: none;
+  padding: 0 38px 0 10px;
+  font: 16px/38px "input_mono_compressedlight", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.search_button{
+  background: transparent;
+  color: transparent;
+  -webkit-appearance: none;
+  border: none;
+  outline: none;
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  display: block;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+}
+.search_repo::-webkit-input-placeholder{
+  color: #d2bc8c;
+  font: 16px/38px "input_mono_compressedlight", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.search_repo:-moz-placeholder{
+  color: #d2bc8c;
+  font: 16px/38px "input_mono_compressedlight", sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+}
+.search_repo::-moz-placeholder{
+  color: #d2bc8c;
+  font: 16px/38px "input_mono_compressedlight", sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+}
+.search_repo:-ms-input-placeholder{
+  color: #d2bc8c;
+  font: 16px/38px "input_mono_compressedlight", sans-serif;
+}
+
+
+/* Project details */
+
+
+.project_details{
+  width: 710px;
+  padding: 40px 0 50px 0;
+}
+.project_details h2{
+  color: #dddddd;
+  font: 36px/48px "input_mono_compressedmedium", sans-serif;
+}
+.project_details h2 a{
+  text-decoration: none;
+  color: #e4796b
+}
+.project_details h2 a:first-child{
+  color: #3a988c;
+  font-family: "input_mono_compressedlight", sans-serif;
+}
+.project_details p{
+  padding: 8px 0 20px 0;
+  border-bottom: 3px solid #dbdbdb;
+}
+.project_details li{
+  padding: 36px 0 24px 0;
+  border-bottom: 1px solid #ededed;
+  position: relative;
+}
+.project_details .offense_bullet{
+  position: absolute;
+  top: 32px;
+  left: -34px;
+  border-radius: 12px;
+  width: 24px;
+  height: 24px;
+}
+.offense_type{
+  font: 14px/20px "input_mono_compressedlight", sans-serif;
+  text-transform: capitalize;
+}
+.offense_message{
+  font: 18px/22px "input_mono_compressedlight", sans-serif;
+  color: #312938;
+}
+.offense_type_fatal{
+  color: #d53c28;
+}
+.offense_type_error{
+  color: #ea8857;
+}
+.offense_type_warning{
+  color: #dea646;
+}
+.offense_type_convention{
+  color: #ccb6a4;
+}
+.offense_type_refactor{
+  color: #927a68;
+}
+.filename a{
+  color: #3a988c;
+  font: 14px/20px "input_mono_compressedmedium", sans-serif;
+}
+.snippet{
+  margin: 20px 0 0 0;
+}
+
+.pagination{
+  margin: 40px 0 0 -4px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+  font: 18px/33px "input_mono_compressedmedium", sans-serif;
+}
+.pagination .current{
+  line-height: 35px;
+  display: block;
+  height: 35px;
+  min-width: 35px;
+  background: #e4796b;
+  color: #fff;
+  text-align: center;
+  margin: 0 4px;
+}
+.pagination .page a, .pagination .last a, .pagination .next a, .pagination .first a, .pagination .prev a {
+  display: block;
+  height: 35px;
+  min-width: 35px;
+  box-sizing: border-box;
+  border: 2px solid #dbdbdb;
+  text-decoration: none;
+  color: #312938;
+  text-align: center;
+  margin: 0 4px;
+}
+.pagination .page a:hover, .pagination .last a:hover, .pagination .next a:hover, .pagination .first a:hover, .pagination .prev a:hover {
+  display: block;
+  height: 35px;
+  min-width: 35px;
+  box-sizing: border-box;
+  border: 2px solid #e4796b;
+  text-decoration: none;
+  color: #e4796b;
+}
+.pagination .gap{
+  margin: 0 8px 0 0;
+}
+.pagination .last a, .pagination .first a, .pagination .next a, .pagination .prev a, .pagination .first a{
+  padding: 0 10px;
+}
+
+
+/* Sidebar */
+
+.sidebar{
+  width: 230px;
+  padding: 42px 0 0 0;
+}
+.sidebar .im_feeling_lucky{
+  background: #e4796b;
+  height: 40px;
+  width: 230px;
+  display: inline-block;
+  font: 18px/40px "input_mono_compressedmedium", sans-serif;
+  text-decoration: none;
+  color: #fff;
+  text-align: center;
+  padding: 0;
+}
+.sidebar h3{
+  color: #312938;
+  font: 24px/30px "input_mono_compressedmedium", sans-serif;
+  padding: 0 0 8px 0;
+  border-bottom: 3px solid #dbdbdb;
+  margin: 40px 0 0 0;
+}
+.sidebar .offenses{
+  margin: 24px 0 0 0;
+  padding: 0 0 10px 0;
+  border-bottom: 1px solid #ededed;
+}
+.sidebar .offenses li{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+  margin: 0 0 14px 0;
+}
+.offenses .severity_count{
+  border-radius: 16px;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  color: #fff;
+  font: 12px/32px "input_mono_compressedmedium", sans-serif;
+  margin: 0 10px 0 0;
+}
+.offenses .severity_type{
+  font: 18px/32px "input_mono_compressedlight", sans-serif;
+  text-transform: capitalize;
+}
+
+/* Dissapointed cops */
+
+.sidebar .disappointed_cops{
+  margin: 24px 0 0 0;
+  padding: 0 0 10px 0;
+  border-bottom: 1px solid #ededed;
+}
+.sidebar .disappointed_cops li{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+  margin: 0 0 14px 0;
+}
+.disappointed_cops .severity_count{
+  border-radius: 16px;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  color: #312938;
+  font: 12px/30px "input_mono_compressedmedium", sans-serif;
+  margin: 0 10px 0 0;
+  border: 2px solid #dbdbdb;
+  box-sizing: border-box;
+}
+.disappointed_cops .severity_type{
+  font: 12px/32px "input_mono_compressedmedium", sans-serif;
+  text-transform: capitalize;
+  color: #536360;
+}
+.secondary .footer{
+  margin: 80px 0 0 0;
+}
