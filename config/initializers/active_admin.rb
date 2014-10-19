@@ -16,6 +16,12 @@ ActiveAdmin.setup do |config|
         sites.add :label => "Rollbar",
                   :url => "https://rollbar.com/thawing-island-6299/thawing-island-6299/",
                   :html_options => { :target => "rollbar" }
+        sites.add :label => "New Relic",
+                  :url => "https://rpm.newrelic.com/accounts/795774/applications",
+                  :html_options => { :target => "new_relic" }
+        sites.add :label => "PaperTrail Workers",
+                  :url => "https://papertrailapp.com/groups/958733/events?q=program%3Aapp%2Fworker",
+                  :html_options => { :target => "new_relic" }
       end
     end
   end
