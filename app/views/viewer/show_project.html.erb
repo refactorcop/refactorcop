@@ -53,7 +53,7 @@
             </li>
           <% end %>
         </ul>
-        <%= paginate @project_details.offenses %>
+        <%= paginate @project_details.offenses, :window => 2 %>
       </section>
       <aside class="sidebar">
         <a href="/random" class="im_feeling_lucky">I’m feeling lucky</a>

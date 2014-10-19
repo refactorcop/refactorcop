@@ -412,6 +412,9 @@ body{
 .snippet{
   margin: 20px 0 0 0;
 }
+.line-numbers {
+  margin-right:10px;
+}
 
 .pagination{
   margin: 40px 0 0 -4px;
@@ -430,15 +433,17 @@ body{
   display: block;
   height: 35px;
   min-width: 35px;
+  padding: 0 8px;
   background: #e4796b;
   color: #fff;
   text-align: center;
   margin: 0 4px;
 }
-.pagination .page a, .pagination .last a, .pagination .next a, .pagination .first a, .pagination .prev a {
+.pagination .page a, .pagination .last a, .pagination .first a, .pagination .prev a {
   display: block;
   height: 35px;
   min-width: 35px;
+  padding: 0 8px;
   box-sizing: border-box;
   border: 2px solid #dbdbdb;
   text-decoration: none;
@@ -446,20 +451,26 @@ body{
   text-align: center;
   margin: 0 4px;
 }
+
+.pagination .next, .pagination .prev {
+  display:none;
+}
+
 .pagination .page a:hover, .pagination .last a:hover, .pagination .next a:hover, .pagination .first a:hover, .pagination .prev a:hover {
   display: block;
   height: 35px;
   min-width: 35px;
+  padding: 0 8px;
   box-sizing: border-box;
   border: 2px solid #e4796b;
   text-decoration: none;
   color: #e4796b;
 }
 .pagination .gap{
-  margin: 0 8px 0 0;
+  margin: 0 8px;
 }
 .pagination .last a, .pagination .first a, .pagination .next a, .pagination .prev a, .pagination .first a{
-  padding: 0 10px;
+  padding: 0 8px;
 }
 
 
