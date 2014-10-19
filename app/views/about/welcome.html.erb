@@ -1,7 +1,7 @@
 <% if !@dashboard.search? %>
   <section class="project_lists wrapper">
     <div class="trending">
-      <h2>Trending repositories</h2>
+      <h2>Trending</h2>
 
       <ul>
         <% @dashboard.trending.each do |project| %>
@@ -13,7 +13,7 @@
     </div>
 
     <div class="recommended">
-      <h2>Recommended repositories</h2>
+      <h2>Recommended</h2>
 
       <ul>
         <% @dashboard.recommended.each do |project| %>
