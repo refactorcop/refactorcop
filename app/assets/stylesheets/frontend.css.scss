@@ -59,11 +59,14 @@ body{
   text-indent: -9999px; /*note to self: look for something more elegant*/
   display: block;
 }
-.home header p{
+.home header p {
   color: #5d9693;
   font: 24px/38px "input_mono_compressedlight", sans-serif;
   width: 620px;
   padding: 35px 0 25px 0;
+  a {
+    color: #bea54d;
+  }
 }
 .search{
   margin: 0 0 25px 0;
