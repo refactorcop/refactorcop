@@ -10,7 +10,7 @@ class GithubTrending
   def projects
     doc = Nokogiri::HTML(trending_page_html)
     doc.css('.repo-list-item').map do |list_item|
-      project_form_node(list_item)
+      project_from_node(list_item)
     end
   end
 
@@ -29,13 +29,17 @@ class GithubTrending
     @trending_page_html = response.body
   end
 
-  def project_form_node(node)
+  def project_from_node(node)
     name_parts = node.css('.repo-list-name').first.content.strip.split(' ')
     Project.where({
       name: name_parts.last.strip,
       username: name_parts.first.strip,
-    }).first_or_initialize({
-      description: node.css('.repo-list-description').first.content.strip,
-    })
+    }).first_or_initialize(description: extract_description(node))
+  end
+
+  def extract_description(node)
+    desc_node = node.css('.repo-list-description').first
+    return '' unless desc_node
+    desc_node.content.strip
   end
 end
