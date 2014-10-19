@@ -33,6 +33,9 @@ class ViewerController < ApplicationController
 
   def save_and_redirect_to_project(project)
     project.save!
+
+    RubocopWorker.perform_async(project.id)
+
     redirect_to({action: :show_project}, {
       username: project.username,
       name: project.name,
