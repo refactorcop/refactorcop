@@ -13,12 +13,11 @@
   <ul>
     <% @offenses.each do |offense| %>
       <li>
-        <br><!-- TODO: remove -->
         <div class="offense">
-          <div class="offence_type">
+          <div class="offense_message">
             <%= offense.message %>
           </div>
-          <div class="offense_type_<%= offense.severity %>">
+          <div class="offense_type offense_type_<%= offense.severity %>">
             <%= offense.severity %>
           </div>
           <div class="filename">
@@ -28,7 +27,6 @@
             <%= raw offense.to_html %>
           </div>
         </div>
-        <br><!-- TODO: remove -->
       </li>
     <% end %>
   </ul>

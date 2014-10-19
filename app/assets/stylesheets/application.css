@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require frontend
+ *= require coderay
  *= require_self
  */
 

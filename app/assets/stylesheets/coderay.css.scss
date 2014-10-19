@@ -1,0 +1,30 @@
+.CodeRay {
+  background-color: #F8F6F0;
+  padding: 12px;
+}
+
+.offense {
+  margin: 15px 0 25px 0;
+  padding-top: 10px;
+  border-top: 1px dotted #DDD;
+
+
+  .offense_message {
+    font-weight: bold;
+  }
+
+  .offense_message,
+  .offense_type {
+    margin-bottom: 1em;
+  }
+
+  .offense_type {
+    color: red;
+    font-style: italic;
+  }
+
+  .snippet {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+}
