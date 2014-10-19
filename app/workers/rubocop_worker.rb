@@ -12,7 +12,7 @@ class RubocopWorker
     @project = Project.find_by_id!(project_id)
     @force_run = force_run
 
-    return unless project_needs_analyzing
+    return unless project_needs_analyzing?
 
     @tmp_dir = Dir.mktmpdir
 
@@ -23,20 +23,16 @@ class RubocopWorker
     logger.info "Project ##{project.id} #{project.full_name} done in #{project.rubocop_last_run_at - project.rubocop_run_started_at}s"
   end
 
-  # Checks wether the project needs to be reanalyzed.
+  # Checks whether the project needs to be reanalyzed.
   # @return [boolean]
-  def project_needs_analyzing
+  def project_needs_analyzing?
     if !project.new_commits? && !force_run
       logger.info "Project ##{project.id} #{project.full_name} hasn't been updated, *noop*"
       return false
-    end
-
-    if project.rubocop_run_started_at.present? && project.rubocop_last_run_at.present? &&
-       project.rubocop_run_started_at > project.rubocop_last_run_at
+    elsif project.rubocop_running?
       logger.info "Project ##{project.id} #{project.full_name} a worker is still running? *abort*"
       return false
     end
-
     true
   end
 
