@@ -23,7 +23,7 @@ class RubocopOffense < ActiveRecord::Base
     max_lines = source_file.content.lines.size - 1
     context_lines = 3
     a = [0, location_line - context_lines - 1].max
-    b = [max_lines, location_line + context_lines].min
+    b = [max_lines, location_line + context_lines - 1].min
     a..b
   end
 
@@ -35,9 +35,18 @@ class RubocopOffense < ActiveRecord::Base
       highlight_lines: [self.location_line],
       line_number_anchors: false
     }).lines
-    
-    codelines[ 0 .. 3 ].join + "<span style=\"background-color:rgba(255, 0, 0, 0.15);\">" + codelines[ 4 ] + "</span>" + codelines[ 5 .. -1 ].join
+
+    style = "background-color: rgba(255, 0, 0, 0.15); min-width: 100%; display: block;"
+    style = ""
+
+    highlight_line + codelines[ 0 .. 3 ].join + "<span style=\"#{style}\">" + codelines[ 4 ] + "</span>" + codelines[ 5 .. -1 ].join
   end
+
+  def highlight_line
+    top = "#{(location_line - line_number_start + 1)* 18 - 6}px"
+    "<span style='background: rgba(255, 122, 14, 0.25); width: 100%; position: absolute; top: #{top}; display: block; height: 18px;'></span>"
+  end
+  private :highlight_line
 
   def line_number_start
     num = location_line - 3

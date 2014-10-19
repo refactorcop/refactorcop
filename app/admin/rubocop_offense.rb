@@ -13,6 +13,7 @@ ActiveAdmin.register RubocopOffense do
   #   permitted << :other if resource.something?
   #   permitted
   # end
+  permit_params :location_line
 
   filter :severity
   filter :cop_name
