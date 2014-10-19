@@ -26,7 +26,21 @@ ActiveAdmin.register Project do
 
   member_action :send_the_cops_now, :method => :get do
       RubocopWorker.perform_async(params[:id], true)
-      redirect_to action: :show, notice: "Copping it!"
+      redirect_to({action: :show}, notice: "Copping it!")
+  end
+
+  collection_action :send_cops_everywhere, :method => :get do
+    Project.all.each do |project|
+      RubocopWorker.perform_async(project.id) unless project.rubocop_running?
+    end
+    redirect_to({action: :index}, notice: "Now is a good time to check the sidekiq scheduler page!" )
+  end
+
+  collection_action :force_cops_everywhere, :method => :get do
+    Project.all.each do |project|
+      RubocopWorker.perform_async(project.id, true) unless project.rubocop_running?
+    end
+    redirect_to({action: :index}, notice: "Now is a good time to check the sidekiq scheduler page!" )
   end
 
   action_item :only => :show do
