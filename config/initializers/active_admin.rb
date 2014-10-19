@@ -7,8 +7,15 @@ ActiveAdmin.setup do |config|
       menu.add :label => "Sidekiq", :url => "/scheduler", :priority => 11
 
       menu.add :label => "Agile as Fuck", :priority => 12 do |sites|
-        sites.add :label => "Trello", :url => "https://trello.com/b/d42gmJqS/refactorcop", :html_options => { :target => "trello" }
-        sites.add :label => "Rollbar", :url => "https://rollbar.com/thawing-island-6299/thawing-island-6299/", :html_options => { :target => "rollbar" }
+        sites.add :label => "Google Analytics",
+                  :url => "https://www.google.com/analytics/web/?hl=en#realtime/rt-overview/a55883087w89195301p92672577/",
+                  :html_options => { :target => "google_analytics" }
+        sites.add :label => "Trello",
+                  :url => "https://trello.com/b/d42gmJqS/refactorcop",
+                  :html_options => { :target => "trello" }
+        sites.add :label => "Rollbar",
+                  :url => "https://rollbar.com/thawing-island-6299/thawing-island-6299/",
+                  :html_options => { :target => "rollbar" }
       end
     end
   end
