@@ -14,6 +14,7 @@ RSpec.describe SourceFile::IgnoreCheck do
       'db/migrate/001_some_stuff.rb', true,
       'db/schema.rb', true,
       'lib/generators/templates/controllers/registrations_controller.rb', true,
+      'lib/generators/active_record/controllers/registrations_controller.rb', true,
       'test/rails_app/app/active_record/admin.rb', true,
     ].each_slice(2) do |(name, result)|
       context "when filename is #{name.inspect}" do
