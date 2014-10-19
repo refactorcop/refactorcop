@@ -83,7 +83,9 @@
           <% @project_details.offense_count_per_severity.each do |name, count| %>
             <li>
               <div class="severity_count severity_<%= name %>"> <%= number_to_human count, precision: 0 %> </div>
-              <div class="severity_type offense_type_<%= name %>"> <%= name %> </div>
+              <div class="severity_type offense_type_<%= name %>">
+                <%= link_to name, params.merge(severity: name, page: 1) %>
+              </div>
             </li>
           <% end %>
         </ul>
