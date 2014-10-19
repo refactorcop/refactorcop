@@ -14,6 +14,10 @@ ActiveAdmin.register RubocopOffense do
   #   permitted
   # end
 
+  filter :severity
+  filter :cop_name
+  filter :created_at
+  filter :updated_at
 
   index do
     column :id

@@ -12,6 +12,10 @@ ActiveAdmin.register SourceFile do
   #   permitted
   # end
 
+  filter :path
+  filter :created_at
+  filter :updated_at
+
   index do
     column :id
     column :project
