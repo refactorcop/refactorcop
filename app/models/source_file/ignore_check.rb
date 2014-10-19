@@ -3,7 +3,7 @@ unless defined?(SourceFile)
 end
 
 class SourceFile::IgnoreCheck
-  PATTERN = /(spec\/|test\/|_spec\.rb$|_test\.rb$|rails\/generators\/|^Library\/Formula\/)/
+  PATTERN = /(spec\/| test\/|_spec\.rb$|_test\.rb$|rails\/generators\/|db\/migrate\/|db\/schema\.rb$|^Library\/Formula\/)/
   include Procto.call
 
   attr_reader :filename
