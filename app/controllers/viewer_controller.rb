@@ -15,6 +15,9 @@ class ViewerController < ApplicationController
   end
   
   def showdashboards
+    @total_count = RubocopOffense.includes( :source_file ).where( source_files: { project_id: @project } ).count
+    @severity_count = RubocopOffense.includes( :source_file ).where( source_files: { project_id: @project } ).group( :severity ).count.sort_by{|k,v| v}.reverse
+    @copname_count = RubocopOffense.includes( :source_file ).where( source_files: { project_id: @project } ).group( :cop_name ).count.sort_by{|k,v| v}.reverse
   end
 
   def showproject

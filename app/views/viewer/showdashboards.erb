@@ -1,4 +1,32 @@
 <section class="wrapper">
 	<br>
-	Hello dashboards!
+	<%= @total_count %> Offenses
+	
+	<h3>Severity levels</h3>
+	<ul>
+		<% @severity_count.each do |severity, count| %>
+			<li>
+				<div class="severity_type">
+					<%= severity %>
+				</div>
+				<div class="severity_count">
+					<%= count %>
+				</div>
+			</li>
+		<% end %>
+	</ul>
+	
+	<h3>Disappointed cops</h3>
+	<ul>
+		<% @copname_count.each do |copname, count| %>
+			<li>
+				<div class="severity_type">
+					<%= copname %>
+				</div>
+				<div class="severity_count">
+					<%= count %>
+				</div>
+			</li>
+		<% end %>
+	</ul>
 </section>
