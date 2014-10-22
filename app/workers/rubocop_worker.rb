@@ -24,7 +24,7 @@ class RubocopWorker
       FileUtils.remove_entry tmp_dir
     end
 
-    logger.info "Project ##{project.id} #{project.full_name} done in #{project.rubocop_last_run_at - project.rubocop_run_started_at}s"
+    logger.info "Project ##{project.id} #{project.full_name} done in #{project.last_index_run_time}s"
   end
 
   # Checks whether the project needs to be reanalyzed.
