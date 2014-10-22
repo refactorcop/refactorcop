@@ -105,4 +105,9 @@ class Project < ActiveRecord::Base
     @github_api ||= Github.new(basic_auth: "dale+refactorcop@valid.be:#{ENV['GITHUB_PASSWORD']}")
   end
 
+  class << self
+    def find_by_full_name(username, name)
+      where("lower(username) = ? and lower(name) = ?", username.downcase, name.downcase).first
+    end
+  end
 end
