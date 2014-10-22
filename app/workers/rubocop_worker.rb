@@ -19,6 +19,7 @@ class RubocopWorker
       analyze_project
       project.update_attribute(:rubocop_last_run_at, Time.now)
     rescue StandardError => e
+      logger.error { e }
       project.update_attribute(:rubocop_run_started_at, nil)
     ensure
       FileUtils.remove_entry tmp_dir
