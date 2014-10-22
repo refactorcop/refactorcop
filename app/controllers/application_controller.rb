@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_admin
     authenticate_or_request_with_http_basic("Recovering Vegetarian Area") do |name, password|
+      next true if Rails.env.development?
       name == "admin" && password == ENV["ADMIN_PASSWORD"]
     end
   end
