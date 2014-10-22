@@ -65,4 +65,20 @@ class RubocopOffense < ActiveRecord::Base
     num = location_line - 3
     [1, num].max
   end
+
+  class << self
+    def order_by_severity
+      query = %Q[
+        case #{table_name}.severity
+          when 'convention' then 5
+          when 'warning'    then 4
+          when 'refactor'   then 3
+          when 'error'      then 2
+          when 'fatal'      then 1
+          else 99
+        end
+      ].strip
+      order(query)
+    end
+  end
 end
