@@ -50,6 +50,11 @@ ActiveAdmin.register SourceFile do
     div do
       raw CodeRay.scan(source_file.content, :ruby).div
     end
+  end
 
+  controller do
+    def scoped_collection
+      SourceFile.includes(:project)
+    end
   end
 end
