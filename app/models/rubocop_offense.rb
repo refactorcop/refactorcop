@@ -19,6 +19,8 @@ class RubocopOffense < ActiveRecord::Base
   belongs_to :source_file
   has_one :project, through: :source_file
 
+  # Returns a range that contains the location_line and some context.
+  # @return [Range]
   def line_range
     max_lines = source_file.content.lines.size - 1
     context_lines = 3
@@ -60,14 +62,11 @@ class RubocopOffense < ActiveRecord::Base
 
   def github_link
     project = source_file.project
-
-    #"https://github.com/expectedbehavior/acts_as_archival/blob/05dc4e5d6f621dcc76028d88699e0e7a178ff78c/lib/expected_behavior/acts_as_archival.rb#L2-L8"
-
     "https://github.com/" + [
       project.username,
       project.name,
       "blob",
-      project.default_branch,
+      project.default_branch, # TODO Replace branch with commit
       source_file.path,
     ].join('/') + "#L#{location_line}"
   end

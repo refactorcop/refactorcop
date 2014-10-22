@@ -102,7 +102,12 @@ class Project < ActiveRecord::Base
   private
 
   def github_api
-    @github_api ||= Github.new(basic_auth: "dale+refactorcop@valid.be:#{ENV['GITHUB_PASSWORD']}")
+    @github_api ||=
+      if Rails.env.production?
+        Github.new(basic_auth: "dale+refactorcop@valid.be:#{ENV['GITHUB_PASSWORD']}")
+      else
+        Github.new
+      end
   end
 
   class << self

@@ -74,4 +74,78 @@ http_interactions:
         efficient background processing for Ruby","fork":false,"url":"https://api.github.com/repos/mperham/sidekiq","forks_url":"https://api.github.com/repos/mperham/sidekiq/forks","keys_url":"https://api.github.com/repos/mperham/sidekiq/keys{/key_id}","collaborators_url":"https://api.github.com/repos/mperham/sidekiq/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/mperham/sidekiq/teams","hooks_url":"https://api.github.com/repos/mperham/sidekiq/hooks","issue_events_url":"https://api.github.com/repos/mperham/sidekiq/issues/events{/number}","events_url":"https://api.github.com/repos/mperham/sidekiq/events","assignees_url":"https://api.github.com/repos/mperham/sidekiq/assignees{/user}","branches_url":"https://api.github.com/repos/mperham/sidekiq/branches{/branch}","tags_url":"https://api.github.com/repos/mperham/sidekiq/tags","blobs_url":"https://api.github.com/repos/mperham/sidekiq/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/mperham/sidekiq/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/mperham/sidekiq/git/refs{/sha}","trees_url":"https://api.github.com/repos/mperham/sidekiq/git/trees{/sha}","statuses_url":"https://api.github.com/repos/mperham/sidekiq/statuses/{sha}","languages_url":"https://api.github.com/repos/mperham/sidekiq/languages","stargazers_url":"https://api.github.com/repos/mperham/sidekiq/stargazers","contributors_url":"https://api.github.com/repos/mperham/sidekiq/contributors","subscribers_url":"https://api.github.com/repos/mperham/sidekiq/subscribers","subscription_url":"https://api.github.com/repos/mperham/sidekiq/subscription","commits_url":"https://api.github.com/repos/mperham/sidekiq/commits{/sha}","git_commits_url":"https://api.github.com/repos/mperham/sidekiq/git/commits{/sha}","comments_url":"https://api.github.com/repos/mperham/sidekiq/comments{/number}","issue_comment_url":"https://api.github.com/repos/mperham/sidekiq/issues/comments/{number}","contents_url":"https://api.github.com/repos/mperham/sidekiq/contents/{+path}","compare_url":"https://api.github.com/repos/mperham/sidekiq/compare/{base}...{head}","merges_url":"https://api.github.com/repos/mperham/sidekiq/merges","archive_url":"https://api.github.com/repos/mperham/sidekiq/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/mperham/sidekiq/downloads","issues_url":"https://api.github.com/repos/mperham/sidekiq/issues{/number}","pulls_url":"https://api.github.com/repos/mperham/sidekiq/pulls{/number}","milestones_url":"https://api.github.com/repos/mperham/sidekiq/milestones{/number}","notifications_url":"https://api.github.com/repos/mperham/sidekiq/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/mperham/sidekiq/labels{/name}","releases_url":"https://api.github.com/repos/mperham/sidekiq/releases{/id}","created_at":"2012-01-16T23:17:27Z","updated_at":"2014-10-18T09:38:49Z","pushed_at":"2014-10-16T21:07:30Z","git_url":"git://github.com/mperham/sidekiq.git","ssh_url":"git@github.com:mperham/sidekiq.git","clone_url":"https://github.com/mperham/sidekiq.git","svn_url":"https://github.com/mperham/sidekiq","homepage":"http://sidekiq.org","size":28549,"stargazers_count":4410,"watchers_count":4410,"language":"Ruby","has_issues":true,"has_downloads":true,"has_wiki":true,"has_pages":true,"forks_count":727,"mirror_url":null,"open_issues_count":30,"forks":727,"open_issues":30,"watchers":4410,"default_branch":"master","network_count":727,"subscribers_count":170}'
     http_version: 
   recorded_at: Sat, 18 Oct 2014 12:07:56 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/snusnu/procto
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json,application/vnd.github.beta+json;q=0.5,application/json;q=0.1
+      Accept-Charset:
+      - utf-8
+      User-Agent:
+      - Github API Ruby Gem 0.12.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Wed, 22 Oct 2014 18:03:27 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '58'
+      X-Ratelimit-Reset:
+      - '1414003753'
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Last-Modified:
+      - Tue, 01 Jul 2014 05:03:06 GMT
+      Etag:
+      - '"33794c85e3bd0088713b4740aec5491b"'
+      Vary:
+      - Accept
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 5EE2BE9F:5798:3B00F20:5447F16F
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 474556b853193c38f1b14328ce2d1b7d
+    body:
+      encoding: UTF-8
+      string: '{"id":15344522,"name":"procto","full_name":"snusnu/procto","owner":{"login":"snusnu","id":1186,"avatar_url":"https://avatars.githubusercontent.com/u/1186?v=2","gravatar_id":"","url":"https://api.github.com/users/snusnu","html_url":"https://github.com/snusnu","followers_url":"https://api.github.com/users/snusnu/followers","following_url":"https://api.github.com/users/snusnu/following{/other_user}","gists_url":"https://api.github.com/users/snusnu/gists{/gist_id}","starred_url":"https://api.github.com/users/snusnu/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/snusnu/subscriptions","organizations_url":"https://api.github.com/users/snusnu/orgs","repos_url":"https://api.github.com/users/snusnu/repos","events_url":"https://api.github.com/users/snusnu/events{/privacy}","received_events_url":"https://api.github.com/users/snusnu/received_events","type":"User","site_admin":false},"private":false,"html_url":"https://github.com/snusnu/procto","description":"Turns
+        your ruby object into a method object","fork":false,"url":"https://api.github.com/repos/snusnu/procto","forks_url":"https://api.github.com/repos/snusnu/procto/forks","keys_url":"https://api.github.com/repos/snusnu/procto/keys{/key_id}","collaborators_url":"https://api.github.com/repos/snusnu/procto/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/snusnu/procto/teams","hooks_url":"https://api.github.com/repos/snusnu/procto/hooks","issue_events_url":"https://api.github.com/repos/snusnu/procto/issues/events{/number}","events_url":"https://api.github.com/repos/snusnu/procto/events","assignees_url":"https://api.github.com/repos/snusnu/procto/assignees{/user}","branches_url":"https://api.github.com/repos/snusnu/procto/branches{/branch}","tags_url":"https://api.github.com/repos/snusnu/procto/tags","blobs_url":"https://api.github.com/repos/snusnu/procto/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/snusnu/procto/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/snusnu/procto/git/refs{/sha}","trees_url":"https://api.github.com/repos/snusnu/procto/git/trees{/sha}","statuses_url":"https://api.github.com/repos/snusnu/procto/statuses/{sha}","languages_url":"https://api.github.com/repos/snusnu/procto/languages","stargazers_url":"https://api.github.com/repos/snusnu/procto/stargazers","contributors_url":"https://api.github.com/repos/snusnu/procto/contributors","subscribers_url":"https://api.github.com/repos/snusnu/procto/subscribers","subscription_url":"https://api.github.com/repos/snusnu/procto/subscription","commits_url":"https://api.github.com/repos/snusnu/procto/commits{/sha}","git_commits_url":"https://api.github.com/repos/snusnu/procto/git/commits{/sha}","comments_url":"https://api.github.com/repos/snusnu/procto/comments{/number}","issue_comment_url":"https://api.github.com/repos/snusnu/procto/issues/comments/{number}","contents_url":"https://api.github.com/repos/snusnu/procto/contents/{+path}","compare_url":"https://api.github.com/repos/snusnu/procto/compare/{base}...{head}","merges_url":"https://api.github.com/repos/snusnu/procto/merges","archive_url":"https://api.github.com/repos/snusnu/procto/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/snusnu/procto/downloads","issues_url":"https://api.github.com/repos/snusnu/procto/issues{/number}","pulls_url":"https://api.github.com/repos/snusnu/procto/pulls{/number}","milestones_url":"https://api.github.com/repos/snusnu/procto/milestones{/number}","notifications_url":"https://api.github.com/repos/snusnu/procto/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/snusnu/procto/labels{/name}","releases_url":"https://api.github.com/repos/snusnu/procto/releases{/id}","created_at":"2013-12-20T17:43:25Z","updated_at":"2014-07-01T05:03:06Z","pushed_at":"2014-04-08T21:34:06Z","git_url":"git://github.com/snusnu/procto.git","ssh_url":"git@github.com:snusnu/procto.git","clone_url":"https://github.com/snusnu/procto.git","svn_url":"https://github.com/snusnu/procto","homepage":null,"size":144,"stargazers_count":10,"watchers_count":10,"language":"Ruby","has_issues":true,"has_downloads":true,"has_wiki":true,"has_pages":false,"forks_count":2,"mirror_url":null,"open_issues_count":0,"forks":2,"open_issues":0,"watchers":10,"default_branch":"master","network_count":2,"subscribers_count":4}'
+    http_version: 
+  recorded_at: Wed, 22 Oct 2014 18:03:27 GMT
 recorded_with: VCR 2.8.0

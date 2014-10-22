@@ -4,18 +4,19 @@ require 'zip'
 class Project::Download
   include Procto.call
 
-  attr_reader :project, :logger
+  attr_reader :project, :logger, :http_client
 
-  def initialize(project, tmp_dir, sidekiq_logger = nil)
+  def initialize(project, tmp_dir, logger: nil, http_client: HTTPClient)
     @project  = project
-    @logger   = sidekiq_logger || Rails.logger
-    @tmp_dir = tmp_dir
+    @logger   = logger || Rails.logger
+    @tmp_dir  = tmp_dir
+    @http_client = http_client
   end
 
   def call
     project.source_files.delete_all
     Tempfile.create([filename, ".zip"], :encoding => 'ascii-8bit') do |zip_file|
-      HTTPClient.get_content(project.download_zip_url) { |chunk| zip_file.write(chunk) }
+      http_client.get_content(project.download_zip_url) { |chunk| zip_file.write(chunk) }
       rescue_reopen_error { unzip_to_source_files(zip_file) }
     end
   end
@@ -26,6 +27,7 @@ class Project::Download
     "#{project.username}-#{project.name}"
   end
 
+  # Catch and ignore weird `reopen` error message from rubyzip gem
   def rescue_reopen_error
     begin
       return yield
@@ -44,9 +46,8 @@ class Project::Download
     Zip::File.open_buffer(file) do |zip_file|
       zip_file.glob('**/*.rb').compact.map do |entry|
         next if ignore_file?(entry.name)
-
-        sf = to_source_file(entry)
-        to_tmp_dir(entry, sf.id) if sf
+        source_file = to_source_file(entry)
+        to_tmp_dir(entry, source_file.id) if source_file
       end
     end
   end
