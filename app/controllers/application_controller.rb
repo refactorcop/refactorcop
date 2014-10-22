@@ -5,11 +5,6 @@ class ApplicationController < ActionController::Base
 
   before_action :check_screenshot
 
-  rescue_from 'ActionController::RoutingError' do |e|
-    redirect_to action: :project_not_found, controller: :viewer
-  end
-
-
   def authenticate_admin
     authenticate_or_request_with_http_basic("Recovering Vegetarian Area") do |name, password|
       name == "admin" && password == ENV["ADMIN_PASSWORD"]
