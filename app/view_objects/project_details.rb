@@ -6,7 +6,7 @@ class ProjectDetails
   end
 
   def project
-    @project ||= Project.where(username: username, name: name).first
+    @project ||= Project.find_by_full_name(username, name)
   end
 
   def exists?
