@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   get 'random' => "viewer#random"
   get 'project_not_found' => "viewer#project_not_found"
-  get ':username/:name', controller: "viewer", action: "show_project"
+  get ':username/:name', controller: "viewer", action: "show_project", constraints: { name: /.*/ }
   get "*a", :to => "viewer#project_not_found"
 
   # The priority is based upon order of creation: first created -> highest priority.

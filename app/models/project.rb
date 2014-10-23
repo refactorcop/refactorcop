@@ -112,7 +112,9 @@ class Project < ActiveRecord::Base
 
   class << self
     def find_by_full_name(username, name)
-      where("lower(username) = ? and lower(name) = ?", username.downcase, name.downcase).first
+      t = arel_table
+      sql = t[:username].lower.eq(username.downcase).and(t[:name].lower.eq(name.downcase))
+      where(sql).first
     end
   end
 end

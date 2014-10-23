@@ -20,5 +20,11 @@ FactoryGirl.define do
     name "sidekiq"
     username "mperham"
     description "MyText"
+
+    # Prevent triggering of request to GitHub
+    repository_data({
+      "pushed_at" => DateTime.now,
+      "default_branch" => "master"
+    })
   end
 end

@@ -1,8 +1,10 @@
 class ProjectDetails
-  attr_reader :params
+  attr_reader :params, :username, :name
 
   def initialize(params)
-    @params = params
+    @params   = params.with_indifferent_access
+    @username ||= params[:username].freeze
+    @name     ||= params[:name].freeze
   end
 
   def project
@@ -11,14 +13,6 @@ class ProjectDetails
 
   def exists?
     !project.blank?
-  end
-
-  def username
-    @username ||= params[:username].freeze
-  end
-
-  def name
-    @name ||= params[:name].freeze
   end
 
   def full_name
