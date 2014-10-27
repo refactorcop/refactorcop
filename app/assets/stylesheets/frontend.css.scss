@@ -894,3 +894,18 @@ body{
     color: #333;
   }
 }
+
+.thanks {
+  background: #312938;
+  color: #fff;
+  font: 24px/102px "input_mono_compressedlight", sans-serif;
+
+  a {
+    color: #3a988c;
+  }
+}
+
+.ribbon {
+  background: url(images/ribbon.svg) no-repeat 0 50%;
+  text-indent: 50px;
+}
