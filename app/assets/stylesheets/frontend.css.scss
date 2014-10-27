@@ -906,6 +906,6 @@ body{
 }
 
 .ribbon {
-  background: url(images/ribbon.svg) no-repeat 0 50%;
+  background: asset-url("ribbon.svg") no-repeat 0 50%;
   text-indent: 50px;
 }
