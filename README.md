@@ -15,3 +15,11 @@ rake db:setup
 # Start server and sidekiq workers
 foreman start
 ```
+
+## About
+
+The initial version of this project was built during the [Rails Rumble
+2014](http://r14.railsrumble.com/entries/winners) by
+[aliekens](https://github.com/aliekens),
+[mcls](https://github.com/mcls),
+[stelianfirez](https://github.com/stelianfirez) and [zzip](https://github.com/zzip).
