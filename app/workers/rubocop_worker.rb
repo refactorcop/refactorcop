@@ -19,8 +19,9 @@ class RubocopWorker
       analyze_project
       project.update_attribute(:rubocop_last_run_at, Time.now)
     rescue StandardError => e
-      logger.error { e }
       project.update_attribute(:rubocop_run_started_at, nil)
+      logger.error { "Failed to analyze project #{project.full_name.inspect}, because: #{e.inspect}" }
+      raise e
     ensure
       FileUtils.remove_entry tmp_dir
     end
