@@ -3,7 +3,7 @@
 require 'sidekiq/web'       #for background scheduler
 
 Sidekiq::Web.use Rack::Auth::Basic, "Recovering Vegetarian Area" do |username, password|
-  username == 'admin' && password == ENV["ADMIN_PASSWORD"]
+  AdminAuthentication.call(username, password)
 end
 
 Sidekiq.configure_server do |config|

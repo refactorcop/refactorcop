@@ -1,0 +1,2 @@
+enable_defaults! { ENV['RACK_ENV'] == 'development' }
+variable :ADMIN_PASSWORD, :string, default: 'admin'
