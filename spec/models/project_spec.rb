@@ -20,17 +20,18 @@ require 'rails_helper'
 RSpec.describe Project, :type => :model do
   let(:project) { build(:project) }
 
+  around(:each) do |example|
+    VCR.use_cassette('github_repository') do
+      example.run
+    end
+  end
+
   describe '#clone_url' do
     subject { build(:project, username: 'tarantino', name: 'pulp-fiction').clone_url }
     it { is_expected.to eq 'git@github.com:tarantino/pulp-fiction.git' }
   end
 
   describe '#fetch_github_repository_data' do
-    around(:each) do |example|
-      VCR.use_cassette('github_repository') do
-        example.run
-      end
-    end
     subject { project.fetch_github_repository_data }
     let(:project) { build(:project, username: 'mperham', name: 'sidekiq') }
 
@@ -44,6 +45,9 @@ RSpec.describe Project, :type => :model do
     subject { project.pushed_at }
 
     context 'when no repository data' do
+      before :each do
+        allow(project).to receive(:fetch_github_repository_data).and_return(nil)
+      end
       let(:project) { build(:project, repository_data: nil) }
       it { is_expected.to be < 99.years.ago }
     end
@@ -64,10 +68,17 @@ RSpec.describe Project, :type => :model do
     it { is_expected.to eq "stable" }
   end
 
-  describe '#update_source_files!' do
-    it 'downloads and saves each file' do
-      expect_any_instance_of(Project::Download).to receive(:call)
-      project.update_source_files!
+  describe '.find_by_full_name' do
+    [
+      ['UserName', 'Name', 'username', 'name'],
+      ['username', 'name', 'uSernAme', 'nAme'],
+      ['username', 'name', 'username', 'name'],
+    ].each do |(username, name, query_username, query_name)|
+      context "when the project is '#{username}/#{name}' and the query uses '#{query_username}' and '#{query_name}'" do
+        subject { described_class.find_by_full_name(username, name) }
+        let!(:project) { create(:project, username: username, name: name) }
+        it { is_expected.to eq project  }
+      end
     end
   end
 

@@ -102,7 +102,19 @@ class Project < ActiveRecord::Base
   private
 
   def github_api
-    @github_api ||= Github.new(basic_auth: "dale+refactorcop@valid.be:#{ENV['GITHUB_PASSWORD']}")
+    @github_api ||=
+      if Rails.env.production?
+        Github.new(basic_auth: "dale+refactorcop@valid.be:#{ENV['GITHUB_PASSWORD']}")
+      else
+        Github.new
+      end
   end
 
+  class << self
+    def find_by_full_name(username, name)
+      t = arel_table
+      sql = t[:username].lower.eq(username.downcase).and(t[:name].lower.eq(name.downcase))
+      where(sql).first
+    end
+  end
 end

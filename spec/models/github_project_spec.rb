@@ -61,5 +61,15 @@ RSpec.describe GithubProject do
       let(:name) { 'rails-enterprise-edition' }
       it { is_expected.to eq nil }
     end
+
+    context "when the project doesn't have description" do
+      let(:username) { 'avdi' }
+      let(:name) { 'quarto' }
+      it "sets an empty description" do
+        expect(project.username).to eq 'avdi'
+        expect(project.name).to eq 'quarto'
+        expect(project.description).to eq ''
+      end
+    end
   end
 end

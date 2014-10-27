@@ -19,12 +19,13 @@ class RubocopWorker
       analyze_project
       project.update_attribute(:rubocop_last_run_at, Time.now)
     rescue StandardError => e
+      logger.error { e }
       project.update_attribute(:rubocop_run_started_at, nil)
     ensure
       FileUtils.remove_entry tmp_dir
     end
 
-    logger.info "Project ##{project.id} #{project.full_name} done in #{project.rubocop_last_run_at - project.rubocop_run_started_at}s"
+    logger.info "Project ##{project.id} #{project.full_name} done in #{project.last_index_run_time}s"
   end
 
   # Checks whether the project needs to be reanalyzed.
@@ -53,7 +54,7 @@ class RubocopWorker
   # @return [undefined]
   def update_source_files
     github_repository_data = project.fetch_github_repository_data
-    Project::Download.call(project, tmp_dir, logger)
+    Project::Download.call(project, tmp_dir, logger: logger)
     project.update_repository_data github_repository_data
   end
 

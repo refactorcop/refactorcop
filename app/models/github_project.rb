@@ -24,7 +24,7 @@ class GithubProject
     Project.new({
       name: name,
       username: username,
-      description: doc.css('.repository-description').first.content.strip,
+      description: extract_description(doc),
     })
   end
 
@@ -43,5 +43,11 @@ class GithubProject
   def request_project_page
     conn = Faraday.new('https://github.com')
     conn.get("#{username}/#{name}")
+  end
+
+  def extract_description(node)
+    desc_node = node.css('.repository-description').first
+    return '' unless desc_node
+    desc_node.content.strip
   end
 end

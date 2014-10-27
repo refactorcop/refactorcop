@@ -1,24 +1,18 @@
 class ProjectDetails
-  attr_reader :params
+  attr_reader :params, :username, :name
 
   def initialize(params)
-    @params = params
+    @params   = params.with_indifferent_access
+    @username ||= params[:username].freeze
+    @name     ||= params[:name].freeze
   end
 
   def project
-    @project ||= Project.where(username: username, name: name).first
+    @project ||= Project.find_by_full_name(username, name)
   end
 
   def exists?
     !project.blank?
-  end
-
-  def username
-    @username ||= params[:username].freeze
-  end
-
-  def name
-    @name ||= params[:name].freeze
   end
 
   def full_name
@@ -27,18 +21,8 @@ class ProjectDetails
   end
 
   def offenses
-    @offenses ||= project.rubocop_offenses
-      .includes(:source_file, :project)
-      .where(severity_conditions)
-      .order("""
-    case rubocop_offenses.severity
-      when 'convention' then 5
-      when 'warning' then 4
-      when 'refactor' then 3
-      when 'error' then 2
-      when 'fatal' then 1
-      else 99
-    end""")
+    @offenses ||= filter_by_severity(all_offenses)
+      .order_by_severity
       .page(params[:page]).per(10)
   end
 
@@ -77,14 +61,14 @@ class ProjectDetails
   private
 
   def all_offenses
-    @all_offenses ||= RubocopOffense
-      .includes(:source_file)
-      .where(source_files: { project_id: project.id })
+    @all_offenses ||= project.rubocop_offenses.includes(:source_file, :project)
   end
 
-  def severity_conditions
-    unless params[:severity].blank?
-      { severity: params[:severity] }
+  def filter_by_severity(offenses)
+    if params[:severity].blank?
+      offenses
+    else
+      offenses.where(severity: params[:severity])
     end
   end
 end

@@ -18,6 +18,35 @@ require 'rails_helper'
 
 RSpec.describe RubocopOffense, :type => :model do
   it { is_expected.to belong_to(:source_file) }
+
+  describe '#github_link' do
+    subject(:github_link) { offense.github_link }
+    let(:project) {
+      build(:project, username: 'rails', name: 'turbolinks', repository_data: {
+        "default_branch" => "master"
+      })
+    }
+    let(:source_file) { build(:source_file, project: project, path: 'lib/turbolinks.rb') }
+    let(:offense) { build(:rubocop_offense, location_line: 3, source_file: source_file) }
+    it { is_expected.to eq 'https://github.com/rails/turbolinks/blob/master/lib/turbolinks.rb#L3' }
+  end
+
+  describe '#line_range' do
+    [
+      [3, 4, (0..3)],
+      [5, 10, (1..7)],
+      [10, 10, (6..9)],
+    ].each do |(location, line_count, expected_range)|
+      context "when the location_line is #{location} and the file counts #{line_count} lines" do
+        subject { offense.line_range }
+        let(:offense) { build(:rubocop_offense, location_line: location, source_file: source) }
+        let(:source) { build(:source_file, content: content) }
+        let(:content) { "abc\n" * line_count }
+        it { is_expected.to eq expected_range }
+      end
+    end
+  end
+
   describe 'validations' do
     it { is_expected.to validate_presence_of(:message) }
     it { is_expected.to validate_presence_of(:cop_name) }
