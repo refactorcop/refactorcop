@@ -54,7 +54,7 @@ class RubocopWorker
   # @return [undefined]
   def update_source_files
     github_repository_data = project.fetch_github_repository_data
-    Project::Download.call(project, tmp_dir, logger)
+    Project::Download.call(project, tmp_dir, logger: logger)
     project.update_repository_data github_repository_data
   end
 
