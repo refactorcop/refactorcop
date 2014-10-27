@@ -1,27 +1,18 @@
 <footer class="footer">
-  <div class="wrapper">
-		<div class="credits">
-			<p><strong>RefactorCop</strong> is a concept and realization by <%= [ "Anthony Liekens", "Dale Hofkens", "Maarten Claes", "Stelian Firez"].shuffle.to_sentence %></p>
-			<p><strong>RefactorCop</strong> was made possible because of <a href="https://github.com/bbatsov/rubocop">RuboCop</a>, an awesome static code analyzer for your Ruby projects!</p>
-      <p>Credits for the RoboCop logo go to <a href="https://www.behance.net/pntr">PNTR</a></p>
-      <a href="http://railsrumble.com/entries/85-refactorcop" target="_blank"><%= image_tag "railsrumble.png" %></a>
-		</div>
-    <div class="quote">
-      <div class="quote_text">
-        <%= random_quote %>
-      </div>
-      <div class="quote_author">
-        --Robocop
-      </div>
+<div class="wrapper">
+  <div class="credits">
+    <p><strong>RefactorCop</strong> is a concept and realization by <%= [ "Anthony Liekens", "Dale Hofkens", "Maarten Claes", "Stelian Firez"].shuffle.to_sentence %></p>
+    <p><strong>RefactorCop</strong> was made possible because of <a href="https://github.com/bbatsov/rubocop">RuboCop</a>, an awesome static code analyzer for your Ruby projects!</p>
+    <p>Credits for the RoboCop logo go to <a href="https://www.behance.net/pntr">PNTR</a></p>
+    <a href="http://railsrumble.com/entries/85-refactorcop" target="_blank"><%= image_tag "railsrumble.png" %></a>
+  </div>
+  <div class="quote">
+    <div class="quote_text">
+      <%= random_quote %>
+    </div>
+    <div class="quote_author">
+      --Robocop
     </div>
   </div>
+</div>
 </footer>
-
-<script type="text/javascript">
-  var rumbleBannerBackgroundColor, rumbleBannerTextColor, rumbleBannerLinkColor, rumbleBannerPlacement;
-  rumbleBannerBackgroundColor = "#161616";
-  rumbleBannerTextColor = "#b0b0b0";
-  rumbleBannerLinkColor = "#ffffff";
-  rumbleBannerPlacement = "bottom"; // Optionally replace with "bottom".
-</script>
-<script src="http://s0.railsrumble.com/banner-2014.js" type="text/javascript"></script>
