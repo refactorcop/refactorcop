@@ -23,3 +23,7 @@ The initial version of this project was built during the [Rails Rumble
 [aliekens](https://github.com/aliekens),
 [mcls](https://github.com/mcls),
 [stelianfirez](https://github.com/stelianfirez) and [zzip](https://github.com/zzip).
+
+## License
+
+RefactorCop is released under the [MIT License](http://www.opensource.org/licenses/MIT).
