@@ -5,9 +5,15 @@ class ProjectImportWorker
   recurrence { hourly }
 
   def perform
-    GithubTrending.new('ruby').persist_projects if [true, false].sample # :D
+    GithubTrending.new('ruby').persist_projects
+    lint_all Project.where(rubocop_run_started_at: nil).limit(100)
+    lint_all Project.linted.order('rubocop_last_run_at ASC').limit(100)
+  end
 
-    Project.all.order('random()').limit(60).each do |project|
+  private
+
+  def lint_all(projects)
+    projects.each do |project|
       RubocopWorker.perform_async(project.id)
     end
   end
