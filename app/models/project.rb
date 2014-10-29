@@ -55,6 +55,12 @@ class Project < ActiveRecord::Base
 
   def fetch_github_repository_data
     github_api.repos.get(username, name).to_h.with_indifferent_access
+  rescue Github::Error::Forbidden => e
+    if repository_data.blank?
+      raise e
+    else
+      repository_data.with_indifferent_access
+    end
   end
 
   def update_repository_data(fetched_repository_data = nil )
