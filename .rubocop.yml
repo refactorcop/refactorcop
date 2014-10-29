@@ -774,7 +774,7 @@ Lint/AmbiguousRegexpLiteral:
 Lint/AssignmentInCondition:
   Description: "Don't use assignment in conditions."
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#safe-assignment-in-condition'
-  Enabled: true
+  Enabled: false
 
 Lint/BlockAlignment:
   Description: 'Align block ends correctly.'
@@ -813,7 +813,7 @@ Lint/EmptyInterpolation:
 
 Lint/EndAlignment:
   Description: 'Align ends correctly.'
-  Enabled: true
+  Enabled: false
 
 Lint/EndInMethod:
   Description: 'END blocks should not be placed inside method definitions.'
@@ -896,12 +896,12 @@ Lint/UnderscorePrefixedVariableName:
 Lint/UnusedBlockArgument:
   Description: 'Checks for unused block arguments.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#underscore-unused-vars'
-  Enabled: true
+  Enabled: false
 
 Lint/UnusedMethodArgument:
   Description: 'Checks for unused method arguments.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#underscore-unused-vars'
-  Enabled: true
+  Enabled: false
 
 Lint/UnreachableCode:
   Description: 'Unreachable code.'
