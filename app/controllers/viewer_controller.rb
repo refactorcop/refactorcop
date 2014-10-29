@@ -1,8 +1,10 @@
 class ViewerController < ApplicationController
+  layout 'with_small_header'
+
   def show_project
     @project_details = ProjectDetails.new(params)
     if @project_details.exists?
-      render layout: nil
+      render
     else
       attempt_project_import_and_redirect
     end

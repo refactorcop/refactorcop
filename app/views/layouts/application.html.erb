@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>RefactorCop</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
   <body class="home">
     <%= render 'layouts/google_analytics' if Rails.env.production? %>
+
     <div class="wrapper">
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, class: "flash_msg flash_#{name}", style: "line-height: 2" %>
@@ -51,6 +53,5 @@
     </section>
 
     <%= render 'layouts/footer' %>
-
   </body>
 </html>
