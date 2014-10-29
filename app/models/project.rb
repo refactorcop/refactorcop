@@ -99,6 +99,24 @@ class Project < ActiveRecord::Base
     (rubocop_last_run_at - rubocop_run_started_at).to_i
   end
 
+  # Writes this project's source files to the given directory.
+  def write_files_to_dir(dir_path)
+    source_files.find_each do |sf|
+      path = File.join(dir_path, sf.path)
+
+      # Allow nested directories,
+      # but make sure they're inside the main dir_path
+      parent_dir = File.dirname(path)
+      if parent_dir.include?(dir_path)
+        FileUtils.mkdir_p(parent_dir)
+      end
+
+      File.open(path, 'w') do |f|
+        f.write sf.content
+      end
+    end
+  end
+
   private
 
   def github_api

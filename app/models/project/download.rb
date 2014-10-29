@@ -6,10 +6,9 @@ class Project::Download
 
   attr_reader :project, :logger, :http_client
 
-  def initialize(project, tmp_dir, logger: nil, http_client: HTTPClient)
+  def initialize(project, logger: nil, http_client: HTTPClient)
     @project  = project
     @logger   = logger || Rails.logger
-    @tmp_dir  = tmp_dir
     @http_client = http_client
   end
 
@@ -46,8 +45,7 @@ class Project::Download
     Zip::File.open_buffer(file) do |zip_file|
       zip_file.glob('**/*.rb').compact.map do |entry|
         next if ignore_file?(entry.name)
-        source_file = to_source_file(entry)
-        to_tmp_dir(entry, source_file.id) if source_file
+        to_source_file(entry)
       end
     end
   end
@@ -71,13 +69,7 @@ class Project::Download
     nil
   end
 
-  def to_tmp_dir(entry, sf_id)
-    f_path = File.join(@tmp_dir, "#{sf_id}.rb")
-    entry.extract(f_path) unless File.exist?(f_path)
-  rescue StandardError => e
-    logger.warn "FAILED ON FILE: #{entry.name} #{e.inspect}"
-  end
-
+  # Pops of the name of the project directory ( == name of zip file )
   def sanitize_file_path(entry)
     parts = entry.name.split(File::SEPARATOR)
     parts.shift

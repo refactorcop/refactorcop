@@ -5,29 +5,16 @@ class RubocopWorker
 
   sidekiq_options retry: true
 
-  attr_reader :project, :tmp_dir, :force_run
+  attr_reader :project, :force_run
 
   def perform(project_id, force_run = false)
     @project = Project.find_by_id!(project_id)
     @force_run = force_run
     return unless project_needs_analyzing?
-
-    @tmp_dir = Dir.mktmpdir
-
-    begin
-      project.update_attribute(:rubocop_run_started_at, Time.now)
-      analyze_project
-      project.update_attribute(:rubocop_last_run_at, Time.now)
-    rescue StandardError => e
-      project.update_attribute(:rubocop_run_started_at, nil)
-      logger.error { "Failed to analyze project #{project.full_name.inspect}, because: #{e.inspect}" }
-      raise e
-    ensure
-      FileUtils.remove_entry tmp_dir
-    end
-
-    logger.info "Project ##{project.id} #{project.full_name} done in #{project.last_index_run_time}s"
+    Project::DownloadAndLint.call(project, logger: logger)
   end
+
+  private
 
   # Checks whether the project needs to be reanalyzed.
   # @return [boolean]
@@ -40,59 +27,5 @@ class RubocopWorker
       return false
     end
     true
-  end
-
-  def analyze_project
-    logger.info "Project ##{project.id} #{project.full_name} fetching project zipfile"
-    update_source_files
-    logger.info "Project ##{project.id} #{project.full_name} running rubocop"
-    run_rubocop
-    logger.info "Project ##{project.id} #{project.full_name} updating project stats"
-    update_project_stats
-  end
-
-  # Imports the projects code from GitHub. Stores code in {SourceFile#content}.
-  # @return [undefined]
-  def update_source_files
-    github_repository_data = project.fetch_github_repository_data
-    Project::Download.call(project, tmp_dir, logger: logger)
-    project.update_repository_data github_repository_data
-  end
-
-  def run_rubocop
-    rubocop_path = Rails.root.join(".rubocop.yml")
-    json_data = `cd #{tmp_dir}; bundle exec rubocop --config "#{rubocop_path}" -f json`
-    json = MultiJson.load(json_data, symbolize_keys: true)
-
-    json[:files].each do |files_json|
-      process_source_file(files_json)
-    end
-  end
-
-  def process_source_file(files_json)
-    source_file_id = files_json[:path].tr('\.rb','').to_i
-    files_json[:offenses].each do |offense_json|
-      create_offense(source_file_id, offense_json)
-    end
-  end
-
-  def create_offense(source_file_id, offense_json)
-    RubocopOffense.create({ source_file_id: source_file_id,
-      severity:   offense_json[:severity],
-      message:    offense_json[:message],
-      cop_name:   offense_json[:cop_name],
-      location_column:  offense_json[:location][:column],
-      location_line:    offense_json[:location][:line],
-      location_length:  offense_json[:location][:length],
-    })
-  end
-
-  def update_project_stats
-    project.rubocop_offenses_count = RubocopOffense.
-      joins(:source_file).
-      where(source_files: { project_id: project }).
-      count
-
-    project.source_files_count = project.source_files.count
   end
 end
