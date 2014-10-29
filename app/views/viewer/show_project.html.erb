@@ -11,6 +11,13 @@
       <div class="stat_type"><%= stat.humanize%> </div>
     <% end %>
   </div>
+  <% if @project_details.project.large? %>
+    <div class="friendly">This is a <strong>large</strong> project. There may
+      be good reasons they keep the code as it is. <br> Make sure you read the
+      project's contribution guidelines (look for a "README" or
+      "CONTRIBUTING.md") before submitting a pull request!</div>
+  <% end %>
+
   <% unless @project_details.project.linted? %>
     <div class="friendly">This project is freshly added, we don't have any results yet.</div>
   <% end %>

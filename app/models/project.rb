@@ -28,6 +28,10 @@ class Project < ActiveRecord::Base
     where(t[:rubocop_last_run_at].not_eq(nil).and(t[:rubocop_last_run_at].gt(t[:rubocop_run_started_at])))
   }
 
+  def large?
+    source_files.count >= 300
+  end
+
   # Has this project been linted before?
   def linted?
     rubocop_last_run_at.present?
