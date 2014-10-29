@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>RefactorCop</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <script type="text/javascript"></script>
+  </head>
+  <body class="secondary">
+    <%= render 'layouts/google_analytics' if Rails.env.production? %>
+
+    <header>
+      <div class="wrapper">
+        <h1 class="logo"><a href="/">RefactorCop</a></h1>
+        <div class="search">
+          <%= form_tag "/about/welcome", method: "get" do %>
+            <input name="query" type="text" placeholder="Find repo" class="search_repo">
+            <input type="submit" class="search_button">
+          <% end %>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrapper"><%= yield %></main>
+
+    <%= render 'layouts/footer' %>
+  </body>
+</html>

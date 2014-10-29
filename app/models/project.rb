@@ -28,6 +28,10 @@ class Project < ActiveRecord::Base
     where(t[:rubocop_last_run_at].not_eq(nil).and(t[:rubocop_last_run_at].gt(t[:rubocop_run_started_at])))
   }
 
+  def large?
+    source_files.count >= 300
+  end
+
   # Has this project been linted before?
   def linted?
     rubocop_last_run_at.present?
@@ -55,6 +59,12 @@ class Project < ActiveRecord::Base
 
   def fetch_github_repository_data
     github_api.repos.get(username, name).to_h.with_indifferent_access
+  rescue Github::Error::Forbidden => e
+    if repository_data.blank?
+      raise e
+    else
+      repository_data.with_indifferent_access
+    end
   end
 
   def update_repository_data(fetched_repository_data = nil )
@@ -97,6 +107,24 @@ class Project < ActiveRecord::Base
     return nil if rubocop_run_started_at.blank? || rubocop_last_run_at.blank?
     return nil if rubocop_running?
     (rubocop_last_run_at - rubocop_run_started_at).to_i
+  end
+
+  # Writes this project's source files to the given directory.
+  def write_files_to_dir(dir_path)
+    source_files.find_each do |sf|
+      path = File.join(dir_path, sf.path)
+
+      # Allow nested directories,
+      # but make sure they're inside the main dir_path
+      parent_dir = File.dirname(path)
+      if parent_dir.include?(dir_path)
+        FileUtils.mkdir_p(parent_dir)
+      end
+
+      File.open(path, 'w') do |f|
+        f.write sf.content
+      end
+    end
   end
 
   private

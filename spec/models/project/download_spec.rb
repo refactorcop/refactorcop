@@ -23,7 +23,7 @@ RSpec.describe Project::Download do
 
     it 'downloads the source code files' do
       expect {
-        described_class.call(project, 'tmp/somewhere', http_client: http_mock)
+        described_class.call(project, http_client: http_mock)
       }.to change { SourceFile.count }.by 2
       expect(SourceFile.all.map(&:path).sort).to eq([
         "lib/procto.rb",

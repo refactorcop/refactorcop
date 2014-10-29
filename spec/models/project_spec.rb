@@ -68,6 +68,23 @@ RSpec.describe Project, :type => :model do
     it { is_expected.to eq "stable" }
   end
 
+  describe '#write_files_to_dir' do
+    let(:project) { create(:project) }
+    it "saves its source files in the directory" do
+      tmp_dir = Dir.mktmpdir
+      project.source_files << create(:source_file, path: 'hello.rb', content: '# Hello')
+      project.source_files << create(:source_file, path: 'hello/world.rb', content: '# World!')
+      project.write_files_to_dir(tmp_dir)
+
+      ruby_glob = File.join(tmp_dir, '**', '*.rb')
+      absolute_paths = Dir.glob(ruby_glob).sort
+      relative_paths = absolute_paths.map { |path| path.gsub(tmp_dir, '') }
+      expect(relative_paths).to eq(['/hello.rb', '/hello/world.rb'])
+      expect(File.read(absolute_paths[0])).to eq('# Hello')
+      expect(File.read(absolute_paths[1])).to eq('# World!')
+    end
+  end
+
   describe '.find_by_full_name' do
     [
       ['UserName', 'Name', 'username', 'name'],
