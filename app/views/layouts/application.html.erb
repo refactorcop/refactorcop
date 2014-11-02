@@ -9,6 +9,7 @@
   </head>
   <body class="home">
     <%= render 'layouts/google_analytics' if Rails.env.production? %>
+    <%= render 'layouts/github_ribbon' %>
 
     <div class="wrapper">
       <% flash.each do |name, msg| %>
