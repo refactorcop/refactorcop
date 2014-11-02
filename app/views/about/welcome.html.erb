@@ -1,28 +1,28 @@
 <% if !@dashboard.search? %>
   <section class="project_lists wrapper">
-    <div class="trending">
-      <h2>Trending</h2>
+    <% cache [DateTime.now.strftime("%Y-%m-%d"), 'trending', Project.count] do %>
+      <div class="trending">
+        <h2>Trending</h2>
+        <ul>
+          <% @dashboard.trending.each do |project| %>
+            <li class="project">
+              <%= render 'projects/summary', project: project %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
 
-      <ul>
-        <% @dashboard.trending.each do |project| %>
-          <li class="project">
-            <%= render 'projects/summary', project: project %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-
-    <div class="recommended">
-      <h2>Recommended</h2>
-
-      <ul>
-        <% @dashboard.recommended.each do |project| %>
-          <li class="project">
-            <%= render 'projects/summary', project: project %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+      <div class="recommended">
+        <h2>Recommended</h2>
+        <ul>
+          <% @dashboard.recommended.each do |project| %>
+            <li class="project">
+              <%= render 'projects/summary', project: project %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
   </section>
 <% else %>
   <section class="project_lists wrapper">
@@ -45,5 +45,4 @@
       <% end %>
     </div>
   </section>
-
 <% end %>

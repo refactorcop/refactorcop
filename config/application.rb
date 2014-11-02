@@ -22,6 +22,8 @@ module RefactorCop
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    config.cache_store = :file_store, Rails.root.join("tmp", "rails_cache")
+
     config.generators do |g|
       g.assets = false
       g.helper = false
