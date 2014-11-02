@@ -58,6 +58,10 @@ class ProjectDetails
     project.source_files_count
   end
 
+  def cache_key
+    [project.full_name, project.rubocop_last_run_at.strftime('%Y-%m-%d')].join('__')
+  end
+
   private
 
   def all_offenses
