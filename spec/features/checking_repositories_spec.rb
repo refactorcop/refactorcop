@@ -13,4 +13,11 @@ RSpec.feature "Checking repositories", :type => :feature do
     visit "/github/developer.github.com"
     expect(page.find(".project_details")).to have_content("github / developer.github.com")
   end
+
+  scenario "Visiting a project that hasn't been added yet" do
+    VCR.use_cassette('github_project_pages', record: :new_episodes) do
+      visit "/snusnu/procto"
+      expect(page).to have_content("This project is freshly added, we don't have any results yet.")
+    end
+  end
 end
