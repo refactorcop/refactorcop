@@ -59,7 +59,13 @@ class ProjectDetails
   end
 
   def cache_key
-    [project.full_name, project.rubocop_last_run_at.strftime('%Y-%m-%d')].join('__')
+    suffix =
+      if project.rubocop_last_run_at
+        project.rubocop_last_run_at.strftime('%Y-%m-%d')
+      else
+        'unlinted'
+      end
+    [project.full_name, suffix].join('__')
   end
 
   private
