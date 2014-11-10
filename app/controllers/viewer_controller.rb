@@ -2,7 +2,12 @@ class ViewerController < ApplicationController
   layout 'with_small_header'
 
   def show_project
-    @project_details = ProjectDetails.new(params)
+    @project_details = ProjectDetails.new({
+      username: params[:username],
+      name:     params[:name],
+      severity: params[:severity],
+      page:     params[:page],
+    })
     if @project_details.exists?
       render
     else

@@ -1,10 +1,11 @@
 class ProjectDetails
-  attr_reader :params, :username, :name
+  attr_reader :username, :name, :severity, :page
 
-  def initialize(params)
-    @params   = params.with_indifferent_access
-    @username ||= params[:username].freeze
-    @name     ||= params[:name].freeze
+  def initialize(username:, name:, page: 1, severity: nil)
+    @username ||= username.freeze
+    @name     ||= name.freeze
+    @severity ||= severity.freeze
+    @page     ||= page.freeze
   end
 
   def project
@@ -23,7 +24,7 @@ class ProjectDetails
   def offenses
     @offenses ||= filter_by_severity(all_offenses)
       .order_by_severity
-      .page(params[:page]).per(10)
+      .page(page).per(10)
   end
 
   def total_offense_count
@@ -75,10 +76,10 @@ class ProjectDetails
   end
 
   def filter_by_severity(offenses)
-    if params[:severity].blank?
+    if severity.blank?
       offenses
     else
-      offenses.where(severity: params[:severity])
+      offenses.where(severity: severity)
     end
   end
 end
