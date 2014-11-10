@@ -1,0 +1,5 @@
+test:
+  adapter: postgresql
+  database: rcop_test
+  encoding: unicode
+  username: postgres

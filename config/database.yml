@@ -6,9 +6,8 @@ development:
 
 test:
   adapter: postgresql
-  encoding: unicode
   database: rcop_test
-  pool: 2
+  encoding: unicode
 
 production:
   adapter: postgresql
