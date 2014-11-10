@@ -1,4 +1,4 @@
-require 'sidekiq/web'       #for background scheduler
+require 'sidekiq/web'
 
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
@@ -7,8 +7,8 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => '/scheduler'
 
-  get 'random' => "viewer#random"
-  get 'project_not_found' => "viewer#project_not_found"
-  get ':username/:name', controller: "viewer", action: "show_project", constraints: { name: /.*/ }
-  get "*a", :to => "viewer#project_not_found"
+  get 'random' => 'projects#random'
+  get 'project_not_found' => 'projects#not_found'
+  get ':username/:name' => 'projects#show', constraints: { name: /.*/ }
+  get '*a', :to => 'projects#not_found'
 end
