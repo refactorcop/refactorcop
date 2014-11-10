@@ -17,5 +17,4 @@ class SourceFile < ActiveRecord::Base
   def full_name
     path
   end
-
 end
