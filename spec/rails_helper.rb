@@ -53,3 +53,7 @@ VCR.configure do |c|
   c.hook_into :webmock
   # c.allow_http_connections_when_no_cassette = true
 end
+
+# https://github.com/mperham/sidekiq/wiki/Testing
+require 'sidekiq/testing'
+Sidekiq::Testing.fake!
