@@ -29,4 +29,12 @@ RSpec.feature "Checking repositories", :type => :feature do
       expect(page).to have_content("This project is freshly added, we don't have any results yet.")
     end
   end
+
+  scenario "Visiting a non-existing repository" do
+    VCR.use_cassette('github_project_pages', record: :new_episodes) do
+      visit "/this_repo/does_not_exist"
+      expect(page).to have_content("We couldn't find your project")
+      expect(page).to have_content("Import from github")
+    end
+  end
 end
