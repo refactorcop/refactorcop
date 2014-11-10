@@ -20,4 +20,13 @@ RSpec.feature "Checking repositories", :type => :feature do
       expect(page).to have_content("This project is freshly added, we don't have any results yet.")
     end
   end
+
+  scenario "Adding project with encoded uri strips the part after the '?' sign" do
+    VCR.use_cassette('github_project_pages', record: :new_episodes) do
+      visit "/snusnu/procto#{CGI.escape('?page=15&severity=')}"
+      expect(page).to have_content("snusnu / procto")
+      expect(page).to_not have_content("snusnu / procto?page=15&severity=")
+      expect(page).to have_content("This project is freshly added, we don't have any results yet.")
+    end
+  end
 end

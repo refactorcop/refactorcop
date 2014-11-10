@@ -3,7 +3,7 @@ class ProjectDetails
 
   def initialize(username:, name:, page: 1, severity: nil)
     @username ||= username.freeze
-    @name     ||= name.freeze
+    @name     ||= name.gsub(/\?.*/, '').freeze
     @severity ||= severity.freeze
     @page     ||= page.freeze
   end

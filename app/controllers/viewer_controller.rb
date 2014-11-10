@@ -3,8 +3,8 @@ class ViewerController < ApplicationController
 
   def show_project
     @project_details = ProjectDetails.new({
-      username: params[:username],
-      name:     params[:name],
+      username: params.fetch(:username, ''),
+      name:     params.fetch(:name, ''),
       severity: params[:severity],
       page:     params[:page],
     })
