@@ -12,6 +12,9 @@ class RubocopWorker
     @force_run = force_run
     return unless project_needs_analyzing?
     Project::DownloadAndLint.call(project, logger: logger)
+  rescue ActiveRecord::RecordNotFound => e
+    logger.error { e.message }
+    logger.error { "Skipping project_id(#{project_id.inspect}), because of #{e.class.name}" }
   end
 
   private
