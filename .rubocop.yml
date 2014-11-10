@@ -362,6 +362,10 @@ Style/MultilineIfThen:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-then'
   Enabled: false
 
+Style/MultilineOperationIndentation:
+  EnforcedStyle: indented
+  Enabled: true
+
 Style/MultilineTernaryOperator:
   Description: >-
                  Avoid multi-line ?: (the ternary operator);
