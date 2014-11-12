@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   get 'random' => 'projects#random'
   get 'project_not_found' => 'projects#not_found'
   get ':username/:name' => 'projects#show', constraints: { name: /.*/ }
-  get '*a', :to => 'projects#not_found'
+  get '*a/*b', to: 'projects#not_found'
 end

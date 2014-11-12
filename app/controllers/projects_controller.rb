@@ -21,6 +21,7 @@ class ProjectsController < ApplicationController
   end
 
   def not_found
+    render status: :not_found
   end
 
   private
