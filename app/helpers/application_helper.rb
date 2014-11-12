@@ -17,4 +17,8 @@ module ApplicationHelper
   def random_quote
     ROBOCOP_QUOTES.sample
   end
+
+  def meta_description
+    content_for(:meta_description) || "RefactorCop scans open source Ruby projects, allowing you to discover code that may benefit from your contribution."
+  end
 end

@@ -1,3 +1,5 @@
+<% content_for(:html_title) { @project_details.full_name } %>
+<% content_for(:meta_description) { [@project_details.full_name, @project_details.project.description].compact.join(' - ') } %>
 <section class="project_details">
   <% cache ['project_header', @project_details.cache_key] do %>
     <h2><%= link_to @project_details.username, "https://github.com/#{@project_details.username}" , target: '_blank'%> / <%= link_to @project_details.name, "https://github.com/#{@project_details.username}/#{@project_details.name}", target: '_blank' %></h2>

@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>RefactorCop</title>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
-    <script type="text/javascript"></script>
-  </head>
+  <%= render 'layouts/html_head' %>
   <body class="secondary">
     <%= render 'layouts/google_analytics' if Rails.env.production? %>
 
