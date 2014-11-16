@@ -34,5 +34,7 @@ module RefactorCop
       g.routing_specs false
       g.view_specs false
     end
+
+    config.middleware.use Rack::Attack
   end
 end
