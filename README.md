@@ -1,7 +1,7 @@
 # [RefactorCop](http://www.refactorcop.com)
 
 [![Build
-Status](https://travis-ci.org/railsrumble/refactorcop.svg?branch=master)](https://travis-ci.org/railsrumble/refactorcop)
+Status](https://travis-ci.org/refactorcop/refactorcop.svg?branch=master)](https://travis-ci.org/refactorcop/refactorcop)
 
 Using [RuboCop](https://github.com/bbatsov/rubocop), RefactorCop scans open
 source Ruby projects, allowing you to discover code that may benefit from your
