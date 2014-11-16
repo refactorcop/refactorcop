@@ -7,6 +7,12 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => '/scheduler'
 
+  resources :projects, only: [] do
+    member do
+      get :send_cops
+    end
+  end
+
   get 'random' => 'projects#random'
   get 'project_not_found' => 'projects#not_found'
   get ':username/:name' => 'projects#show', constraints: { name: /.*/ }
