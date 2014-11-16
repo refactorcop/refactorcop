@@ -909,3 +909,17 @@ body{
   background: asset-url("ribbon.svg") no-repeat 0 50%;
   text-indent: 50px;
 }
+
+.flash_msg {
+  background-color: #f1f9f7;
+
+  padding: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  line-height: 32px;
+  width: 100%;
+
+  &.flash_alert {
+    background-color: #eed2a2;
+  }
+}

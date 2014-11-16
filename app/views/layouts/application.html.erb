@@ -4,12 +4,7 @@
   <body class="home">
     <%= render 'layouts/google_analytics' if Rails.env.production? %>
     <%= render 'layouts/github_ribbon' %>
-
-    <div class="wrapper">
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, class: "flash_msg flash_#{name}", style: "line-height: 2" %>
-      <% end %>
-    </div>
+    <%= render 'layouts/flashes' %>
 
     <%= render 'layouts/robo_header' %>
     <section class="thanks">

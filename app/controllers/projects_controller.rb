@@ -15,9 +15,21 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def send_cops
+    project = Project.find_by_id!(params[:id])
+    if project.rubocop_running?
+      redirect_to_project(project, flash: { notice: "Cops already sent!" })
+    else
+      RubocopWorker.perform_async(project.id)
+      redirect_to_project(project, flash: {
+        notice: "Cops sent! The results should be here within a couple of minutes."
+      })
+    end
+  end
+
   def random
     project = Project.where("rubocop_offenses_count > 0").order("RANDOM()").first
-    redirect_to(action: "show", username: project.username, name: project.name)
+    redirect_to_project(project)
   end
 
   def not_found
@@ -25,6 +37,16 @@ class ProjectsController < ApplicationController
   end
 
   private
+
+  def redirect_to_project(project, extra_opts = {})
+    opts = extra_opts.merge({
+      action: "show",
+      username: project.username,
+      name: project.name
+    })
+    flashes = opts.delete(:flash)
+    redirect_to(opts, {flash: flashes})
+  end
 
   def attempt_project_import_and_redirect
     gh = GithubProject.new(name: @project_details.name, username: @project_details.username)
@@ -41,12 +63,7 @@ class ProjectsController < ApplicationController
 
   def save_and_redirect_to_project(project)
     project.save!
-
     RubocopWorker.perform_async(project.id)
-
-    redirect_to({action: :show}, {
-      username: project.username,
-      name: project.name,
-    })
+    redirect_to_project(project)
   end
 end

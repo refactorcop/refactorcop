@@ -68,12 +68,12 @@
 
       <%= paginate @project_details.offenses, :window => 2 %>
     <% end %>
-
   <% end %>
-
 </section>
+
 <aside class="sidebar">
-  <a href="/random" class="im_feeling_lucky">I’m feeling lucky</a>
+  <%= link_to "I'm feeling lucky", "/random", class: "im_feeling_lucky" %>
+
   <% cache ['project_stats', @project_details.cache_key] do %>
     <h3><%= @project_details.total_offense_count %> offenses</h3>
     <ul class="offenses">
@@ -89,9 +89,11 @@
 
     <% if @project_details.project.last_index_run_time %>
       <div class="friendly">
-        Our cops processed this project's <strong><%= @project_details.source_files_count %> Ruby files</strong> in
+        Our cops processed this project's <strong>
+        <%= @project_details.source_files_count %> Ruby files</strong> in
         <strong><%= @project_details.project.last_index_run_time %> seconds</strong>
         <%= time_ago_in_words(@project_details.project.rubocop_last_run_at) %> ago.
+        <%= link_to "Run them again.", send_cops_project_path(@project_details.project) %>
       </div>
     <% end %>
 
