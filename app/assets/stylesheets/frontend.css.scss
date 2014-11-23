@@ -444,8 +444,23 @@ body{
   margin: 20px 0 0 0;
   position: relative;
 }
+
 .line-numbers {
   margin-right:10px;
+}
+
+.highlighted-line {
+  background: rgba(255, 122, 14, 0.25);
+  display: block;
+  position: absolute;
+  height: 18px;
+  width: 100%;
+
+  @for $i from 1 through 5 {
+    &.offset-#{$i} {
+      top: ( $i * 18px ) - 6px;
+    }
+  }
 }
 
 .pagination{

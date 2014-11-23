@@ -57,8 +57,8 @@ class RubocopOffense < ActiveRecord::Base
   end
 
   def highlight_line
-    top = "#{(location_line - line_number_start + 1)* 18 - 6}px"
-    "<span style='background: rgba(255, 122, 14, 0.25); width: 100%; position: absolute; top: #{top}; display: block; height: 18px;'></span>"
+    i = (location_line - line_number_start + 1)
+    "<span class='highlighted-line offset-#{i}'></span>"
   end
 
   def line_number_start
