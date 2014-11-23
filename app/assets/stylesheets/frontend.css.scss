@@ -1,3 +1,5 @@
+@import "variables";
+
 /*
  * red: #e4796b
  * green: #3a988c
@@ -456,9 +458,16 @@ body{
   height: 18px;
   width: 100%;
 
+  @media screen and (max-device-width: $iphone5-device-width) {
+    height: 22px;
+  }
+
   @for $i from 1 through 5 {
     &.offset-#{$i} {
       top: ( $i * 18px ) - 6px;
+      @media screen and (max-device-width: $iphone5-device-width) {
+        top: ( $i * 26px ) - 9px;
+      }
     }
   }
 }
