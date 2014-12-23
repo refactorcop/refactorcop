@@ -31,13 +31,14 @@ class GithubProject
   private
 
   def page_html
-    return @page_html if @page_html
+    @page_html ||= retrieve_page_html
+  end
+
+  def retrieve_page_html
     response = request_project_page
-    if response.status == 404
-      @page_html = ''
-    else
-      @page_html = response.body
-    end
+    return '' if response.status == 404
+
+    response.body
   end
 
   def request_project_page

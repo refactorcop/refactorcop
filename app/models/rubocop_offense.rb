@@ -45,9 +45,9 @@ class RubocopOffense < ActiveRecord::Base
   def line_range
     max_lines = source_file.content.lines.size - 1
     context_lines = 3
-    a = [0, location_line - context_lines - 1].max
-    b = [max_lines, location_line + context_lines - 1].min
-    a..b
+    first_line = [0, location_line - context_lines - 1].max
+    last_line = [max_lines, location_line + context_lines - 1].min
+    first_line..last_line
   end
 
   private

@@ -23,10 +23,9 @@ class GithubTrending
   private
 
   def trending_page_html
-    return @trending_page_html if @trending_page_html
-    conn = Faraday.new('https://github.com')
-    response = conn.get('trending', l: language)
-    @trending_page_html = response.body
+    @response ||= Faraday.new('https://github.com')
+      .get('trending', l: language)
+      .body
   end
 
   def project_from_node(node)
