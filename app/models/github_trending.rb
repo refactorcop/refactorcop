@@ -23,7 +23,7 @@ class GithubTrending
   private
 
   def trending_page_html
-    @response ||= Faraday.new('https://github.com')
+    @trending_page_html ||= Faraday.new('https://github.com')
       .get('trending', l: language)
       .body
   end
