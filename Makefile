@@ -6,6 +6,8 @@ APP_CONTAINER="rcop-web"
 DB_IMAGE="postgres:9.3"
 REDIS_IMAGE="redis:2.8"
 
+all: development
+
 production:
 	docker run -d \
 		--name $(APP_CONTAINER) \
