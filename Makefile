@@ -3,6 +3,7 @@ PORTS=-p 8080:3000
 DEV_PORTS=-p 4000:3000
 APP_IMAGE="rcop-app"
 APP_CONTAINER="rcop-web"
+DBDATA_CONTAINER="rcop-dbdata"
 DB_IMAGE="postgres:9.3"
 REDIS_IMAGE="redis:2.8"
 
@@ -16,7 +17,7 @@ production:
 		--env-file .envfile \
 		$(APP_IMAGE)
 
-docker-run-app:
+run-app:
 	docker run -d \
 		--name $(APP_CONTAINER) \
 		$(LINKS) \
@@ -46,13 +47,28 @@ clean-app:
 build-app:
 	docker build -t $(APP_IMAGE) .
 
-docker-run-db:
+clean-setup: clean-db clean-redis
+
+setup: run-db run-redis
+
+run-db: run-dbdata setup-db
+
+run-dbdata:
+	docker run -d \
+		--name $(DBDATA_CONTAINER) \
+		--entrypoint /bin/echo \
+		$(DB_IMAGE) Data-only container
+
+setup-db:
 	docker run -d --name "rcop-db" \
-		-v `pwd`/volumes/data:/var/lib/postgresql/data \
+		--volumes-from $(DBDATA_CONTAINER) \
 		$(DB_IMAGE)
 
-docker-clean-db:
+clean-db:
 	docker stop "rcop-db"; docker rm "rcop-db"
 
-docker-run-redis:
+run-redis:
 	docker run -d --name "rcop-redis" $(REDIS_IMAGE)
+
+clean-redis:
+	docker stop "rcop-redis"; docker rm "rcop-redis"
