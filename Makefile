@@ -6,6 +6,7 @@ APP_CONTAINER="rcop-web"
 DBDATA_CONTAINER="rcop-dbdata"
 DB_IMAGE="postgres:9.3"
 REDIS_IMAGE="redis:2.8"
+DEV_DB_URL=postgresql://db:5432/rcop_development?pool=5&user=postgres
 
 all: development
 
@@ -30,6 +31,7 @@ development: build-app
 		-v `pwd`/:/refactorcop \
 		$(LINKS) \
 		$(DEV_PORTS) \
+		-e "DATABASE_URL=$(DEV_DB_URL)" \
 		$(APP_IMAGE)
 
 debug-app:
@@ -38,6 +40,7 @@ debug-app:
 		-v `pwd`/:/refactorcop \
 		$(LINKS) \
 		$(DEV_PORTS) \
+		-e "DATABASE_URL=$(DEV_DB_URL)" \
 		--entrypoint "/bin/bash" \
 		$(APP_IMAGE)
 
