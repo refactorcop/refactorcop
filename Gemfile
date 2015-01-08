@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
-ruby '2.1.3'
 
 gem 'rails', '~> 4.1.6'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
+gem 'rake'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer',  platforms: :ruby
+gem 'therubyracer',  platforms: :ruby
 
 gem 'jquery-rails'
 gem 'turbolinks'
@@ -36,6 +36,8 @@ gem 'sidetiq'
 gem 'sinatra', '>= 1.3.3', require: nil # Required for sidekiq-webinterface
 gem 'unicorn'
 gem 'virtus'
+
+gem 'foreman'
 
 group :production do
   # Needed for heroku

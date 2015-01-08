@@ -29,7 +29,11 @@ class ProjectsController < ApplicationController
 
   def random
     project = Project.where("rubocop_offenses_count > 0").order("RANDOM()").first
-    redirect_to_project(project)
+    if project.nil?
+      redirect_to '/project_not_found'
+    else
+      redirect_to_project(project)
+    end
   end
 
   def not_found

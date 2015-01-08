@@ -15,11 +15,6 @@ class ViewerController < ApplicationController
     end
   end
 
-  def random
-    project = Project.where("rubocop_offenses_count > 0").order("RANDOM()").first
-    redirect_to(action: "show_project", username: project.username, name: project.name)
-  end
-
   def project_not_found
   end
 

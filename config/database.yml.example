@@ -14,4 +14,3 @@ production:
   encoding: unicode
   database: rcop_production
   pool: 3
-
