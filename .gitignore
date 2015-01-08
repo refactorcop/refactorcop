@@ -18,3 +18,4 @@
 .envfile
 volumes/
 untracked/
+config/database.yml

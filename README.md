@@ -12,6 +12,9 @@ contribution.
 ```
 bundle install
 
+# Create database.yml
+cp config/database.yml.example config/database.yml
+
 # Sets up database and imports Github's trending Ruby projects
 rake db:setup
 
