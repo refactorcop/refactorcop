@@ -37,6 +37,9 @@ gem 'sinatra', '>= 1.3.3', require: nil # Required for sidekiq-webinterface
 gem 'unicorn'
 gem 'virtus'
 
+# Github authentication
+gem 'omniauth-github'
+
 gem 'foreman'
 
 group :production do
@@ -67,6 +70,7 @@ group :test do
 end
 
 group :development do
+  gem 'pry-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'quiet_assets' # Suppress asset pipeline calls in logs

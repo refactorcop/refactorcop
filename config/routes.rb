@@ -5,9 +5,12 @@ Rails.application.routes.draw do
   get 'about/welcome'
   root :to => 'about#welcome'
 
+  # Github authentication
+  get '/auth/:provider/callback', to: 'sessions#create'
+
   mount Sidekiq::Web => '/scheduler'
 
-  resources :projects, only: [] do
+  resources :projects, only: [:index] do
     member do
       get :send_cops
     end

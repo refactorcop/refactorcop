@@ -54,7 +54,12 @@ class Project < ActiveRecord::Base
 
   def download_zip_url
     branch = default_branch || "master"
-    "https://github.com/#{username}/#{name}/archive/#{branch}.zip"
+    if private_repository?
+      response = owner.github_client.contents.archive(username, name, archive: 'zipball', ref: branch)
+      response.headers.location
+    else
+      "https://github.com/#{username}/#{name}/archive/#{branch}.zip"
+    end
   end
 
   def fetch_github_repository_data
@@ -131,10 +136,14 @@ class Project < ActiveRecord::Base
 
   def github_api
     @github_api ||=
-      if Rails.env.production?
-        Github.new(basic_auth: "#{ENVied.GITHUB_EMAIL}:#{ENVied.GITHUB_PASSWORD}")
+      if private_repository?
+        owner.github_client
       else
-        Github.new
+        if Rails.env.production?
+          Github.new(basic_auth: "#{ENVied.GITHUB_EMAIL}:#{ENVied.GITHUB_PASSWORD}")
+        else
+          Github.new
+        end
       end
   end
 

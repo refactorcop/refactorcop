@@ -1,6 +1,9 @@
 class ProjectsController < ApplicationController
   layout 'with_small_header'
 
+  def index
+  end
+
   def show
     @project_details = ProjectDetails.new({
       username: params.fetch(:username, ''),

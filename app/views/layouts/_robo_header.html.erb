@@ -11,6 +11,20 @@
     <% end %>
 
     <h2>Not sure what project to work on?</h2>
-    <a href="/random" class="im_feeling_lucky">I'm feeling lucky!</a>
+    <a href="/random" class="btn">I'm feeling lucky!</a>
+
+    <div class="private_repositories">
+      <h2>Want to check your private repositories?</h2>
+      <% if current_user %>
+        <a href="/respositories" class="btn">
+          View my private repositories
+        </a>
+      <% else %>
+        <a href="/auth/github" class="btn">
+          <i class="github-icon"></i>
+          Authenticate with Github
+        </a>
+      <% end %>
+    </div>
   </div>
 </header>

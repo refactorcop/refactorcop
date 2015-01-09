@@ -52,7 +52,7 @@ body{
   margin: 0 auto;
 }
 .home header {
-  background: #f8f6e0 image-url("robocop.png") no-repeat 50% 0;
+  background: #f8f6e0 image-url("robocop.png") no-repeat center bottom;
   padding: 70px 0;
 }
 .home .logo a {
@@ -127,7 +127,8 @@ body{
   color: #e4796b;
   margin: 0 0 10px 0;
 }
-.im_feeling_lucky{
+
+.home header .btn{
   background: #e4796b;
   height: 58px;
   display: inline-block;
@@ -136,6 +137,21 @@ body{
   color: #fff;
   padding: 0 16px;
 }
+
+.private_repositories {
+  margin-top: 30px;
+}
+
+.github-icon{
+  display: inline-block;
+  position: relative;
+  top:10px;
+  width:30px;
+  height:30px;
+  background: image-url('github.svg') no-repeat center left;
+  background-size: 30px 30px;
+}
+
 .project_lists{
   padding: 40px 0 0 0;
   display: -webkit-box;
