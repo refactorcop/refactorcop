@@ -22,6 +22,8 @@ class Project < ActiveRecord::Base
   has_many :source_files, dependent: :destroy
   has_many :rubocop_offenses, through: :source_files
 
+  belongs_to :owner, class_name: 'User'
+
   scope :linted, lambda {
     #where("rubocop_last_run_at IS NOT NUL AND rubocop_last_run_at > rubocop_run_started_at")
     t = self.arel_table
@@ -55,7 +57,7 @@ class Project < ActiveRecord::Base
   def download_zip_url
     branch = default_branch || "master"
     if private_repository?
-      response = owner.github_client.contents.archive(username, name, archive: 'zipball', ref: branch)
+      response = owner.github_client.repos.contents.archive(username, name, archive_format: 'zipball', ref: branch)
       response.headers.location
     else
       "https://github.com/#{username}/#{name}/archive/#{branch}.zip"

@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
       name:     params.fetch(:name, ''),
       severity: params[:severity],
       page:     params[:page],
+      current_user: current_user
     })
     if @project_details.exists?
       render
@@ -56,7 +57,7 @@ class ProjectsController < ApplicationController
   end
 
   def attempt_project_import_and_redirect
-    gh = GithubProject.new(name: @project_details.name, username: @project_details.username)
+    gh = GithubProject.new(name: @project_details.name, username: @project_details.username, current_user: current_user)
     if !gh.exists?
       redirect_to action: "not_found", flash: { error: "Could not find that project '#{@project_details.full_name}'" }
       return
