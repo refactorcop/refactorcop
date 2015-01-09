@@ -10,7 +10,7 @@ class ProjectDetails
   end
 
   def project
-    @project ||= Project.find_by_full_name(username, name)
+    @project ||= Project.find_by(username: username, name: name, owner: current_user)
   end
 
   def exists?
