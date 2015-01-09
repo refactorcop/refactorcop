@@ -24,6 +24,8 @@ class Project < ActiveRecord::Base
 
   belongs_to :owner, class_name: 'User'
 
+  scope :not_private, -> { where(private_repository: false) }
+  scope :private_repository, -> { where(private_repository: true) }
   scope :linted, lambda {
     #where("rubocop_last_run_at IS NOT NUL AND rubocop_last_run_at > rubocop_run_started_at")
     t = self.arel_table
