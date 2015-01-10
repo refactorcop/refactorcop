@@ -29,7 +29,7 @@ RSpec.describe Project, :type => :model do
   describe '#download_zip_url' do
     let(:project) { build(:private_project) }
 
-    it 'must get archive url from github api', focus: true do
+    it 'must get archive url from github api' do
       VCR.use_cassette('github_archive_url') do
         download_url = project.download_zip_url
         expect(download_url).to eq('https://codeload.github.com/mperham/sidekiq/legacy.zip/master?token=AAKdasQlzV==')
