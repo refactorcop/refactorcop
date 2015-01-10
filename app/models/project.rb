@@ -152,10 +152,10 @@ class Project < ActiveRecord::Base
   end
 
   class << self
-    def find_by_full_name(username, name)
+    def find_by_full_name_and_owner(username, name, owner = nil)
       t = arel_table
       sql = t[:username].lower.eq(username.downcase).and(t[:name].lower.eq(name.downcase))
-      where(sql).first
+      where(sql).where('owner_id = ? OR owner_id IS NULL', owner.try(:id)).first
     end
   end
 end

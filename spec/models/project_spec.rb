@@ -85,14 +85,14 @@ RSpec.describe Project, :type => :model do
     end
   end
 
-  describe '.find_by_full_name' do
+  describe '.find_by_full_name_and_owner' do
     [
       ['UserName', 'Name', 'username', 'name'],
       ['username', 'name', 'uSernAme', 'nAme'],
       ['username', 'name', 'username', 'name'],
     ].each do |(username, name, query_username, query_name)|
       context "when the project is '#{username}/#{name}' and the query uses '#{query_username}' and '#{query_name}'" do
-        subject { described_class.find_by_full_name(username, name) }
+        subject { described_class.find_by_full_name_and_owner(username, name) }
         let!(:project) { create(:project, username: username, name: name) }
         it { is_expected.to eq project  }
       end

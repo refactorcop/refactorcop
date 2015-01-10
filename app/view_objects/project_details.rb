@@ -10,11 +10,11 @@ class ProjectDetails
   end
 
   def project
-    @project ||= Project.where('username = ? AND name = ? AND (owner_id = ? OR owner_id IS NULL)', username, name, current_user.try(:id)).first
+    @project ||= Project.find_by_full_name_and_owner(username, name, current_user)
   end
 
   def exists?
-    !project.blank?
+    project.present?
   end
 
   def full_name

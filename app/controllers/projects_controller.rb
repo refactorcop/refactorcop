@@ -26,6 +26,7 @@ class ProjectsController < ApplicationController
       page:     params[:page],
       current_user: current_user
     })
+
     if @project_details.exists?
       render
     else
