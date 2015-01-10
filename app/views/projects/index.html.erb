@@ -1,0 +1,14 @@
+<section class="project_lists wrapper">
+  <div class="search_results">
+    <%= render 'projects/import_from_github_form' %>
+
+    <h2>Your synced private repositories</h2>
+    <ul>
+      <% @projects.each do |project| %>
+        <li class="project">
+          <%= render 'projects/summary', project: project %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</section>

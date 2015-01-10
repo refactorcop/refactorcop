@@ -15,20 +15,6 @@ class ProjectDashboard
       .limit(5).order('random()')
   end
 
-  def search_results
-    @search_results ||= Project.not_private
-      .where("name ILIKE ? or description ILIKE ?", "%#{query}%",  "%#{query}%")
-      .page(params[:page]).per(20)
-  end
-
-  def search?
-    !query.blank?
-  end
-
-  def query
-    @query ||= params[:query].freeze
-  end
-
   private
 
   def linted_projects

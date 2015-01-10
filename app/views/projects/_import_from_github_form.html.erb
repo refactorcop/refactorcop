@@ -2,7 +2,7 @@
 
 <p class="form_intro">Please enter your GitHub username and project name to queue your project for indexing.</p>
 
-<%= form_tag(root_path, method: "GET", class: 'js-github-form') do %>
+<%= form_tag(import_projects_path, method: "GET", class: 'js-github-form') do %>
   <p>
   http://github.com/<input name="username" placeholder="username" class="github-form-field"/>/<input name="name" placeholder="awesome-project"  class="github-form-field"/>
   <%= submit_tag "Submit", class: "submit_button" %>

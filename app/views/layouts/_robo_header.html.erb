@@ -3,7 +3,7 @@
     <h1 class="logo"><%= link_to "RefactorCop", root_path %></h1>
     <p>Using <a href="https://github.com/bbatsov/rubocop">RuboCop</a>, RefactorCop scans open source Ruby projects, allowing you to discover code that may benefit from your contribution.</p>
 
-    <%= form_tag "/about/welcome", method: "get", class: "search" do %>
+    <%= form_tag search_projects_path, method: "get", class: "search" do %>
       <div class="search">
         <%= text_field_tag(:query, nil, placeholder: "Looking for a specific repo?", class: "search_repo") %>
         <input type="submit" class="search_button">
@@ -16,13 +16,11 @@
     <div class="private_repositories">
       <h2>Want to check your private repositories?</h2>
       <% if current_user %>
-        <a href="/respositories" class="btn">
-          View my private repositories
-        </a>
+        <%= link_to 'View my private repositories', projects_path, class: 'btn' %>
       <% else %>
         <a href="/auth/github" class="btn">
           <i class="github-icon"></i>
-          Authenticate with Github
+          Sign in with Github
         </a>
       <% end %>
     </div>

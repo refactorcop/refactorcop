@@ -1,48 +1,25 @@
-<% if !@dashboard.search? %>
-  <section class="project_lists wrapper">
-    <% cache [DateTime.now.strftime("%Y-%m-%d"), 'trending', Project.count] do %>
-      <div class="trending">
-        <h2>Trending</h2>
-        <ul>
-          <% @dashboard.trending.each do |project| %>
-            <li class="project">
-              <%= render 'projects/summary', project: project %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-
-      <div class="recommended">
-        <h2>Recommended</h2>
-        <ul>
-          <% @dashboard.recommended.each do |project| %>
-            <li class="project">
-              <%= render 'projects/summary', project: project %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-  </section>
-<% else %>
-  <section class="project_lists wrapper">
-    <div class="search_results">
-      <h2>Repos containing '<%= @dashboard.query %>'</h2>
+<section class="project_lists wrapper">
+  <% cache [DateTime.now.strftime("%Y-%m-%d"), 'trending', Project.count] do %>
+    <div class="trending">
+      <h2>Trending</h2>
       <ul>
-        <% @dashboard.search_results.each do |project| %>
+        <% @dashboard.trending.each do |project| %>
           <li class="project">
             <%= render 'projects/summary', project: project %>
           </li>
         <% end %>
       </ul>
-      <%= paginate @dashboard.search_results %>
-      <% if @dashboard.search_results.empty? %>
-        <p class="friendly">
-          We're sorry, we couldn't find any projects that match your query.
-          You can try a <a href="/random"><strong>random project</strong></a> or submit your own project below!
-        </p>
-        <%= render 'projects/import_from_github_form' %>
-      <% end %>
     </div>
-  </section>
-<% end %>
+
+    <div class="recommended">
+      <h2>Recommended</h2>
+      <ul>
+        <% @dashboard.recommended.each do |project| %>
+          <li class="project">
+            <%= render 'projects/summary', project: project %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</section>

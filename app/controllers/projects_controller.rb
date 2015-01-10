@@ -1,7 +1,21 @@
 class ProjectsController < ApplicationController
   layout 'with_small_header'
 
+  before_filter :authorize, only: [:index]
+
   def index
+    @projects = current_user.projects
+  end
+
+  def search
+    @query = params[:query]
+    @search_results ||= Project.not_private
+      .where("name ILIKE :query or description ILIKE :query", query: "%#{@query}%")
+      .page(params[:page]).per(20)
+  end
+
+  def import
+    redirect_to find_project(params[:username], params[:name])
   end
 
   def show

@@ -11,13 +11,13 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/scheduler'
 
   resources :projects, only: [:index] do
-    member do
-      get :send_cops
-    end
+    get :import, on: :collection
+    get :search, on: :collection
+    get :send_cops, on: :member
   end
 
   get 'random' => 'projects#random'
   get 'project_not_found' => 'projects#not_found'
-  get ':username/:name' => 'projects#show', constraints: { name: /.*/ }
+  get ':username/:name' => 'projects#show', constraints: { name: /.*/ }, as: :find_project
   get '*a/*b', to: 'projects#not_found'
 end
