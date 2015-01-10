@@ -5,15 +5,15 @@ RSpec.describe ProjectDetails do
   let(:username) { 'Homebrew' }
   let(:name) { 'homebrew' }
 
-  # describe '#project' do
-  #   subject { project_details.project }
-  #   let(:project) { double() }
-  #
-  #   it 'finds the project by full name' do
-  #     expect(Project).to receive(:find_by_full_name).with(username, name) { project }
-  #     expect(subject).to eq(project)
-  #   end
-  # end
+  describe '#project' do
+    subject { project_details.project }
+    let(:project) { double() }
+
+    it 'finds the project by full name' do
+      expect(Project).to receive(:find_by_full_name_and_owner).with(username, name, nil) { project }
+      expect(subject).to eq(project)
+    end
+  end
 
   describe '#cache_key' do
     subject(:cache_key) { project_details.cache_key }
