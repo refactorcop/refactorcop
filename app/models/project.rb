@@ -17,7 +17,7 @@
 
 class Project < ActiveRecord::Base
   validates :name, :username, presence: true, allow_blank: false
-  validates_uniqueness_of :name, scope: :username
+  validates_uniqueness_of :name, scope: [:username, :owner_id]
 
   has_many :source_files, dependent: :destroy
   has_many :rubocop_offenses, through: :source_files
