@@ -61,6 +61,15 @@ RSpec.feature "Checking repositories", :type => :feature do
     end
   end
 
+  scenario "Checking my synced private repositories" do
+    sign_in_as user
+    create(:private_project, username: 'rails', name: 'top-secret', owner: user)
+    visit '/projects'
+
+    expect(page).to have_text('rails / top-secret')
+    expect(page).to have_text("Import from github")
+  end
+
   private
 
   def sign_in_as(user)
