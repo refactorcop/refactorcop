@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150109024956) do
+ActiveRecord::Schema.define(version: 20150110184551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 20150109024956) do
     t.integer  "owner_id"
     t.boolean  "private_repository",     default: false
   end
+
+  add_index "projects", ["owner_id"], name: "index_projects_on_owner_id", using: :btree
 
   create_table "rubocop_offenses", force: true do |t|
     t.string   "severity",        null: false
