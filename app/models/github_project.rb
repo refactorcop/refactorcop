@@ -23,7 +23,7 @@ class GithubProject
     Project.new({
       name: name,
       username: username,
-      description: project_repository.description,
+      description: description,
       private_repository: private_repository?,
       owner: owner
     })
@@ -35,6 +35,10 @@ class GithubProject
     @project_respository ||= github_api.repos.get(username, name)
   rescue Github::Error::NotFound
     nil
+  end
+
+  def description
+    project_repository.description || ''
   end
 
   def private_repository?

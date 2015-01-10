@@ -17347,4 +17347,641 @@ http_interactions:
       string: '{"error":"Not Found"}'
     http_version: 
   recorded_at: Mon, 10 Nov 2014 17:40:45 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/rails/rails-enterprise-edition
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json,application/vnd.github.beta+json;q=0.5,application/json;q=0.1
+      Accept-Charset:
+      - utf-8
+      User-Agent:
+      - Github API Ruby Gem 0.12.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Sat, 10 Jan 2015 03:33:41 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 404 Not Found
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '54'
+      X-Ratelimit-Reset:
+      - '1420863109'
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - BFB1586B:4D45:4A95C02:54B09D95
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"message":"Not Found","documentation_url":"https://developer.github.com/v3"}'
+    http_version: 
+  recorded_at: Sat, 10 Jan 2015 03:33:41 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/rails/rails
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json,application/vnd.github.beta+json;q=0.5,application/json;q=0.1
+      Accept-Charset:
+      - utf-8
+      User-Agent:
+      - Github API Ruby Gem 0.12.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Sat, 10 Jan 2015 03:33:47 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '53'
+      X-Ratelimit-Reset:
+      - '1420863109'
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Last-Modified:
+      - Sat, 10 Jan 2015 00:42:38 GMT
+      Etag:
+      - '"50d1d39d5de21e6cae33eb584ed66aa3"'
+      Vary:
+      - Accept
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - BFB1586B:4D44:4367334:54B09D9B
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 8dd185e423974a7e13abbbe6e060031e
+    body:
+      encoding: UTF-8
+      string: '{"id":8514,"name":"rails","full_name":"rails/rails","owner":{"login":"rails","id":4223,"avatar_url":"https://avatars.githubusercontent.com/u/4223?v=3","gravatar_id":"","url":"https://api.github.com/users/rails","html_url":"https://github.com/rails","followers_url":"https://api.github.com/users/rails/followers","following_url":"https://api.github.com/users/rails/following{/other_user}","gists_url":"https://api.github.com/users/rails/gists{/gist_id}","starred_url":"https://api.github.com/users/rails/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/rails/subscriptions","organizations_url":"https://api.github.com/users/rails/orgs","repos_url":"https://api.github.com/users/rails/repos","events_url":"https://api.github.com/users/rails/events{/privacy}","received_events_url":"https://api.github.com/users/rails/received_events","type":"Organization","site_admin":false},"private":false,"html_url":"https://github.com/rails/rails","description":"Ruby
+        on Rails","fork":false,"url":"https://api.github.com/repos/rails/rails","forks_url":"https://api.github.com/repos/rails/rails/forks","keys_url":"https://api.github.com/repos/rails/rails/keys{/key_id}","collaborators_url":"https://api.github.com/repos/rails/rails/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/rails/rails/teams","hooks_url":"https://api.github.com/repos/rails/rails/hooks","issue_events_url":"https://api.github.com/repos/rails/rails/issues/events{/number}","events_url":"https://api.github.com/repos/rails/rails/events","assignees_url":"https://api.github.com/repos/rails/rails/assignees{/user}","branches_url":"https://api.github.com/repos/rails/rails/branches{/branch}","tags_url":"https://api.github.com/repos/rails/rails/tags","blobs_url":"https://api.github.com/repos/rails/rails/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/rails/rails/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/rails/rails/git/refs{/sha}","trees_url":"https://api.github.com/repos/rails/rails/git/trees{/sha}","statuses_url":"https://api.github.com/repos/rails/rails/statuses/{sha}","languages_url":"https://api.github.com/repos/rails/rails/languages","stargazers_url":"https://api.github.com/repos/rails/rails/stargazers","contributors_url":"https://api.github.com/repos/rails/rails/contributors","subscribers_url":"https://api.github.com/repos/rails/rails/subscribers","subscription_url":"https://api.github.com/repos/rails/rails/subscription","commits_url":"https://api.github.com/repos/rails/rails/commits{/sha}","git_commits_url":"https://api.github.com/repos/rails/rails/git/commits{/sha}","comments_url":"https://api.github.com/repos/rails/rails/comments{/number}","issue_comment_url":"https://api.github.com/repos/rails/rails/issues/comments/{number}","contents_url":"https://api.github.com/repos/rails/rails/contents/{+path}","compare_url":"https://api.github.com/repos/rails/rails/compare/{base}...{head}","merges_url":"https://api.github.com/repos/rails/rails/merges","archive_url":"https://api.github.com/repos/rails/rails/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/rails/rails/downloads","issues_url":"https://api.github.com/repos/rails/rails/issues{/number}","pulls_url":"https://api.github.com/repos/rails/rails/pulls{/number}","milestones_url":"https://api.github.com/repos/rails/rails/milestones{/number}","notifications_url":"https://api.github.com/repos/rails/rails/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/rails/rails/labels{/name}","releases_url":"https://api.github.com/repos/rails/rails/releases{/id}","created_at":"2008-04-11T02:19:47Z","updated_at":"2015-01-10T00:42:38Z","pushed_at":"2015-01-10T00:55:36Z","git_url":"git://github.com/rails/rails.git","ssh_url":"git@github.com:rails/rails.git","clone_url":"https://github.com/rails/rails.git","svn_url":"https://github.com/rails/rails","homepage":"http://rubyonrails.org","size":374214,"stargazers_count":24540,"watchers_count":24540,"language":"Ruby","has_issues":true,"has_downloads":true,"has_wiki":false,"has_pages":false,"forks_count":9463,"mirror_url":null,"open_issues_count":732,"forks":9463,"open_issues":732,"watchers":24540,"default_branch":"master","organization":{"login":"rails","id":4223,"avatar_url":"https://avatars.githubusercontent.com/u/4223?v=3","gravatar_id":"","url":"https://api.github.com/users/rails","html_url":"https://github.com/rails","followers_url":"https://api.github.com/users/rails/followers","following_url":"https://api.github.com/users/rails/following{/other_user}","gists_url":"https://api.github.com/users/rails/gists{/gist_id}","starred_url":"https://api.github.com/users/rails/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/rails/subscriptions","organizations_url":"https://api.github.com/users/rails/orgs","repos_url":"https://api.github.com/users/rails/repos","events_url":"https://api.github.com/users/rails/events{/privacy}","received_events_url":"https://api.github.com/users/rails/received_events","type":"Organization","site_admin":false},"network_count":9463,"subscribers_count":1718}'
+    http_version: 
+  recorded_at: Sat, 10 Jan 2015 03:33:47 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/torvalds/linux/languages
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json,application/vnd.github.beta+json;q=0.5,application/json;q=0.1
+      Accept-Charset:
+      - utf-8
+      User-Agent:
+      - Github API Ruby Gem 0.12.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Sat, 10 Jan 2015 03:33:49 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '52'
+      X-Ratelimit-Reset:
+      - '1420863109'
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Last-Modified:
+      - Sat, 10 Jan 2015 03:05:44 GMT
+      Etag:
+      - '"49d717e9a3c5cb6c9ad714e707156207"'
+      Vary:
+      - Accept
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - BFB1586B:4D42:2D98A97:54B09D9D
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 01d096e6cfe28f8aea352e988c332cd3
+    body:
+      encoding: UTF-8
+      string: '{"Makefile":1358923,"XSLT":445,"Assembly":10104155,"C":477934808,"Shell":205964,"Awk":22836,"TeX":51371,"Perl":607832,"Scala":12158,"Python":186745,"VimL":1355,"C++":4001551,"Objective-C":1657308,"Bison":82866,"UnrealScript":10556,"Scilab":21433}'
+    http_version: 
+  recorded_at: Sat, 10 Jan 2015 03:33:49 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/rails/rails/languages
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json,application/vnd.github.beta+json;q=0.5,application/json;q=0.1
+      Accept-Charset:
+      - utf-8
+      User-Agent:
+      - Github API Ruby Gem 0.12.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Sat, 10 Jan 2015 03:33:53 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '51'
+      X-Ratelimit-Reset:
+      - '1420863109'
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Last-Modified:
+      - Sat, 10 Jan 2015 00:42:38 GMT
+      Etag:
+      - '"86b3ee8255f4e8b53725eb10de674f96"'
+      Vary:
+      - Accept
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - BFB1586B:4E5E:47D288F:54B09DA1
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 173530fed4bbeb1e264b2ed22e8b5c20
+    body:
+      encoding: UTF-8
+      string: '{"Ruby":9035667,"Bison":965,"CSS":126529,"JavaScript":7338}'
+    http_version: 
+  recorded_at: Sat, 10 Jan 2015 03:33:53 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/avdi/quarto
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json,application/vnd.github.beta+json;q=0.5,application/json;q=0.1
+      Accept-Charset:
+      - utf-8
+      User-Agent:
+      - Github API Ruby Gem 0.12.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Sat, 10 Jan 2015 03:33:58 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '50'
+      X-Ratelimit-Reset:
+      - '1420863109'
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Last-Modified:
+      - Mon, 29 Dec 2014 22:40:53 GMT
+      Etag:
+      - '"10e3a0c014615d03271b522ff71c2aab"'
+      Vary:
+      - Accept
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - BFB1586B:4E5E:47D3136:54B09DA5
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 2811da37fbdda4367181b328b22b2499
+    body:
+      encoding: UTF-8
+      string: '{"id":11795565,"name":"quarto","full_name":"avdi/quarto","owner":{"login":"avdi","id":982,"avatar_url":"https://avatars.githubusercontent.com/u/982?v=3","gravatar_id":"","url":"https://api.github.com/users/avdi","html_url":"https://github.com/avdi","followers_url":"https://api.github.com/users/avdi/followers","following_url":"https://api.github.com/users/avdi/following{/other_user}","gists_url":"https://api.github.com/users/avdi/gists{/gist_id}","starred_url":"https://api.github.com/users/avdi/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/avdi/subscriptions","organizations_url":"https://api.github.com/users/avdi/orgs","repos_url":"https://api.github.com/users/avdi/repos","events_url":"https://api.github.com/users/avdi/events{/privacy}","received_events_url":"https://api.github.com/users/avdi/received_events","type":"User","site_admin":false},"private":false,"html_url":"https://github.com/avdi/quarto","description":null,"fork":false,"url":"https://api.github.com/repos/avdi/quarto","forks_url":"https://api.github.com/repos/avdi/quarto/forks","keys_url":"https://api.github.com/repos/avdi/quarto/keys{/key_id}","collaborators_url":"https://api.github.com/repos/avdi/quarto/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/avdi/quarto/teams","hooks_url":"https://api.github.com/repos/avdi/quarto/hooks","issue_events_url":"https://api.github.com/repos/avdi/quarto/issues/events{/number}","events_url":"https://api.github.com/repos/avdi/quarto/events","assignees_url":"https://api.github.com/repos/avdi/quarto/assignees{/user}","branches_url":"https://api.github.com/repos/avdi/quarto/branches{/branch}","tags_url":"https://api.github.com/repos/avdi/quarto/tags","blobs_url":"https://api.github.com/repos/avdi/quarto/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/avdi/quarto/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/avdi/quarto/git/refs{/sha}","trees_url":"https://api.github.com/repos/avdi/quarto/git/trees{/sha}","statuses_url":"https://api.github.com/repos/avdi/quarto/statuses/{sha}","languages_url":"https://api.github.com/repos/avdi/quarto/languages","stargazers_url":"https://api.github.com/repos/avdi/quarto/stargazers","contributors_url":"https://api.github.com/repos/avdi/quarto/contributors","subscribers_url":"https://api.github.com/repos/avdi/quarto/subscribers","subscription_url":"https://api.github.com/repos/avdi/quarto/subscription","commits_url":"https://api.github.com/repos/avdi/quarto/commits{/sha}","git_commits_url":"https://api.github.com/repos/avdi/quarto/git/commits{/sha}","comments_url":"https://api.github.com/repos/avdi/quarto/comments{/number}","issue_comment_url":"https://api.github.com/repos/avdi/quarto/issues/comments/{number}","contents_url":"https://api.github.com/repos/avdi/quarto/contents/{+path}","compare_url":"https://api.github.com/repos/avdi/quarto/compare/{base}...{head}","merges_url":"https://api.github.com/repos/avdi/quarto/merges","archive_url":"https://api.github.com/repos/avdi/quarto/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/avdi/quarto/downloads","issues_url":"https://api.github.com/repos/avdi/quarto/issues{/number}","pulls_url":"https://api.github.com/repos/avdi/quarto/pulls{/number}","milestones_url":"https://api.github.com/repos/avdi/quarto/milestones{/number}","notifications_url":"https://api.github.com/repos/avdi/quarto/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/avdi/quarto/labels{/name}","releases_url":"https://api.github.com/repos/avdi/quarto/releases{/id}","created_at":"2013-07-31T16:32:55Z","updated_at":"2014-12-29T22:40:53Z","pushed_at":"2014-08-10T21:31:56Z","git_url":"git://github.com/avdi/quarto.git","ssh_url":"git@github.com:avdi/quarto.git","clone_url":"https://github.com/avdi/quarto.git","svn_url":"https://github.com/avdi/quarto","homepage":null,"size":1072,"stargazers_count":435,"watchers_count":435,"language":"Ruby","has_issues":true,"has_downloads":true,"has_wiki":true,"has_pages":false,"forks_count":28,"mirror_url":null,"open_issues_count":15,"forks":28,"open_issues":15,"watchers":435,"default_branch":"master","network_count":28,"subscribers_count":33}'
+    http_version: 
+  recorded_at: Sat, 10 Jan 2015 03:33:58 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/snusnu/procto/languages
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json,application/vnd.github.beta+json;q=0.5,application/json;q=0.1
+      Accept-Charset:
+      - utf-8
+      User-Agent:
+      - Github API Ruby Gem 0.12.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Sat, 10 Jan 2015 03:57:23 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '49'
+      X-Ratelimit-Reset:
+      - '1420863109'
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Last-Modified:
+      - Fri, 26 Dec 2014 12:00:59 GMT
+      Etag:
+      - '"571d41d2805fc65a0a68753036d1f567"'
+      Vary:
+      - Accept
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Content-Length:
+      - '13'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - BFB1586B:37BA:4AFC488:54B0A323
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 173530fed4bbeb1e264b2ed22e8b5c20
+    body:
+      encoding: UTF-8
+      string: '{"Ruby":4132}'
+    http_version: 
+  recorded_at: Sat, 10 Jan 2015 03:57:23 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/snusnu/procto
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json,application/vnd.github.beta+json;q=0.5,application/json;q=0.1
+      Accept-Charset:
+      - utf-8
+      User-Agent:
+      - Github API Ruby Gem 0.12.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Sat, 10 Jan 2015 03:57:24 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '48'
+      X-Ratelimit-Reset:
+      - '1420863109'
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Last-Modified:
+      - Fri, 26 Dec 2014 12:00:59 GMT
+      Etag:
+      - '"1a9d928d93f1358f6d54ef044c6913ce"'
+      Vary:
+      - Accept
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - BFB1586B:37B7:25994AE:54B0A323
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 8dd185e423974a7e13abbbe6e060031e
+    body:
+      encoding: UTF-8
+      string: '{"id":15344522,"name":"procto","full_name":"snusnu/procto","owner":{"login":"snusnu","id":1186,"avatar_url":"https://avatars.githubusercontent.com/u/1186?v=3","gravatar_id":"","url":"https://api.github.com/users/snusnu","html_url":"https://github.com/snusnu","followers_url":"https://api.github.com/users/snusnu/followers","following_url":"https://api.github.com/users/snusnu/following{/other_user}","gists_url":"https://api.github.com/users/snusnu/gists{/gist_id}","starred_url":"https://api.github.com/users/snusnu/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/snusnu/subscriptions","organizations_url":"https://api.github.com/users/snusnu/orgs","repos_url":"https://api.github.com/users/snusnu/repos","events_url":"https://api.github.com/users/snusnu/events{/privacy}","received_events_url":"https://api.github.com/users/snusnu/received_events","type":"User","site_admin":false},"private":false,"html_url":"https://github.com/snusnu/procto","description":"Turns
+        your ruby object into a method object","fork":false,"url":"https://api.github.com/repos/snusnu/procto","forks_url":"https://api.github.com/repos/snusnu/procto/forks","keys_url":"https://api.github.com/repos/snusnu/procto/keys{/key_id}","collaborators_url":"https://api.github.com/repos/snusnu/procto/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/snusnu/procto/teams","hooks_url":"https://api.github.com/repos/snusnu/procto/hooks","issue_events_url":"https://api.github.com/repos/snusnu/procto/issues/events{/number}","events_url":"https://api.github.com/repos/snusnu/procto/events","assignees_url":"https://api.github.com/repos/snusnu/procto/assignees{/user}","branches_url":"https://api.github.com/repos/snusnu/procto/branches{/branch}","tags_url":"https://api.github.com/repos/snusnu/procto/tags","blobs_url":"https://api.github.com/repos/snusnu/procto/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/snusnu/procto/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/snusnu/procto/git/refs{/sha}","trees_url":"https://api.github.com/repos/snusnu/procto/git/trees{/sha}","statuses_url":"https://api.github.com/repos/snusnu/procto/statuses/{sha}","languages_url":"https://api.github.com/repos/snusnu/procto/languages","stargazers_url":"https://api.github.com/repos/snusnu/procto/stargazers","contributors_url":"https://api.github.com/repos/snusnu/procto/contributors","subscribers_url":"https://api.github.com/repos/snusnu/procto/subscribers","subscription_url":"https://api.github.com/repos/snusnu/procto/subscription","commits_url":"https://api.github.com/repos/snusnu/procto/commits{/sha}","git_commits_url":"https://api.github.com/repos/snusnu/procto/git/commits{/sha}","comments_url":"https://api.github.com/repos/snusnu/procto/comments{/number}","issue_comment_url":"https://api.github.com/repos/snusnu/procto/issues/comments/{number}","contents_url":"https://api.github.com/repos/snusnu/procto/contents/{+path}","compare_url":"https://api.github.com/repos/snusnu/procto/compare/{base}...{head}","merges_url":"https://api.github.com/repos/snusnu/procto/merges","archive_url":"https://api.github.com/repos/snusnu/procto/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/snusnu/procto/downloads","issues_url":"https://api.github.com/repos/snusnu/procto/issues{/number}","pulls_url":"https://api.github.com/repos/snusnu/procto/pulls{/number}","milestones_url":"https://api.github.com/repos/snusnu/procto/milestones{/number}","notifications_url":"https://api.github.com/repos/snusnu/procto/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/snusnu/procto/labels{/name}","releases_url":"https://api.github.com/repos/snusnu/procto/releases{/id}","created_at":"2013-12-20T17:43:25Z","updated_at":"2014-12-26T12:00:59Z","pushed_at":"2014-04-08T21:34:06Z","git_url":"git://github.com/snusnu/procto.git","ssh_url":"git@github.com:snusnu/procto.git","clone_url":"https://github.com/snusnu/procto.git","svn_url":"https://github.com/snusnu/procto","homepage":null,"size":144,"stargazers_count":15,"watchers_count":15,"language":"Ruby","has_issues":true,"has_downloads":true,"has_wiki":true,"has_pages":false,"forks_count":2,"mirror_url":null,"open_issues_count":0,"forks":2,"open_issues":0,"watchers":15,"default_branch":"master","network_count":2,"subscribers_count":4}'
+    http_version: 
+  recorded_at: Sat, 10 Jan 2015 03:57:24 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/this_repo/does_not_exist
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json,application/vnd.github.beta+json;q=0.5,application/json;q=0.1
+      Accept-Charset:
+      - utf-8
+      User-Agent:
+      - Github API Ruby Gem 0.12.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Sat, 10 Jan 2015 03:57:28 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 404 Not Found
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '47'
+      X-Ratelimit-Reset:
+      - '1420863109'
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - BFB1586B:37B9:404A155:54B0A328
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"message":"Not Found","documentation_url":"https://developer.github.com/v3"}'
+    http_version: 
+  recorded_at: Sat, 10 Jan 2015 03:57:28 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/avdi/quarto
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json,application/vnd.github.beta+json;q=0.5,application/json;q=0.1
+      Accept-Charset:
+      - utf-8
+      User-Agent:
+      - Github API Ruby Gem 0.12.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Sat, 10 Jan 2015 04:05:09 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '46'
+      X-Ratelimit-Reset:
+      - '1420863109'
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Last-Modified:
+      - Mon, 29 Dec 2014 22:40:53 GMT
+      Etag:
+      - '"10e3a0c014615d03271b522ff71c2aab"'
+      Vary:
+      - Accept
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - BFB1586B:4D45:4B52B9B:54B0A4F4
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 8dd185e423974a7e13abbbe6e060031e
+    body:
+      encoding: UTF-8
+      string: '{"id":11795565,"name":"quarto","full_name":"avdi/quarto","owner":{"login":"avdi","id":982,"avatar_url":"https://avatars.githubusercontent.com/u/982?v=3","gravatar_id":"","url":"https://api.github.com/users/avdi","html_url":"https://github.com/avdi","followers_url":"https://api.github.com/users/avdi/followers","following_url":"https://api.github.com/users/avdi/following{/other_user}","gists_url":"https://api.github.com/users/avdi/gists{/gist_id}","starred_url":"https://api.github.com/users/avdi/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/avdi/subscriptions","organizations_url":"https://api.github.com/users/avdi/orgs","repos_url":"https://api.github.com/users/avdi/repos","events_url":"https://api.github.com/users/avdi/events{/privacy}","received_events_url":"https://api.github.com/users/avdi/received_events","type":"User","site_admin":false},"private":false,"html_url":"https://github.com/avdi/quarto","description":null,"fork":false,"url":"https://api.github.com/repos/avdi/quarto","forks_url":"https://api.github.com/repos/avdi/quarto/forks","keys_url":"https://api.github.com/repos/avdi/quarto/keys{/key_id}","collaborators_url":"https://api.github.com/repos/avdi/quarto/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/avdi/quarto/teams","hooks_url":"https://api.github.com/repos/avdi/quarto/hooks","issue_events_url":"https://api.github.com/repos/avdi/quarto/issues/events{/number}","events_url":"https://api.github.com/repos/avdi/quarto/events","assignees_url":"https://api.github.com/repos/avdi/quarto/assignees{/user}","branches_url":"https://api.github.com/repos/avdi/quarto/branches{/branch}","tags_url":"https://api.github.com/repos/avdi/quarto/tags","blobs_url":"https://api.github.com/repos/avdi/quarto/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/avdi/quarto/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/avdi/quarto/git/refs{/sha}","trees_url":"https://api.github.com/repos/avdi/quarto/git/trees{/sha}","statuses_url":"https://api.github.com/repos/avdi/quarto/statuses/{sha}","languages_url":"https://api.github.com/repos/avdi/quarto/languages","stargazers_url":"https://api.github.com/repos/avdi/quarto/stargazers","contributors_url":"https://api.github.com/repos/avdi/quarto/contributors","subscribers_url":"https://api.github.com/repos/avdi/quarto/subscribers","subscription_url":"https://api.github.com/repos/avdi/quarto/subscription","commits_url":"https://api.github.com/repos/avdi/quarto/commits{/sha}","git_commits_url":"https://api.github.com/repos/avdi/quarto/git/commits{/sha}","comments_url":"https://api.github.com/repos/avdi/quarto/comments{/number}","issue_comment_url":"https://api.github.com/repos/avdi/quarto/issues/comments/{number}","contents_url":"https://api.github.com/repos/avdi/quarto/contents/{+path}","compare_url":"https://api.github.com/repos/avdi/quarto/compare/{base}...{head}","merges_url":"https://api.github.com/repos/avdi/quarto/merges","archive_url":"https://api.github.com/repos/avdi/quarto/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/avdi/quarto/downloads","issues_url":"https://api.github.com/repos/avdi/quarto/issues{/number}","pulls_url":"https://api.github.com/repos/avdi/quarto/pulls{/number}","milestones_url":"https://api.github.com/repos/avdi/quarto/milestones{/number}","notifications_url":"https://api.github.com/repos/avdi/quarto/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/avdi/quarto/labels{/name}","releases_url":"https://api.github.com/repos/avdi/quarto/releases{/id}","created_at":"2013-07-31T16:32:55Z","updated_at":"2014-12-29T22:40:53Z","pushed_at":"2014-08-10T21:31:56Z","git_url":"git://github.com/avdi/quarto.git","ssh_url":"git@github.com:avdi/quarto.git","clone_url":"https://github.com/avdi/quarto.git","svn_url":"https://github.com/avdi/quarto","homepage":null,"size":1072,"stargazers_count":435,"watchers_count":435,"language":"Ruby","has_issues":true,"has_downloads":true,"has_wiki":true,"has_pages":false,"forks_count":28,"mirror_url":null,"open_issues_count":15,"forks":28,"open_issues":15,"watchers":435,"default_branch":"master","network_count":28,"subscribers_count":33}'
+    http_version: 
+  recorded_at: Sat, 10 Jan 2015 04:05:09 GMT
 recorded_with: VCR 2.8.0

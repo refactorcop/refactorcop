@@ -10,7 +10,7 @@ class ProjectDetails
   end
 
   def project
-    @project ||= Project.where('username = ? AND name = ? AND (owner_id = ? OR owner_id IS NULL)', username, name, current_user.id).first
+    @project ||= Project.where('username = ? AND name = ? AND (owner_id = ? OR owner_id IS NULL)', username, name, current_user.try(:id)).first
   end
 
   def exists?

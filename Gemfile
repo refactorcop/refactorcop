@@ -58,6 +58,7 @@ group :test, :development do
   gem 'shoulda-matchers'
   gem 'timecop'
   gem 'vcr'
+  gem 'pry-rails'
 
   # Metrics
   gem 'brakeman', '>= 2.6.0'
@@ -70,7 +71,6 @@ group :test do
 end
 
 group :development do
-  gem 'pry-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'quiet_assets' # Suppress asset pipeline calls in logs
