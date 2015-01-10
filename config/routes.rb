@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   root :to => 'about#welcome'
 
   # Github authentication
-  get '/auth/:provider/callback', to: 'sessions#create'
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: 'sessions#failure'
 
   mount Sidekiq::Web => '/scheduler'
 

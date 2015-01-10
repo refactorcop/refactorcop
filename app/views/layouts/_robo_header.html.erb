@@ -18,7 +18,7 @@
       <% if current_user %>
         <%= link_to 'Check my private repositories', projects_path, class: 'btn' %>
       <% else %>
-        <a href="/auth/github" class="btn">
+        <a href="/auth/github" class="btn" id="github-sign-in">
           <i class="github-icon"></i>
           Sign in with Github
         </a>

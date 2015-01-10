@@ -26,6 +26,17 @@ RSpec.describe Project, :type => :model do
     end
   end
 
+  describe '#download_zip_url' do
+    let(:project) { build(:private_project) }
+
+    it 'must get archive url from github api', focus: true do
+      VCR.use_cassette('github_archive_url') do
+        download_url = project.download_zip_url
+        expect(download_url).to eq('https://codeload.github.com/mperham/sidekiq/legacy.zip/master?token=AAKdasQlzV==')
+      end
+    end
+  end
+
   describe '#clone_url' do
     subject { build(:project, username: 'tarantino', name: 'pulp-fiction').clone_url }
     it { is_expected.to eq 'git@github.com:tarantino/pulp-fiction.git' }
@@ -97,15 +108,44 @@ RSpec.describe Project, :type => :model do
         it { is_expected.to eq project  }
       end
     end
+
+    context 'when owner is present and project have same owner' do
+      subject { described_class.find_by_full_name_and_owner(username, name, user) }
+      let(:username) { 'rails' }
+      let(:name) { 'rails-private' }
+      let(:user) { create(:user) }
+      let!(:project) { create(:project, username: username, name: name, owner: user) }
+      it { is_expected.to eq project  }
+    end
+
+    context 'when owner is present and project have other user has owner' do
+      subject { described_class.find_by_full_name_and_owner(username, name, user) }
+      let(:username) { 'rails' }
+      let(:name) { 'rails-private' }
+      let(:user) { create(:user) }
+      let(:other_user) { create(:user) }
+      let!(:project) { create(:project, username: username, name: name, owner: other_user) }
+      it { is_expected.to be_nil }
+    end
+
+    context 'when owner is present and project dont have owner' do
+      subject { described_class.find_by_full_name_and_owner(username, name, user) }
+      let(:username) { 'rails' }
+      let(:name) { 'rails' }
+      let(:user) { create(:user) }
+      let!(:project) { create(:project, username: username, name: name) }
+      it { is_expected.to eq project  }
+    end
   end
 
   describe 'associations' do
     it { is_expected.to have_many(:source_files) }
+    it { is_expected.to belong_to(:owner) }
   end
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:username) }
     it { is_expected.to validate_presence_of(:name) }
-    it { is_expected.to validate_uniqueness_of(:name).scoped_to(:username) }
+    it { is_expected.to validate_uniqueness_of(:name).scoped_to(:username, :owner_id) }
   end
 end

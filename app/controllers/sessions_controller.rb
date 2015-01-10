@@ -5,6 +5,10 @@ class SessionsController < ApplicationController
     redirect_to projects_path
   end
 
+  def failure
+    redirect_to root_path, notice: 'We failed to authenticate with your Github account'
+  end
+
   protected
 
   def auth_hash

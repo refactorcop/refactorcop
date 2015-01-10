@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'capybara/rails'
 
 RSpec.feature "Checking repositories", :type => :feature do
   scenario "Visiting an indexed repository" do
