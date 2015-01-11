@@ -1,54 +1,60 @@
 class GithubProject
-  attr_reader :username, :name
+  attr_reader :username, :name, :current_user
 
-  def initialize(username:, name:)
+  def initialize(username:, name:, current_user: nil)
     @username, @name = username.freeze, name.freeze
+    @current_user = current_user
   end
 
   def exists?
     return false if username.blank? || name.blank?
-    !page_html.blank?
+    project_repository.present?
   end
 
   def contains_ruby?
-    doc = Nokogiri::HTML(page_html)
-    langs = doc.css('.repository-lang-stats-graph').first
-    langs.content.downcase.include?("ruby")
+    github_api.repos.languages(username, name).has_key? 'Ruby'
   end
 
   # Convert to {Project} model
   # @return [Project,nil]
   def to_project
     return nil unless exists?
-    doc = Nokogiri::HTML(page_html)
+    owner = private_repository? ? current_user : nil
     Project.new({
       name: name,
       username: username,
-      description: extract_description(doc),
+      description: description,
+      private_repository: private_repository?,
+      owner: owner
     })
   end
 
   private
 
-  def page_html
-    @page_html ||= retrieve_page_html
+  def project_repository
+    @project_respository ||= github_api.repos.get(username, name)
+  rescue Github::Error::NotFound
+    nil
   end
 
-  def retrieve_page_html
-    response = request_project_page
-    return '' if response.status == 404
-
-    response.body
+  def description
+    project_repository.description || ''
   end
 
-  def request_project_page
-    conn = Faraday.new('https://github.com')
-    conn.get("#{username}/#{name}")
+  def private_repository?
+    project_repository.private
   end
 
-  def extract_description(node)
-    desc_node = node.css('.repository-description').first
-    return '' unless desc_node
-    desc_node.content.strip
+  def github_api
+    @github_api ||=
+      if current_user
+        current_user.github_client
+      else
+        if Rails.env.production?
+          Github.new(basic_auth: "#{ENVied.GITHUB_EMAIL}:#{ENVied.GITHUB_PASSWORD}")
+        else
+          Github.new
+        end
+      end
   end
 end

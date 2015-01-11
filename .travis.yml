@@ -3,6 +3,8 @@ rvm:
   - 2.1.3
 addons:
   postgresql: "9.3"
+env:
+  - GITHUB_KEY=github_key GITHUB_SECRET=github_secret
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database rcop_test;' -U postgres

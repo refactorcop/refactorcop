@@ -8,7 +8,7 @@
       <div class="wrapper">
         <h1 class="logo"><a href="/">RefactorCop</a></h1>
         <div class="search">
-          <%= form_tag "/about/welcome", method: "get" do %>
+          <%= form_tag search_projects_path, method: "get" do %>
             <input name="query" type="text" placeholder="Find repo" class="search_repo">
             <input type="submit" class="search_button">
           <% end %>

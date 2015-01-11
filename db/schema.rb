@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141019111359) do
+ActiveRecord::Schema.define(version: 20150110184551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,11 +38,15 @@ ActiveRecord::Schema.define(version: 20141019111359) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.json     "repository_data"
-    t.integer  "source_files_count",     default: 0, null: false
-    t.integer  "rubocop_offenses_count", default: 0, null: false
+    t.integer  "source_files_count",     default: 0,     null: false
+    t.integer  "rubocop_offenses_count", default: 0,     null: false
     t.datetime "rubocop_run_started_at"
     t.datetime "rubocop_last_run_at"
+    t.integer  "owner_id"
+    t.boolean  "private_repository",     default: false
   end
+
+  add_index "projects", ["owner_id"], name: "index_projects_on_owner_id", using: :btree
 
   create_table "rubocop_offenses", force: true do |t|
     t.string   "severity",        null: false
@@ -65,5 +69,15 @@ ActiveRecord::Schema.define(version: 20141019111359) do
   end
 
   add_index "source_files", ["project_id"], name: "index_source_files_on_project_id", using: :btree
+
+  create_table "users", force: true do |t|
+    t.string   "email"
+    t.string   "github_uid"
+    t.string   "github_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["github_uid"], name: "index_users_on_github_uid", using: :btree
 
 end

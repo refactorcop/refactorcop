@@ -26,5 +26,10 @@ FactoryGirl.define do
       "pushed_at" => DateTime.now,
       "default_branch" => "master"
     })
+
+    factory :private_project do
+      private_repository true
+      association :owner, factory: :user, strategy: :build
+    end
   end
 end

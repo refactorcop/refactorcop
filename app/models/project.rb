@@ -17,11 +17,15 @@
 
 class Project < ActiveRecord::Base
   validates :name, :username, presence: true, allow_blank: false
-  validates_uniqueness_of :name, scope: :username
+  validates_uniqueness_of :name, scope: [:username, :owner_id]
 
   has_many :source_files, dependent: :destroy
   has_many :rubocop_offenses, through: :source_files
 
+  belongs_to :owner, class_name: 'User'
+
+  scope :not_private, -> { where(private_repository: false) }
+  scope :private_repository, -> { where(private_repository: true) }
   scope :linted, lambda {
     #where("rubocop_last_run_at IS NOT NUL AND rubocop_last_run_at > rubocop_run_started_at")
     t = self.arel_table
@@ -54,7 +58,12 @@ class Project < ActiveRecord::Base
 
   def download_zip_url
     branch = default_branch || "master"
-    "https://github.com/#{username}/#{name}/archive/#{branch}.zip"
+    if private_repository?
+      response = owner.github_client.repos.contents.archive(username, name, archive_format: 'zipball', ref: branch)
+      response.headers.location
+    else
+      "https://github.com/#{username}/#{name}/archive/#{branch}.zip"
+    end
   end
 
   def fetch_github_repository_data
@@ -131,18 +140,22 @@ class Project < ActiveRecord::Base
 
   def github_api
     @github_api ||=
-      if Rails.env.production?
-        Github.new(basic_auth: "#{ENVied.GITHUB_EMAIL}:#{ENVied.GITHUB_PASSWORD}")
+      if private_repository?
+        owner.github_client
       else
-        Github.new
+        if Rails.env.production?
+          Github.new(basic_auth: "#{ENVied.GITHUB_EMAIL}:#{ENVied.GITHUB_PASSWORD}")
+        else
+          Github.new
+        end
       end
   end
 
   class << self
-    def find_by_full_name(username, name)
+    def find_by_full_name_and_owner(username, name, owner = nil)
       t = arel_table
       sql = t[:username].lower.eq(username.downcase).and(t[:name].lower.eq(name.downcase))
-      where(sql).first
+      where(sql).where('owner_id = ? OR owner_id IS NULL', owner.try(:id)).first
     end
   end
 end

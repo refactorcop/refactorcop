@@ -37,6 +37,9 @@ gem 'sinatra', '>= 1.3.3', require: nil # Required for sidekiq-webinterface
 gem 'unicorn'
 gem 'virtus'
 
+# Github authentication
+gem 'omniauth-github'
+
 gem 'foreman'
 
 group :production do
@@ -46,15 +49,8 @@ group :production do
 end
 
 group :test, :development do
-  gem 'capybara'
-  gem 'database_cleaner'
-  gem 'factory_girl_rails', '>= 4.1'
-  gem 'ffaker'
-  gem 'poltergeist'
   gem 'rspec-rails'
-  gem 'shoulda-matchers'
-  gem 'timecop'
-  gem 'vcr'
+  gem 'pry-rails'
 
   # Metrics
   gem 'brakeman', '>= 2.6.0'
@@ -63,7 +59,16 @@ group :test, :development do
 end
 
 group :test do
+  gem 'simplecov', require: false
+  gem 'vcr'
   gem 'webmock'
+  gem 'shoulda-matchers'
+  gem 'timecop'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails', '>= 4.1'
+  gem 'ffaker'
+  gem 'poltergeist'
 end
 
 group :development do

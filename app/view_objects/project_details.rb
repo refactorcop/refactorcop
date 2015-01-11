@@ -1,19 +1,20 @@
 class ProjectDetails
-  attr_reader :username, :name, :severity, :page
+  attr_reader :username, :name, :severity, :page, :current_user
 
-  def initialize(username:, name:, page: 1, severity: nil)
+  def initialize(username:, name:, page: 1, severity: nil, current_user: nil)
     @username ||= username.freeze
     @name     ||= name.gsub(/\?.*/, '').freeze
     @severity ||= severity.freeze
     @page     ||= page.freeze
+    @current_user ||= current_user
   end
 
   def project
-    @project ||= Project.find_by_full_name(username, name)
+    @project ||= Project.find_by_full_name_and_owner(username, name, current_user)
   end
 
   def exists?
-    !project.blank?
+    project.present?
   end
 
   def full_name

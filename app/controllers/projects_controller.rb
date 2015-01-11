@@ -1,13 +1,32 @@
 class ProjectsController < ApplicationController
   layout 'with_small_header'
 
+  before_filter :authorize, only: [:index]
+
+  def index
+    @projects = current_user.projects
+  end
+
+  def search
+    @query = params[:query]
+    @search_results ||= Project.not_private
+      .where("name ILIKE :query or description ILIKE :query", query: "%#{@query}%")
+      .page(params[:page]).per(20)
+  end
+
+  def import
+    redirect_to find_project(params[:username], params[:name])
+  end
+
   def show
     @project_details = ProjectDetails.new({
       username: params.fetch(:username, ''),
       name:     params.fetch(:name, ''),
       severity: params[:severity],
       page:     params[:page],
+      current_user: current_user
     })
+
     if @project_details.exists?
       render
     else
@@ -28,9 +47,9 @@ class ProjectsController < ApplicationController
   end
 
   def random
-    project = Project.where("rubocop_offenses_count > 0").order("RANDOM()").first
+    project = Project.not_private.where("rubocop_offenses_count > 0").order("RANDOM()").first
     if project.nil?
-      redirect_to '/project_not_found'
+      redirect_to project_not_found_path
     else
       redirect_to_project(project)
     end
@@ -53,7 +72,7 @@ class ProjectsController < ApplicationController
   end
 
   def attempt_project_import_and_redirect
-    gh = GithubProject.new(name: @project_details.name, username: @project_details.username)
+    gh = GithubProject.new(name: @project_details.name, username: @project_details.username, current_user: current_user)
     if !gh.exists?
       redirect_to action: "not_found", flash: { error: "Could not find that project '#{@project_details.full_name}'" }
       return

@@ -20,6 +20,10 @@ ActiveAdmin.register Project do
       projects.where("projects.rubocop_last_run_at IS NULL AND projects.rubocop_run_started_at IS NULL")
   end
 
+  scope :private do |projects|
+    projects.private_repository
+  end
+
   scope :indexing do |projects|
       projects.where("(projects.rubocop_last_run_at IS NULL AND projects.rubocop_run_started_at IS NOT NULL) OR (projects.rubocop_last_run_at < projects.rubocop_run_started_at)")
   end
@@ -58,6 +62,7 @@ ActiveAdmin.register Project do
     column :rubocop_last_run_at
     column 'Run Time', :last_index_run_time,
             :sortable => "extract(epoch from (projects.rubocop_last_run_at - projects.rubocop_run_started_at))"
+    column 'Private', :private_repository
     column :created_at
     column :updated_at
 
@@ -78,6 +83,7 @@ ActiveAdmin.register Project do
   filter :description
   filter :created_at
   filter :updated_at
+  filter :private_repository
   filter :rubocop_run_started_at
   filter :rubocop_last_run_at
 
@@ -105,6 +111,7 @@ ActiveAdmin.register Project do
         row :rubocop_offenses_count
         row :pushed_at
         row :default_branch
+        row :private_repository
         row :rubocop_run_started_at
         row :rubocop_last_run_at
 
@@ -117,7 +124,6 @@ ActiveAdmin.register Project do
         column("File", :path) { |sf| link_to( sf.path, admin_source_file_path(sf)) }
       end
     end
-
 
     div do
       raw CodeRay.scan(project.repository_data.to_json, :json).div

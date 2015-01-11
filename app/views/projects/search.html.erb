@@ -1,0 +1,21 @@
+<section class="project_lists wrapper">
+  <div class="search_results">
+    <h2>Repos containing '<%= @query %>'</h2>
+    <ul>
+      <% @search_results.each do |project| %>
+        <li class="project">
+          <%= render 'projects/summary', project: project %>
+        </li>
+      <% end %>
+    </ul>
+    <%= paginate @search_results %>
+    <% if @search_results.empty? %>
+      <p class="friendly">
+        We're sorry, we couldn't find any projects that match your query.
+        You can try a <a href="/random"><strong>random project</strong></a> or submit your own project below!
+      </p>
+      <%= render 'projects/import_from_github_form' %>
+    <% end %>
+  </div>
+</section>
+

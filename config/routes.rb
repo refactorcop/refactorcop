@@ -5,16 +5,20 @@ Rails.application.routes.draw do
   get 'about/welcome'
   root :to => 'about#welcome'
 
+  # Github authentication
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: 'sessions#failure'
+
   mount Sidekiq::Web => '/scheduler'
 
-  resources :projects, only: [] do
-    member do
-      get :send_cops
-    end
+  resources :projects, only: [:index] do
+    get :import, on: :collection
+    get :search, on: :collection
+    get :send_cops, on: :member
   end
 
   get 'random' => 'projects#random'
   get 'project_not_found' => 'projects#not_found'
-  get ':username/:name' => 'projects#show', constraints: { name: /.*/ }
+  get ':username/:name' => 'projects#show', constraints: { name: /.*/ }, as: :find_project
   get '*a/*b', to: 'projects#not_found'
 end

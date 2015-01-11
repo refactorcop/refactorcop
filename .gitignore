@@ -17,5 +17,6 @@
 
 .envfile
 volumes/
+coverage/
 untracked/
 config/database.yml

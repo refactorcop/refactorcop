@@ -1,6 +1,9 @@
 enable_defaults! { ENV['RACK_ENV'] != 'production' }
 variable :ADMIN_PASSWORD, :string, default: 'admin'
 
+variable :GITHUB_KEY, :string
+variable :GITHUB_SECRET, :string
+
 group :production do
   variable :GITHUB_EMAIL
   variable :GITHUB_PASSWORD
