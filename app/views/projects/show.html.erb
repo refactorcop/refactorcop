@@ -2,7 +2,12 @@
 <% content_for(:meta_description) { [@project_details.full_name, @project_details.project.description].compact.join(' - ') } %>
 <section class="project_details">
   <% cache ['project_header', @project_details.cache_key] do %>
-    <h2><%= link_to @project_details.username, "https://github.com/#{@project_details.username}" , target: '_blank'%> / <%= link_to @project_details.name, "https://github.com/#{@project_details.username}/#{@project_details.name}", target: '_blank' %></h2>
+    <h2>
+      <%= link_to @project_details.username, "https://github.com/#{@project_details.username}" , target: '_blank'%> / <%= link_to @project_details.name, "https://github.com/#{@project_details.username}/#{@project_details.name}", target: '_blank' %>
+      <% if @project_details.has_todo? %>
+        <%= image_tag('badge_silver.png', alt: 'Todo Badge', size: '67x68') %>
+      <% end %>
+    </h2>
     <p>
     <%= @project_details.project.description %>
     </p>
