@@ -11,7 +11,7 @@ RSpec.describe Project::ZipFile do
         File.join('lib', 'code.rb'),
       ])
 
-      pzf = described_class.new(zip_path, in_memory: false)
+      pzf = described_class.new(zip_path)
       expect(pzf.ruby_entries.map(&:name)).to match_array(['lib/code.rb'])
     end
   end
@@ -23,7 +23,7 @@ RSpec.describe Project::ZipFile do
         'README.md',
         File.join('lib', 'code.rb'),
       ])
-      pzf = described_class.new(zip_path, in_memory: false)
+      pzf = described_class.new(zip_path)
       expect(pzf.has_rubocop_todos?).to eq(true)
     end
 
@@ -32,7 +32,7 @@ RSpec.describe Project::ZipFile do
         'README.md',
         File.join('lib', 'code.rb'),
       ])
-      pzf = described_class.new(zip_path, in_memory: false)
+      pzf = described_class.new(zip_path)
       expect(pzf.has_rubocop_todos?).to eq(false)
     end
   end

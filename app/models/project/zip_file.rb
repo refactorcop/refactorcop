@@ -1,7 +1,7 @@
 class Project::ZipFile
   attr_reader :filepath
 
-  def initialize(filepath, in_memory: true)
+  def initialize(filepath)
     @filepath = filepath
     @parsed = false
   end
@@ -31,10 +31,10 @@ class Project::ZipFile
   end
 
   def open_zip_file(filepath, &block)
-    if @in_memory
-      Zip::File.open_buffer(filepath, &block)
-    else
-      Zip::File.open(filepath, &block)
+    File.open(filepath) do |f|
+      # open_buffer reads zip archive contents from a String or open IO
+      # stream, and outputs data to a buffer.
+      Zip::File.open_buffer(f, &block)
     end
   end
 end
