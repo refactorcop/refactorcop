@@ -89,12 +89,7 @@ Style/BlockEndNewline:
   Description: 'Put end statement of multiline block on its own line.'
   Enabled: false
 
-Style/Blocks:
-  Description: >-
-                Avoid using {...} for multi-line blocks (multiline chaining is
-                always ugly).
-                Prefer {...} over do...end for single-line blocks.
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#single-line-blocks'
+Style/BlockDelimiters:
   Enabled: false
 
 Style/BracesAroundHashParameters:
@@ -193,21 +188,25 @@ Style/EachWithObject:
   Description: 'Prefer `each_with_object` over `inject` or `reduce`.'
   Enabled: false
 
+Style/EmptyLines:
+  Enabled: false
+
 Style/EmptyLineBetweenDefs:
   Description: 'Use empty lines between defs.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#empty-lines-between-methods'
-  Enabled: false
-
-Style/EmptyLines:
-  Description: "Don't use several empty lines in a row."
   Enabled: false
 
 Style/EmptyLinesAroundAccessModifier:
   Description: "Keep blank lines around access modifiers."
   Enabled: false
 
-Style/EmptyLinesAroundBody:
-  Description: "Keeps track of empty lines around expression bodies."
+Style/EmptyLinesAroundBlockBody:
+  Enabled: false
+
+Style/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Style/EmptyLinesAroundModuleBody:
   Enabled: false
 
 Style/EmptyLiteral:
@@ -680,11 +679,6 @@ Style/UnneededPercentQ:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#percent-q'
   Enabled: false
 
-Style/UnneededPercentX:
-  Description: 'Checks for %x when `` would do.'
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#percent-x'
-  Enabled: false
-
 Style/VariableInterpolation:
   Description: >-
                  Don't interpolate global, instance and class variables
@@ -721,6 +715,9 @@ Style/WordArray:
 
 #################### Metrics ################################
 
+Metrics/AbcSize:
+  Max: 50
+
 Metrics/BlockNesting:
   Description: 'Avoid excessive block nesting'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#three-is-the-number-thou-shalt-count'
@@ -742,9 +739,8 @@ Metrics/LineLength:
   Enabled: false
 
 Metrics/MethodLength:
-  Description: 'Avoid methods longer than 10 lines of code.'
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#short-methods'
   Enabled: true
+  Max: 15
 
 Metrics/ParameterLists:
   Description: 'Avoid parameter lists longer than three or four parameters.'
