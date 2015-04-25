@@ -43,7 +43,7 @@ ActiveAdmin.register Project do
     redirect_to({action: :index}, notice: "Now is a good time to check the sidekiq scheduler page!" )
   end
 
-  action_item :only => :show do
+  action_item :send_cops, only: :show do
     link_to('Send in the cops!', send_the_cops_now_admin_project_path(params[:id]))
   end
 
