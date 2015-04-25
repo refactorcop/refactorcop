@@ -10,6 +10,5 @@ ActiveAdmin.register_page "BatchActions" do
     div do
       link_to "Force run ALL projects", force_cops_everywhere_admin_projects_path
     end
-
   end
 end

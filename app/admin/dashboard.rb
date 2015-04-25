@@ -1,9 +1,7 @@
 ActiveAdmin.register_page "Dashboard" do
-
   #menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
 
   content title: proc{ I18n.t("active_admin.dashboard") } do
-
     # Here is an example of a simple dashboard with columns and panels.
     #
     columns do
@@ -33,7 +31,6 @@ ActiveAdmin.register_page "Dashboard" do
           text_node %{<iframe src="https://rpm.newrelic.com/public/charts/fm3gwRLo8rp" width="400" height="200" scrolling="no" frameborder="no"></iframe>}.html_safe
         end
       end
-
     end
 
     columns do
@@ -54,6 +51,5 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
     end
-
   end # content
 end
