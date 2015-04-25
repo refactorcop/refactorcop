@@ -11,7 +11,7 @@ RUN echo "github.com,192.30.252.131 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGm
 RUN bundle install
 ADD . /refactorcop
 
-ENV REDIS_URL tcp://redis:6379
+ENV REDIS_URL redis://redis:6379
 ENV PORT 3000
 
 VOLUME [ "/refactorcop" ]
