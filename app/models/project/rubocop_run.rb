@@ -1,5 +1,5 @@
 class Project::RubocopRun
-  DEFAULT_CONFIG_PATH = Rails.root.join('.rubocop.yml').freeze
+  DEFAULT_CONFIG_PATH = Rails.root.join('.external_rubocop.yml').freeze
 
   attr_reader :project, :config_path
 
