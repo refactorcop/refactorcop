@@ -9,8 +9,7 @@ class RubocopWorker
 
   def perform(project_id, force_run = false)
     @project = Project.find_by_id!(project_id)
-    @force_run = force_run
-    return unless project_needs_analyzing?
+    return unless !force_run && project_needs_analyzing?
     Project::DownloadAndLint.call(project, logger: logger)
   rescue ActiveRecord::RecordNotFound => e
     logger.error { e.message }
@@ -22,7 +21,7 @@ class RubocopWorker
   # Checks whether the project needs to be reanalyzed.
   # @return [boolean]
   def project_needs_analyzing?
-    if project.linted? && !project.new_commits? && !force_run
+    if project.linted? && !project.new_commits?
       logger.info "Project ##{project.id} #{project.full_name} hasn't been updated, *noop*"
       return false
     elsif project.rubocop_running?
