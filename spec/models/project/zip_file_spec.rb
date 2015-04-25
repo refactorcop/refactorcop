@@ -5,35 +5,37 @@ require 'fileutils'
 RSpec.describe Project::ZipFile do
   describe '#ruby_entries' do
     it 'only returns the ruby files' do
-      zip_path = create_zip([
+      create_zip([
         '.rubocop_todo.yml',
         'README.md',
         File.join('lib', 'code.rb'),
-      ])
-
-      pzf = described_class.new(zip_path)
-      expect(pzf.ruby_entries.map(&:name)).to match_array(['lib/code.rb'])
+      ]) do |zip_file|
+        pzf = described_class.new(zip_file)
+        expect(pzf.ruby_entries.map(&:name)).to match_array(['lib/code.rb'])
+      end
     end
   end
 
   describe '#has_rubocop_todos?' do
     it "returns true if .rubocop_todo.yml present" do
-      zip_path = create_zip([
+      create_zip([
         '.rubocop_todo.yml',
         'README.md',
         File.join('lib', 'code.rb'),
-      ])
-      pzf = described_class.new(zip_path)
-      expect(pzf.has_rubocop_todos?).to eq(true)
+      ]) do |zip_file|
+        pzf = described_class.new(zip_file)
+        expect(pzf.has_rubocop_todos?).to eq(true)
+      end
     end
 
     it "returns false if .rubocop_todo.yml absent" do
-      zip_path = create_zip([
+      create_zip([
         'README.md',
         File.join('lib', 'code.rb'),
-      ])
-      pzf = described_class.new(zip_path)
-      expect(pzf.has_rubocop_todos?).to eq(false)
+      ]) do |zip_file|
+        pzf = described_class.new(zip_file)
+        expect(pzf.has_rubocop_todos?).to eq(false)
+      end
     end
   end
 
@@ -47,6 +49,9 @@ RSpec.describe Project::ZipFile do
         zipfile.add(filename, File.join(dir, filename))
       end
     end
-    zip_path
+
+    File.open(zip_path) do |f|
+      yield(f)
+    end
   end
 end

@@ -28,9 +28,9 @@ class Project::Download
     "#{project.username}-#{project.name}"
   end
 
-  # @param file [String]
-  def unzip_and_update_project(filepath)
-    zipfile = Project::ZipFile.new(filepath)
+  # @param file [File]
+  def unzip_and_update_project(file)
+    zipfile = Project::ZipFile.new(file)
     project.has_todo = zipfile.has_rubocop_todos?
     save_as_source_files(zipfile.ruby_entries)
   end
