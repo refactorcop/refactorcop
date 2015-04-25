@@ -18,7 +18,7 @@ class Project::Download
       http_client.get_content(project.download_zip_url) { |chunk|
         zip_file.write(chunk)
       }
-      rescue_reopen_error { unzip_to_source_files(zip_file) }
+      unzip_to_source_files(zip_file)
     end
   end
 
@@ -26,20 +26,6 @@ class Project::Download
 
   def filename
     "#{project.username}-#{project.name}"
-  end
-
-  # Catch and ignore weird `reopen` error message from rubyzip gem
-  def rescue_reopen_error
-    begin
-      return yield
-    rescue ArgumentError => e
-      line = e.backtrace.first
-      if line =~ /reopen/ && e.message =~ /wrong number of arguments \(0 for 1\.\.2\)/
-        logger.warn { "While unzipping, ignoring exception: #{e.inspect}" }
-      else
-        raise e
-      end
-    end
   end
 
   # @param file [String]
