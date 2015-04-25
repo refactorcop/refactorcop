@@ -43,6 +43,7 @@ class Project::Download
   # @param file [String]
   def unzip_to_source_files(file)
     Zip::File.open_buffer(file) do |zip_file|
+      @project.has_todo = zip_file.glob('**/.rubocop_todo.yml').present?
       zip_file.glob('**/*.rb').compact.map do |entry|
         next if ignore_file?(entry.name)
         to_source_file(entry)

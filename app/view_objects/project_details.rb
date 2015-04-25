@@ -16,6 +16,10 @@ class ProjectDetails
     !project.blank?
   end
 
+  def has_todo?
+    @project.has_todo?
+  end
+
   def full_name
     # Don't delegate to project, because it might be nil
     "#{username}/#{name}"
