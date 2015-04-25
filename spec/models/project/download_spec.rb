@@ -6,7 +6,7 @@ RSpec.describe Project::Download do
   before :each do
     # Stub the downloading of the zip archive of a repository
     allow(http_mock).to receive(:get_content) { |_url, &block|
-      path = Rails.root.join('spec', 'assets', 'procto-master.zip')
+      path = Rails.root.join('spec', 'fixtures', 'procto-master.zip')
       file = File.open(path, 'r')
       block.call(file.read)
     }

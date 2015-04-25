@@ -1,6 +1,6 @@
 require 'zip'
 
-# Download a project's code from GitHub
+# Download a project's code from GitHub. Stores it in {SourceFile} models.
 class Project::Download
   include Procto.call
 
@@ -15,8 +15,10 @@ class Project::Download
   def call
     project.source_files.delete_all
     Tempfile.create([filename, ".zip"], :encoding => 'ascii-8bit') do |zip_file|
-      http_client.get_content(project.download_zip_url) { |chunk| zip_file.write(chunk) }
-      rescue_reopen_error { unzip_to_source_files(zip_file) }
+      http_client.get_content(project.download_zip_url) { |chunk|
+        zip_file.write(chunk)
+      }
+      unzip_and_update_project(zip_file)
     end
   end
 
@@ -26,45 +28,40 @@ class Project::Download
     "#{project.username}-#{project.name}"
   end
 
-  # Catch and ignore weird `reopen` error message from rubyzip gem
-  def rescue_reopen_error
-    begin
-      return yield
-    rescue ArgumentError => e
-      line = e.backtrace.first
-      if line =~ /reopen/ && e.message =~ /wrong number of arguments \(0 for 1\.\.2\)/
-        logger.warn { "While unzipping, ignoring exception: #{e.inspect}" }
-      else
-        raise e
-      end
-    end
-  end
-
   # @param file [String]
-  def unzip_to_source_files(file)
-    Zip::File.open_buffer(file) do |zip_file|
-      @project.has_todo = zip_file.glob('**/.rubocop_todo.yml').present?
-      zip_file.glob('**/*.rb').compact.map do |entry|
-        next if ignore_file?(entry.name)
-        to_source_file(entry)
-      end
+  def unzip_and_update_project(filepath)
+    zipfile = Project::ZipFile.new(filepath)
+    project.has_todo = zipfile.has_rubocop_todos?
+    save_as_source_files(zipfile.ruby_entries)
+  end
+
+  # Saves the files as {SourceFile} models
+  #
+  # @param [Array<Zip::Entry>] entries
+  #
+  # @return [undefined]
+  def save_as_source_files(entries)
+    entries.each do |entry|
+      next if SourceFile::IgnoreCheck.call(entry.name)
+      save_as_source_file(entry)
     end
   end
 
-  def ignore_file?(filename)
-    SourceFile::IgnoreCheck.call(filename)
-  end
-
-  def to_source_file(entry)
-    sf = SourceFile.new(project: project, path: sanitize_file_path(entry))
-    input_stream = entry.get_input_stream
-    sf.content = input_stream.read if input_stream.respond_to?(:read)
+  def save_as_source_file(entry)
+    sf = SourceFile.new(
+      project:  project,
+      path:     sanitize_file_path(entry),
+      content:  read_content(entry),
+    )
+    return if sf.content.blank?
     sf.save!
     sf
-  rescue ActiveRecord::StatementInvalid => e
-    logger.warn { "While inserting SourceFile content, ignoring exception: #{e.inspect}" }
-    sf.update_attribute(:content, nil)
-    sf
+  end
+
+  # @param [Zip::Entry] entry
+  def read_content(entry)
+    input = entry.get_input_stream
+    input.read if input.respond_to?(:read)
   rescue StandardError => e
     logger.warn "FAILED ON FILE: #{entry.name} #{e.inspect}"
     nil
