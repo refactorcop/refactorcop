@@ -3,8 +3,7 @@ class Project::ZipFile
 
   def initialize(file)
     unless file.kind_of?(IO)
-      raise ArgumentError,
-        "file must kind of IO object, but was #{file.class.name}"
+      fail ArgumentError, "file must kind of IO object, but was #{file.class.name}"
     end
     @file = file
     @parsed = false

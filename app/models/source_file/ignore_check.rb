@@ -1,7 +1,3 @@
-unless defined?(SourceFile)
-  class SourceFile; end
-end
-
 class SourceFile::IgnoreCheck
   PATTERN = /(spec\/|test\/|_spec\.rb$|_test\.rb$|rails\/generators\/|db\/migrate\/|db\/schema\.rb$|^Library\/Formula\/|lib\/generators\/|benchmark\/|db\/seeds\.rb)/
   include Procto.call
