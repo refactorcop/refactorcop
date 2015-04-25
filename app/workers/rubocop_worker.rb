@@ -9,8 +9,9 @@ class RubocopWorker
 
   def perform(project_id, force_run = false)
     @project = Project.find_by_id!(project_id)
-    return unless !force_run && project_needs_analyzing?
-    Project::DownloadAndLint.call(project, logger: logger)
+    if force_run || project_needs_analyzing?
+      Project::DownloadAndLint.call(project, logger: logger)
+    end
   rescue ActiveRecord::RecordNotFound => e
     logger.error { e.message }
     logger.error { "Skipping project_id(#{project_id.inspect}), because of #{e.class.name}" }
