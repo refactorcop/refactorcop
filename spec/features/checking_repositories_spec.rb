@@ -2,6 +2,12 @@ require 'rails_helper'
 require 'capybara/rails'
 
 RSpec.feature "Checking repositories", :type => :feature do
+  scenario "Visiting the home page" do
+    visit "/"
+    expect(page.find(".trending")).to have_text("Trending")
+    expect(page.find(".recommended")).to have_text("Recommended")
+  end
+
   scenario "Visiting an indexed repository" do
     create(:project, username: "Homebrew", name: "homebrew")
     visit "/homebrew/homebrew"
