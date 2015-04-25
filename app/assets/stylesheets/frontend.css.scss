@@ -947,3 +947,17 @@ body{
     background-color: #eed2a2;
   }
 }
+
+.todo-badge{
+  color: #a3968d;
+  font-size: 14px;
+  vertical-align: middle;
+  padding-left: 25px;
+  background-color: #f2ece8;
+  background-image: image-url("checkmark.min.svg");
+  background-repeat: no-repeat;
+  padding-right: 7px;
+  background-position: 8px 50%;
+  padding-bottom: 2px;
+  padding-top: 2px;
+}
