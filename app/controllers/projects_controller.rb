@@ -2,12 +2,7 @@ class ProjectsController < ApplicationController
   layout 'with_small_header'
 
   def show
-    @project_details = ProjectDetails.new({
-      username: params.fetch(:username, ''),
-      name:     params.fetch(:name, ''),
-      severity: params[:severity],
-      page:     params[:page],
-    })
+    @project_details = find_project_details
     if @project_details.exists?
       render
     else
@@ -41,6 +36,15 @@ class ProjectsController < ApplicationController
   end
 
   private
+
+  def find_project_details
+    ProjectDetails.new({
+      username: params.fetch(:username, ''),
+      name:     params.fetch(:name, ''),
+      severity: params[:severity],
+      page:     params[:page],
+    })
+  end
 
   def redirect_to_project(project, extra_opts = {})
     opts = extra_opts.merge({
