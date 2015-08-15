@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
   <%= render 'layouts/html_head' %>
-  <body class="secondary">
+  <body>
     <%= render 'layouts/google_analytics' if Rails.env.production? %>
 
-    <header>
+    <header class="site-header-slim">
       <div class="wrapper">
-        <h1 class="logo"><a href="/">RefactorCop</a></h1>
-        <div class="search">
+        <h1 class="logo">
+          <a class="logo-link" href="/">RefactorCop</a>
+        </h1>
+        <a class="jump-to-search" href="#project-discovery-anchor"></a>
+        <div class="header-search">
           <%= form_tag "/about/welcome", method: "get" do %>
-            <input name="query" type="text" placeholder="Find repo" class="search_repo">
-            <input type="submit" class="search_button">
+            <input name="query" type="text" placeholder="Find repo" class="header-search-field">
+            <input type="submit" class="header-search-btn">
           <% end %>
         </div>
       </div>
     </header>
     <%= render 'layouts/flashes' %>
 
-    <main class="wrapper"><%= yield %></main>
+    <main class="content"><%= yield %></main>
 
     <%= render 'layouts/footer' %>
   </body>

@@ -1,27 +1,27 @@
 <% content_for(:html_title) { @project_details.full_name } %>
 <% content_for(:meta_description) { [@project_details.full_name, @project_details.project.description].compact.join(' - ') } %>
-<section class="project_details">
+<div class="project-details">
   <% cache ['project_header', @project_details.cache_key] do %>
-    <h2>
+    <h2 class="project-details-title">
       <%= link_to @project_details.username, "https://github.com/#{@project_details.username}" , target: '_blank'%> / <%= link_to @project_details.name, "https://github.com/#{@project_details.username}/#{@project_details.name}", target: '_blank' %>
       <% if @project_details.has_todo? %>
         <span title="This project contains a .rubocop_todo.yml file" class="todo-badge">todo</span>
       <% end %>
     </h2>
-    <p>
-    <%= @project_details.project.description %>
-    </p>
-    <div class="github_stats">
+    <p class="project-details-description"><%= @project_details.project.description %></p>
+    <ul class="github-stats">
       <% %w(stars forks open_issues subscribers).each do |stat| %>
-        <div class="stat_count">
+      <li class="github-stat">
+        <div class="github-stat-count">
           <%= number_to_human(@project_details.send(stat.to_sym), precision: 0) %>
         </div>
-        <div class="stat_type"><%= stat.humanize%> </div>
+        <div class="github-stat-type"><%= stat.humanize%> </div>
+      </li>
       <% end %>
-    </div>
+    </ul>
 
     <% if @project_details.project.large? %>
-      <div class="friendly">This is a <strong>large</strong> project. There may
+      <div class="friendly-warning">This is a <strong>large</strong> project. There may
         be good reasons they keep the code as it is. <br> Make sure you read the
         project's contribution guidelines (look for a "README" or
         "CONTRIBUTING.md") before submitting a pull request! <%= link_to "Try another project.", random_path %></div>
@@ -29,15 +29,15 @@
   <% end %>
 
   <% unless @project_details.project.linted? %>
-    <div class="friendly">This project is freshly added, we don't have any results yet.</div>
+    <div class="friendly-warning">This project is freshly added, we don't have any results yet.</div>
   <% end %>
 
   <% if @project_details.project.rubocop_running? %>
-    <div class="friendly">We have dispatched the cops on this project, hang on, results will be here soon!</div>
+    <div class="friendly-warning">We have dispatched the cops on this project, hang on, results will be here soon!</div>
   <% end %>
 
   <% if @project_details.project.linted? && @project_details.project.rubocop_offenses_count == 0%>
-    <div class="friendly">RuboCop has not detected any offenses in the Ruby sources of this project, awesome!<br/>If you want to contribute to open source projects, try another <a href="/random">random project</a>.</div>
+    <div class="friendly-warning">RuboCop has not detected any offenses in the Ruby sources of this project, awesome!<br/>If you want to contribute to open source projects, try another <a href="/random">random project</a>.</div>
   <% else %>
 
     <% cache ['project_offenses', @project_details.cache_key, params.fetch(:severity, 'no_severity'), params.fetch(:page, 1)] do %>
@@ -49,23 +49,20 @@
         </div>
       <% end %>
 
-      <ul>
+      <ul class="offenses">
         <% @project_details.offenses.each do |offense| %>
-          <li>
-            <div class="offense_bullet severity_<%= offense.severity %>">&nbsp;</div>
-            <div class="offense">
-              <div class="offense_type offense_type_<%= offense.severity %>">
-                <%= offense.severity %>
-              </div>
-              <div class="offense_message">
-                <%= offense.message %>
-              </div>
-              <div class="filename">
-                <%= link_to offense.source_file.path + ":" + offense.location_line.to_s, offense.github_link, target: "_blank" %>
-              </div>
-              <div class="snippet">
-                <%= raw offense.to_html %>
-              </div>
+          <li class="offense">
+            <div class="offense-severity offense-severity-<%= offense.severity %>">
+              <%= offense.severity %>
+            </div>
+            <div class="offense-message">
+              <%= offense.message %>
+            </div>
+            <div class="offense-affected-file">
+              <%= link_to offense.source_file.path + ":" + offense.location_line.to_s, offense.github_link, target: "_blank" %>
+            </div>
+            <div class="snippet">
+              <%= raw offense.to_html %>
             </div>
           </li>
         <% end %>
@@ -74,26 +71,28 @@
       <%= paginate @project_details.offenses, :window => 2 %>
     <% end %>
   <% end %>
-</section>
+</div>
 
-<aside class="sidebar">
-  <%= link_to "I'm feeling lucky", "/random", class: "im_feeling_lucky" %>
+<div class="sidebar">
+  <%= link_to "I'm feeling lucky", "/random", class: "sidebar-feeling-lucky" %>
 
   <% cache ['project_stats', @project_details.cache_key] do %>
+  <div class="offenses-stats-wrapper">
     <h3><%= @project_details.total_offense_count %> offenses</h3>
-    <ul class="offenses">
+    <ul class="offenses-stats">
       <% @project_details.offense_count_per_severity.each do |name, count| %>
-        <li>
-          <div class="severity_count severity_<%= name %>"> <%= number_to_human count, precision: 0 %> </div>
-          <div class="severity_type offense_type_<%= name %>">
+        <li class="offenses-stat">
+          <div class="severity-count severity-count-<%= name %>"> <%= number_to_human count, precision: 0 %> </div>
+          <div class="severity-type severity-type-<%= name %>">
             <%= link_to name, params.merge(severity: name, page: 1) %>
           </div>
         </li>
       <% end %>
     </ul>
+  </div>
 
     <% if @project_details.project.last_index_run_time %>
-      <div class="friendly">
+      <div class="execution-time">
         Our cops processed this project's <strong>
         <%= @project_details.source_files_count %> Ruby files</strong> in
         <strong><%= @project_details.project.last_index_run_time %> seconds</strong>
@@ -103,15 +102,27 @@
     <% end %>
 
     <% if @project_details.project.linted? && @project_details.project.rubocop_offenses_count > 0%>
+    <div class="disappointed-cops-wrapper">
       <h3>Disappointed cops</h3>
-      <ul class="disappointed_cops">
+      <ul class="disappointed-cops">
         <% @project_details.offense_count_per_cop_name.each do |name, count| %>
-          <li>
-            <div class="severity_count"> <%= number_to_human count, precision: 0 %> </div>
-            <div class="severity_type"> <%= name %> </div>
+          <li class="disappointed-cop">
+            <div class="disappointed-cop-count"> <%= number_to_human count, precision: 0 %> </div>
+            <div class="disappointed-cop-type"> <%= name %> </div>
           </li>
         <% end %>
       </ul>
+    </div>
     <% end %>
   <% end %>
-</aside>
+  <section class="project-discovery">
+    <%= form_tag "/about/welcome", method: "get" do %>
+      <div class="search">
+        <%= text_field_tag(:query, nil, placeholder: "Looking for a specific repo?", class: "search-field") %>
+        <input type="submit" class="search-button">
+      </div>
+    <% end %>
+    <h2>Not sure what project to work on?</h2>
+    <a href="/random" class="feeling-lucky">I’m feeling lucky</a>
+  </section>
+</div>
