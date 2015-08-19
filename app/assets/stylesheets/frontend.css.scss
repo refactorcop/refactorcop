@@ -93,7 +93,7 @@ a:hover {
 .robocop-illustration {
   flex: 1 1 auto;
   align-self: stretch;
-  background: image-url("robocop-vector.svg") no-repeat -360px 10px;
+  background: image-url("robocop-vector.min.svg") no-repeat -360px 10px;
   background-size: 662px 352px;
   margin: 0 0 0 -80px;
 }
@@ -1572,7 +1572,7 @@ and (min-width: 1020px) {
     margin: 0 auto;
   }
   .site-header-fat {
-    background: #f8f6e0 image-url("robocop-vector.svg") no-repeat 50% 15px;
+    background: #f8f6e0 image-url("robocop-vector.min.svg") no-repeat 50% 15px;
   }
   .site-header-fat .logo-link {
     height: 55px;
