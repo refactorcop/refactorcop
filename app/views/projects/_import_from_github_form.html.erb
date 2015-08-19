@@ -1,10 +1,16 @@
-<h2>Import from github</h2>
-
-<p class="form_intro">Please enter your GitHub username and project name to queue your project for indexing.</p>
+<div class="import-github">
+	<h2>Import from github</h2>
+ 	<p class="import-github-intro">
+    Please enter your GitHub username and project name to queue your project for indexing.
+  </p>
 
 <%= form_tag(root_path, method: "GET", class: 'js-github-form') do %>
-  <p>
-  http://github.com/<input name="username" placeholder="username" class="github-form-field"/>/<input name="name" placeholder="awesome-project"  class="github-form-field"/>
-  <%= submit_tag "Submit", class: "submit_button" %>
+  <div class="project-url">
+  	<span class="project-url-prefix">http://github.com/</span>
+  	<input class="project-url-field" name="username" placeholder="username">
+  	<span class="project-url-slash">/</span>
+  	<input class="project-url-field" name="name" placeholder="awesome-project">
+  	<%= submit_tag "Submit", class: "project-url-submit" %>
   </p>
 <% end %>
+</div>

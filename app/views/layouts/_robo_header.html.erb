@@ -1,16 +1,25 @@
-<header>
+<header class="site-header-fat">
   <div class="wrapper">
-    <h1 class="logo"><%= link_to "RefactorCop", root_path %></h1>
-    <p>Using <a href="https://github.com/bbatsov/rubocop">RuboCop</a>, RefactorCop scans open source Ruby projects, allowing you to discover code that may benefit from your contribution.</p>
-
-    <%= form_tag "/about/welcome", method: "get", class: "search" do %>
-      <div class="search">
-        <%= text_field_tag(:query, nil, placeholder: "Looking for a specific repo?", class: "search_repo") %>
-        <input type="submit" class="search_button">
-      </div>
-    <% end %>
-
-    <h2>Not sure what project to work on?</h2>
-    <a href="/random" class="im_feeling_lucky">I'm feeling lucky!</a>
+    <section class="definition">
+      <h1 class="logo">
+        <%= link_to "RefactorCop", root_path, class: "logo-link" %>
+      </h1>
+      <p>
+        Using
+        <a href="https://github.com/bbatsov/rubocop">RuboCop</a>
+        , RefactorCop scans open source Ruby projects, allowing you to discover code that may benefit from your contribution.
+      </p>
+      <section class="project-discovery">
+        <%= form_tag "/about/welcome", method: "get" do %>
+          <div class="search">
+            <%= text_field_tag(:query, nil, placeholder: "Looking for a specific repo?", class: "search-field") %>
+            <input type="submit" class="search-button">
+          </div>
+        <% end %>
+        <h2>Not sure what project to work on?</h2>
+        <a href="/random" class="feeling-lucky">I’m feeling lucky</a>
+      </section>
+    </section>
+    <section class="robocop-illustration"></section>
   </div>
 </header>

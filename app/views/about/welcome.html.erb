@@ -1,5 +1,16 @@
+  <section class="project-discovery">
+    <%= form_tag "/about/welcome", method: "get" do %>
+      <div class="search">
+        <%= text_field_tag(:query, nil, placeholder: "Looking for a specific repo?", class: "search-field") %>
+        <input type="submit" class="search-button">
+      </div>
+    <% end %>
+    <h2>Not sure what project to work on?</h2>
+    <a href="/random" class="feeling-lucky">I’m feeling lucky</a>
+  </section>
+
 <% if !@dashboard.search? %>
-  <section class="project_lists wrapper">
+  <section class="projects wrapper">
     <% cache [DateTime.now.strftime("%Y-%m-%d"), 'trending', Project.count] do %>
       <div class="trending">
         <h2>Trending</h2>
@@ -25,8 +36,8 @@
     <% end %>
   </section>
 <% else %>
-  <section class="project_lists wrapper">
-    <div class="search_results">
+  <section class="projects wrapper">
+    <div class="search-results">
       <h2>Repos containing '<%= @dashboard.query %>'</h2>
       <ul>
         <% @dashboard.search_results.each do |project| %>
@@ -37,7 +48,7 @@
       </ul>
       <%= paginate @dashboard.search_results %>
       <% if @dashboard.search_results.empty? %>
-        <p class="friendly">
+        <p class="friendly-warning">
           We're sorry, we couldn't find any projects that match your query.
           You can try a <a href="/random"><strong>random project</strong></a> or submit your own project below!
         </p>

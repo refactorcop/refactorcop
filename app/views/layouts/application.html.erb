@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <%= render 'layouts/html_head' %>
-  <body class="home">
+  <body>
     <%= render 'layouts/google_analytics' if Rails.env.production? %>
     <%= render 'layouts/github_ribbon' %>
     <%= render 'layouts/flashes' %>
@@ -14,7 +14,7 @@
     </section>
     <%= yield %>
 
-    <section class="why_open_source">
+    <section class="why-open-source">
       <div class="wrapper">
         <h2>Why contribute to open source?</h2>
         <ul>
