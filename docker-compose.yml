@@ -1,0 +1,19 @@
+rcop_app:
+  build: .
+  ports:
+    - "4000:3000"
+  volumes:
+    - .:/refactorcop
+  links:
+    - rcop_db:db
+    - rcop_redis:redis
+  environment:
+    DATABASE_URL: postgresql://db:5432/rcop_development?pool=5&user=postgres
+rcop_db:
+  image: "postgres:9.4"
+  volumes_from:
+    - rcop_dbdata
+rcop_redis:
+  image: "redis:2.8"
+rcop_dbdata:
+  image: "postgres:9.4"
