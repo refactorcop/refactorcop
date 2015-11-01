@@ -433,6 +433,9 @@ Style/ParenthesesAroundCondition:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-parens-if'
   Enabled: false
 
+Style/ParallelAssignment:
+  Enabled: false
+
 Style/PercentLiteralDelimiters:
   Description: 'Use `%`-literal delimiters consistently'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#percent-literal-braces'

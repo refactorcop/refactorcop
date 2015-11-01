@@ -1,7 +1,7 @@
 ActiveAdmin.register_page "Dashboard" do
-  #menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
+  # menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
 
-  content title: proc{ I18n.t("active_admin.dashboard") } do
+  content title: proc { I18n.t("active_admin.dashboard") } do
     # Here is an example of a simple dashboard with columns and panels.
     #
     columns do
@@ -27,7 +27,6 @@ ActiveAdmin.register_page "Dashboard" do
 
       column do
         panel "" do
-          #text_node %{<iframe src="https://rpm.newrelic.com/public/charts/ex6IoWyVB6d" width="550" height="300" scrolling="no" frameborder="no"></iframe>}.html_safe
           text_node %{<iframe src="https://rpm.newrelic.com/public/charts/fm3gwRLo8rp" width="400" height="200" scrolling="no" frameborder="no"></iframe>}.html_safe
         end
       end
@@ -37,16 +36,13 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         div do
           br
-          #text_node %{<iframe src="https://rpm.newrelic.com/public/charts/ex6IoWyVB6d" width="550" height="300" scrolling="no" frameborder="no"></iframe>}.html_safe
           text_node %{<iframe src="https://rpm.newrelic.com/public/charts/exvinz78lL1" width="550" height="300" scrolling="no" frameborder="no"></iframe>}.html_safe
         end
       end
 
-
       column do
         div do
           br
-          #text_node %{<iframe src="https://rpm.newrelic.com/public/charts/dVeoWDAGSvH" width="500" height="300" scrolling="no" frameborder="no"></iframe>}.html_safe
           text_node %{<iframe src="https://rpm.newrelic.com/public/charts/6AxHUxITYCA" width="500" height="300" scrolling="no" frameborder="no"></iframe>}.html_safe
         end
       end

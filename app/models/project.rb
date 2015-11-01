@@ -23,7 +23,7 @@ class Project < ActiveRecord::Base
   has_many :rubocop_offenses, through: :source_files
 
   scope :linted, lambda {
-    t = self.arel_table
+    t = arel_table
     where(t[:rubocop_last_run_at].not_eq(nil).and(t[:rubocop_last_run_at].gt(t[:rubocop_run_started_at])))
   }
 
@@ -66,7 +66,7 @@ class Project < ActiveRecord::Base
     end
   end
 
-  def update_repository_data(fetched_repository_data = nil )
+  def update_repository_data(fetched_repository_data = nil)
     self.repository_data = fetched_repository_data || fetch_github_repository_data
     Rails.logger.info "updating repository_data"
     save!

@@ -38,31 +38,31 @@ class ProjectsController < ApplicationController
   private
 
   def find_project_details
-    ProjectDetails.new({
+    ProjectDetails.new(
       username: params.fetch(:username, ''),
       name:     params.fetch(:name, ''),
       severity: params[:severity],
       page:     params[:page],
-    })
+    )
   end
 
   def redirect_to_project(project, extra_opts = {})
-    opts = extra_opts.merge({
+    opts = extra_opts.merge(
       action: "show",
       username: project.username,
-      name: project.name
-    })
+      name: project.name,
+    )
     flashes = opts.delete(:flash)
-    redirect_to(opts, {flash: flashes})
+    redirect_to(opts, { flash: flashes })
   end
 
   def attempt_project_import_and_redirect
     gh = GithubProject.new(name: @project_details.name, username: @project_details.username)
-    if !gh.exists?
+    unless gh.exists?
       redirect_to action: "not_found", flash: { error: "Could not find that project '#{@project_details.full_name}'" }
       return
     end
-    if !gh.contains_ruby?
+    unless gh.contains_ruby?
       redirect_to root_path, flash: { error: "This project does not seem to contain a significant amount of ruby code." }
       return
     end

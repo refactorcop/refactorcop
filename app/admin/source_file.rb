@@ -21,7 +21,6 @@ ActiveAdmin.register SourceFile do
     column :project
     column :path
     column :created_at
-    #column :updated_at
     actions
   end
 

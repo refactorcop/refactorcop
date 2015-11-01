@@ -30,10 +30,10 @@ class GithubTrending
 
   def project_from_node(node)
     name_parts = node.css('.repo-list-name').first.content.strip.split(' ')
-    Project.where({
+    Project.where(
       name: name_parts.last.strip,
       username: name_parts.first.strip,
-    }).first_or_initialize(description: extract_description(node))
+    ).first_or_initialize(description: extract_description(node))
   end
 
   def extract_description(node)

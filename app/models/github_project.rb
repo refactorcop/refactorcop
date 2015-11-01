@@ -21,11 +21,11 @@ class GithubProject
   def to_project
     return nil unless exists?
     doc = Nokogiri::HTML(page_html)
-    Project.new({
+    Project.new(
       name: name,
       username: username,
       description: extract_description(doc),
-    })
+    )
   end
 
   private

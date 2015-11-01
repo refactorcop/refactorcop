@@ -31,12 +31,12 @@ class RubocopOffense < ActiveRecord::Base
   end
 
   def to_html
-    code_lines = CodeRay.scan(code_snippet, :ruby).div({
+    code_lines = CodeRay.scan(code_snippet, :ruby).div(
       line_numbers: :inline,
       line_number_start: line_number_start,
-      highlight_lines: [self.location_line],
-      line_number_anchors: false
-    }).lines
+      highlight_lines: [location_line],
+      line_number_anchors: false,
+    ).lines
     code_lines.push(highlight_line).join
   end
 

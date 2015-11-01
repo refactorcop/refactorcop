@@ -61,6 +61,9 @@ Style/MultilineOperationIndentation:
   EnforcedStyle: indented
   Enabled: true
 
+Style/ParallelAssignment:
+  Enabled: false
+
 Style/PercentLiteralDelimiters:
   Enabled: false
 

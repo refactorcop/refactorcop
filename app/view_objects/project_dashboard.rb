@@ -17,7 +17,7 @@ class ProjectDashboard
 
   def search_results
     @search_results ||= Project
-      .where("name ILIKE ? or description ILIKE ?", "%#{query}%",  "%#{query}%")
+      .where("name ILIKE ? or description ILIKE ?", "%#{query}%", "%#{query}%")
       .page(params[:page]).per(20)
   end
 

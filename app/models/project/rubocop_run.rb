@@ -40,7 +40,7 @@ class Project::RubocopRun
   end
 
   def create_offense(source_file_id, offense_json)
-    RubocopOffense.create({
+    RubocopOffense.create(
       source_file_id: source_file_id,
       severity:   offense_json[:severity],
       message:    offense_json[:message],
@@ -48,6 +48,6 @@ class Project::RubocopRun
       location_column:  offense_json[:location][:column],
       location_line:    offense_json[:location][:line],
       location_length:  offense_json[:location][:length],
-    })
+    )
   end
 end

@@ -44,10 +44,10 @@ ActiveAdmin.register RubocopOffense do
       end
       row "Source Code" do |model|
         lines = model.source_file.content.lines[model.line_range]
-        raw CodeRay.scan(lines.join, :ruby).div({
+        raw CodeRay.scan(lines.join, :ruby).div(
           line_numbers: :inline,
-          line_number_start: model.location_line - 1
-        })
+          line_number_start: model.location_line - 1,
+        )
       end
     end
   end
