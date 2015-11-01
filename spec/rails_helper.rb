@@ -56,4 +56,5 @@ end
 
 # https://github.com/mperham/sidekiq/wiki/Testing
 require 'sidekiq/testing'
+Sidekiq::Logging.logger = nil
 Sidekiq::Testing.fake!
