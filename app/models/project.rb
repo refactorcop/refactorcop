@@ -94,12 +94,14 @@ class Project < ActiveRecord::Base
     pushed_at != github[:pushed_at]
   end
 
-  def severity_counts
-    RubocopOffense.includes(:source_file)
-      .where(source_files: { project_id: id })
-      .group(:severity)
-      .count
-      .with_indifferent_access
+  def update_severity_counts
+    severities = query_severity_counts
+    self.fatal_count      = severities[:fatal] || 0
+    self.error_count      = severities[:error] || 0
+    self.warning_count    = severities[:warning] || 0
+    self.convention_count = severities[:convention] || 0
+    self.refactor_count   = severities[:refactor] || 0
+    save!
   end
 
   def last_index_run_time
@@ -127,6 +129,14 @@ class Project < ActiveRecord::Base
   end
 
   private
+
+  def query_severity_counts
+    RubocopOffense.includes(:source_file)
+      .where(source_files: { project_id: id })
+      .group(:severity)
+      .count
+      .with_indifferent_access
+  end
 
   def github_api
     @github_api ||=

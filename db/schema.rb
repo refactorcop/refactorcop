@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151101092724) do
+ActiveRecord::Schema.define(version: 20151101094237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -43,6 +44,11 @@ ActiveRecord::Schema.define(version: 20151101092724) do
     t.datetime "rubocop_run_started_at"
     t.datetime "rubocop_last_run_at"
     t.boolean  "has_todo",                           default: false, null: false
+    t.integer  "fatal_count",                        default: 0
+    t.integer  "error_count",                        default: 0
+    t.integer  "warning_count",                      default: 0
+    t.integer  "convention_count",                   default: 0
+    t.integer  "refactor_count",                     default: 0
   end
 
   create_table "rubocop_offenses", force: :cascade do |t|

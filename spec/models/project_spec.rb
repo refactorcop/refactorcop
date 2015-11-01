@@ -85,6 +85,30 @@ RSpec.describe Project, :type => :model do
     end
   end
 
+  describe '#update_severity_counts' do
+    let(:project) { create(:project) }
+
+    it "caches the severity counts" do
+      offense = -> (severity, n) {
+        n.times.map { create(:rubocop_offense, severity: severity) }
+      }
+      source_file = create(:source_file)
+      source_file.rubocop_offenses += offense.call('fatal', 1)
+      source_file.rubocop_offenses += offense.call('error', 2)
+      source_file.rubocop_offenses += offense.call('warning', 3)
+      source_file.rubocop_offenses += offense.call('convention', 4)
+      source_file.rubocop_offenses += offense.call('refactor', 5)
+      project.source_files = [source_file]
+      project.update_severity_counts
+
+      expect(project.fatal_count).to eq(1)
+      expect(project.error_count).to eq(2)
+      expect(project.warning_count).to eq(3)
+      expect(project.convention_count).to eq(4)
+      expect(project.refactor_count).to eq(5)
+    end
+  end
+
   describe '.find_by_full_name' do
     [
       ['UserName', 'Name', 'username', 'name'],
