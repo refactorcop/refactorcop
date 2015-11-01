@@ -1,12 +1,11 @@
 <div class="project-header">
   <%= link_to "#{project.username} / #{project.name}", "/#{project.username}/#{project.name}", class: "project-title" %>
-  <% severities = project.severity_counts %>
   <ul class="severities">
-    <li class="severity-fatal hint--top" data-hint="Fatal"><%= number_to_human( severities[:fatal] || 0, precision: 2 ) %></li>
-    <li class="severity-error hint--top" data-hint="Error"><%= number_to_human( severities[:error] || 0, precision: 2 ) %></li>
-    <li class="severity-warning hint--top" data-hint="Warning"><%= number_to_human( severities[:warning] || 0, precision: 2 ) %></li>
-    <li class="severity-convention hint--top" data-hint="Convention"><%= number_to_human( severities[:convention] || 0, precision: 2 ) %></li>
-    <li class="severity-refactor hint--top" data-hint="Refactor"><%= number_to_human( severities[:refactor] || 0, precision: 2 ) %></li>
+    <li class="severity-fatal hint--top" data-hint="Fatal"><%= number_to_human(project.fatal_count, precision: 2 ) %></li>
+    <li class="severity-error hint--top" data-hint="Error"><%= number_to_human(project.error_count, precision: 2 ) %></li>
+    <li class="severity-warning hint--top" data-hint="Warning"><%= number_to_human(project.warning_count, precision: 2 ) %></li>
+    <li class="severity-convention hint--top" data-hint="Convention"><%= number_to_human(project.convention_count, precision: 2 ) %></li>
+    <li class="severity-refactor hint--top" data-hint="Refactor"><%= number_to_human(project.refactor_count, precision: 2 ) %></li>
   </ul>
 </div>
 <p class="project-description"><%= project.description %></p>

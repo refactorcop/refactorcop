@@ -36,7 +36,13 @@ class ProjectDetails
   end
 
   def offense_count_per_severity
-    @per_severity_count ||= all_offenses.group(:severity).count.sort_by { |_k, v| v }.reverse
+    @per_severity_count ||= {
+      fatal: project.fatal_count,
+      error: project.error_count,
+      warning: project.warning_count,
+      convention: project.convention_count,
+      refactor: project.refactor_count,
+    }.sort_by { |_k, v| v }.reverse
   end
 
   def offense_count_per_cop_name

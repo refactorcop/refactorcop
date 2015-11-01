@@ -51,5 +51,6 @@ class Project::DownloadAndLint
       where(source_files: { project_id: project }).
       count
     project.source_files_count = project.source_files.count
+    project.update_severity_counts
   end
 end
