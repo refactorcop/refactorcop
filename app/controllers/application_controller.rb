@@ -14,8 +14,6 @@ class ApplicationController < ActionController::Base
   protected
 
   def check_screenshot
-    unless params[:screenshot].blank?
-      redirect_to "/screenshot.html"
-    end
+    redirect_to "/screenshot.html" unless params[:screenshot].blank?
   end
 end
